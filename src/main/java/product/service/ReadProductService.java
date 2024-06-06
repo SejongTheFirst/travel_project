@@ -18,7 +18,7 @@ public class ReadProductService {
 		try (Connection con=ConnectionProvider.getConnection()){
 			Product product=productDAO.selectById(con, productNum);
 			if(product == null) {
-				throw new ProductNotFoundException();
+				throw new ProductNotFoundException(null);
 			}
 			
 			ProductContent content=contentDAO.selectById(con, productNum);

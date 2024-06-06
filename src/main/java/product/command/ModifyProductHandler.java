@@ -50,7 +50,7 @@ public class ModifyProductHandler implements CommandHandler{
 				return null;
 			}
 			
-			ModifyRequest modReq = new ModifyRequest(authUser.getId(), productData.getProduct().getProductNum(), productData.getProduct().getPrice(), productData.getProduct().getProductTitle(), productData.getContent());
+			ModifyRequest modReq = new ModifyRequest(authUser.getId(), no, productData.getProduct().getPrice(), productData.getProduct().getProductTitle(), productData.getContent().getProductSubTitle(), productData.getContent().getProductContent());
 			
 			req.setAttribute("modReq", modReq);
 			return FORM_VIEW;
@@ -70,7 +70,7 @@ public class ModifyProductHandler implements CommandHandler{
 		String noVal=req.getParameter("no");
 		int	no=Integer.parseInt(noVal);
 		
-		ModifyRequest modReq = new ModifyRequest(authUser.getId(), Integer.parseInt(noVal), no, noVal, noVal);
+		ModifyRequest modReq = new ModifyRequest(authUser.getId(), no,  Integer.parseInt(req.getParameter("price")), req.getParameter("title"), req.getParameter("subtitle"), req.getParameter("content"));
 		req.setAttribute("modReq", modReq);
 		
 		Map<String, Boolean> errors = new HashMap<>();
