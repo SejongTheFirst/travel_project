@@ -11,7 +11,6 @@ import member.model.Member;
 public class ModifyMemberService {
     private MemberDAO memberDAO = new MemberDAO();
 
-    // Modify the member information
     public void modifyMember(String id, String newMemberName, String curPwd, String newPwd, String newPhoneNum, String newBirthday) {
         Connection conn = null;
         try {
@@ -20,25 +19,24 @@ public class ModifyMemberService {
 
             Member member = memberDAO.selectById(conn, id);
             if (member == null) {
-                throw new MemberNotFoundException(); // Handle member not found
+                throw new MemberNotFoundException();
             }
             if (!member.matchPassword(curPwd)) {
-                throw new InvalidPasswordException(); // Handle invalid password
+                throw new InvalidPasswordException();
             }
 
             member.modifyMember(newMemberName, newPwd, newPhoneNum, newBirthday);
-            memberDAO.update(conn, member); // Update member in the database
+            memberDAO.update(conn, member);
             conn.commit();
 
         } catch (SQLException e) {
-            JdbcUtil.rollback(conn); // Rollback in case of an error
+            JdbcUtil.rollback(conn);
             throw new RuntimeException(e);
         } finally {
-            JdbcUtil.close(conn); // Ensure connection is closed
+            JdbcUtil.close(conn);
         }
     }
 
-    // Fetch member by ID
     public Member getMemberById(String id) {
         Connection conn = null;
         try {
@@ -47,7 +45,7 @@ public class ModifyMemberService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            JdbcUtil.close(conn); // Ensure connection is closed
+            JdbcUtil.close(conn);
         }
     }
 }
