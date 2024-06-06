@@ -19,6 +19,10 @@
             <td>${productData.product.productTitle}</td>
         </tr>
         <tr>
+            <td>서브제목</td>
+            <td>${productData.content.productSubTitle}</td>
+        </tr>
+        <tr>
             <td>내용</td>
             <td><c:out value="${productData.content.productContent}"/></td>
         </tr>
@@ -42,14 +46,7 @@
             <td>위치</td>
             <td>${productData.content.location}</td>
         </tr>
-        <tr>
-            <td>시작 날짜</td>
-            <td>${productData.content.startDate}</td>
-        </tr>
-        <tr>
-            <td>종료 날짜</td>
-            <td>${productData.content.endDate}</td>
-        </tr>
+        
     </table>
 
     <a href="list.do">목록으로 돌아가기</a>
