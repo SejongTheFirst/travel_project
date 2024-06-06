@@ -1,0 +1,48 @@
+package product.service;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import jdbc.JdbcUtil;
+import jdbc.connection.ConnectionProvider;
+import product.dao.ProductContentDAO;
+import product.dao.ProductDAO;
+import product.model.Product;
+
+public class ModifyProductService {
+	
+	private ProductDAO productDAO = new ProductDAO();
+	private ProductContentDAO contentDAO = new ProductContentDAO();
+	
+	public void modify(ModifyRequest modReq) {
+		Connection con=null;
+		try {
+			con=ConnectionProvider.getConnection();
+			con.setAutoCommit(false);
+			
+			Product pro = productDAO.selectById(con, modReq.getProductNum());
+			
+			if (pro == null) {
+				throw new ProductNotFoundException();
+			}
+			if (!canModify(modReq.getMemberid(), pro)) {
+				throw new PermissionDeninedException();
+			}
+			productDAO.update(con, modReq.getProductTitle(), modReq.getPrice(), modReq.getProductNum());
+			contentDAO.update(con, modReq.getProductNum(), modReq.getProductContent());
+			con.commit();
+		} catch (SQLException e) {
+			JdbcUtil.rollback(con);
+			throw new RuntimeException(e);
+		} catch (PermissionDeninedException e) {
+			JdbcUtil.rollback(con);
+		} finally {
+			JdbcUtil.close(con);
+		}
+	}
+	
+	private boolean canModify(String modifyingMemberId, Product product) {
+		return product.getWriter().getId().equals(modifyingMemberId);
+	}
+
+}
