@@ -23,13 +23,13 @@ public class ModifyProductService {
 			Product pro = productDAO.selectById(con, modReq.getProductNum());
 			
 			if (pro == null) {
-				throw new ProductNotFoundException();
+				throw new ProductNotFoundException(null);
 			}
 			if (!canModify(modReq.getMemberid(), pro)) {
-				throw new PermissionDeninedException();
+				throw new PermissionDeninedException(null);
 			}
 			productDAO.update(con, modReq.getProductTitle(), modReq.getPrice(), modReq.getProductNum());
-			contentDAO.update(con, modReq.getProductNum(), modReq.getProductContent());
+			contentDAO.update(con, modReq.getProductNum(), modReq.getProductSubtitle(),modReq.getProductContent());
 			con.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(con);

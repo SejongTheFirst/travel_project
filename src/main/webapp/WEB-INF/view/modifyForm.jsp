@@ -17,6 +17,12 @@
 <c:if test="${errors.title}">제목을 입력하세요</c:if>
 </p>
 <p>
+서브제목 : <br/><input type="text" name="subtitle" value="${modReq.productSubtitle }">
+</p>
+<p>
+가격 : <br/><input type="number" name="price" value="${modReq.price }">
+</p>
+<p>
 내용 : <br/>
 <textarea rows="5" cols="30" name="content">${modReq.productContent}</textarea>
 </p>

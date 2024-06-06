@@ -39,10 +39,6 @@
         </p>
         
         <p>
-            이미지 URL : <br/><input type="text" name="imgUrl" value="${param.imgUrl}">
-        </p>
-        
-        <p>
             게스트 수 : <br/><input type="number" name="guests" value="${param.guests}">
         </p>
         

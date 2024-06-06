@@ -61,7 +61,7 @@ public class WriteProductService {
 	
 	private ProductContent toContent(Product save, WriteRequest req) {
 		Date now = new Date();
-		return new ProductContent(save.getProductNum(), req.getProductSubTitle(), req.getProductContent(), req.getProductType() , req.getGuests(), req.getLocation(), req.getImgUrl(), now, now);
+		return new ProductContent(save.getProductNum(), req.getProductSubTitle(), req.getProductContent(), req.getProductType() , req.getGuests(), req.getLocation(), now, now);
 	}
 	
 	private Date toDate(String date) {

@@ -8,15 +8,16 @@ public class ModifyRequest {
 	private int productNum;
 	private int price;
 	private String productTitle;
-	private String subtitle;
+	private String productSubtitle;
 	private String productContent;
 
-	public ModifyRequest(String memberid, int productNum, int price, String productTitle, String productContent) {
+	public ModifyRequest(String memberid, int productNum, int price, String productTitle, String productSubtitle, String productContent) {
 		super();
 		this.memberid = memberid;
 		this.productNum = productNum;
 		this.price=price;
 		this.productTitle = productTitle;
+		this.productSubtitle=productSubtitle;
 		this.productContent = productContent;
 	}
 
@@ -34,6 +35,10 @@ public class ModifyRequest {
 
 	public String getProductTitle() {
 		return productTitle;
+	}
+	
+	public String getProductSubtitle() {
+		return productSubtitle;
 	}
 
 	public String getProductContent() {

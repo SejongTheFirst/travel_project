@@ -122,7 +122,7 @@ public class ProductDAO {
 		String query = "update product set product_title=?, price=? where product_num=?";
 		try (PreparedStatement ps = con.prepareStatement(query)){
 			ps.setString(1, title);
-			ps.setInt(3, price);
+			ps.setInt(2, price);
 			ps.setInt(3, no);
 			return ps.executeUpdate();
 		} 

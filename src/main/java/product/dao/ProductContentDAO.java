@@ -14,7 +14,7 @@ public class ProductContentDAO {
 	
 	public ProductContent insert(Connection con, ProductContent content) throws SQLException{
 		PreparedStatement ps=null;
-		String query="insert into product_content (product_num, product_content, product_subtitle, product_type, guests, location, img_url, reg_date, update_date) values(?,?,?,?,?,?,?,?,?)";
+		String query="insert into product_content (product_num, product_content, product_subtitle, product_type, guests, location, reg_date, update_date) values(?,?,?,?,?,?,?,?)";
 		
 		try {
 			ps=con.prepareStatement(query);
@@ -24,9 +24,8 @@ public class ProductContentDAO {
 			ps.setString(4, content.getProductType());
 			ps.setInt(5, content.getGuests());
 			ps.setString(6, content.getLocation());
-			ps.setString(7, content.getImgUrl());
-			ps.setTimestamp(8, toTimestamp(content.getRegDate()));
-			ps.setTimestamp(9, toTimestamp(content.getUpdateDate()));
+			ps.setTimestamp(7, toTimestamp(content.getRegDate()));
+			ps.setTimestamp(8, toTimestamp(content.getUpdateDate()));
 			
 			int res=ps.executeUpdate();
 			
@@ -55,7 +54,7 @@ public class ProductContentDAO {
 			
 			ProductContent content=null;
 			if(rs.next()) {
-				content=new ProductContent(rs.getInt("product_num"), rs.getString("product_subtitle"), rs.getString("product_content"), rs.getString("product_type"), rs.getInt("guests"), rs.getString("location"), rs.getString("img_url"), toDate(rs.getTimestamp("reg_date")), toDate(rs.getTimestamp("update_date")));
+				content=new ProductContent(rs.getInt("product_num"), rs.getString("product_subtitle"), rs.getString("product_content"), rs.getString("product_type"), rs.getInt("guests"), rs.getString("location"), toDate(rs.getTimestamp("reg_date")), toDate(rs.getTimestamp("update_date")));
 			}
 			return content;
 		} finally {
@@ -68,11 +67,13 @@ public class ProductContentDAO {
 		return new Date(timestamp.getTime());
 	}
 	
-	public int update(Connection con, int no, String content) throws SQLException{
-		String query="update product_content set product_content=? where product_num=?";
+	public int update(Connection con, int no, String subtitle, String content) throws SQLException{
+		String query="update product_content set product_content=?, product_subtitle=? where product_num=?";
 		try (PreparedStatement ps=con.prepareStatement(query)){
 			ps.setString(1, content);
-			ps.setInt(2, no);
+			ps.setString(2, subtitle);
+			ps.setInt(3, no);
+			
 			return ps.executeUpdate();
 		}
 	}

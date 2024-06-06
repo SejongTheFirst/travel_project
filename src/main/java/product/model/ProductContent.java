@@ -10,12 +10,11 @@ public class ProductContent {
 	private String productType;
 	private int guests;
 	private String location;
-	private String imgUrl;
 	private Date regDate;
 	private Date updateDate;
 
 	public ProductContent(Integer productNum, String productSubTitle, String productContent, String productType, int guests,
-			String location, String imgUrl, Date regDate, Date updateDate) {
+			String location, Date regDate, Date updateDate) {
 		super();
 		this.productNum = productNum;
 		this.productSubTitle=productSubTitle;
@@ -23,7 +22,6 @@ public class ProductContent {
 		this.productType = productType;
 		this.guests = guests;
 		this.location = location;
-		this.imgUrl = imgUrl;
 		this.regDate = regDate;
 		this.updateDate = updateDate;
 	}
@@ -50,10 +48,6 @@ public class ProductContent {
 
 	public String getLocation() {
 		return location;
-	}
-
-	public String getImgUrl() {
-		return imgUrl;
 	}
 
 	public Date getRegDate() {
