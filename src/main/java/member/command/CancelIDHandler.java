@@ -32,7 +32,7 @@ public class CancelIDHandler implements CommandHandler {
 		User user = (User) req.getSession().getAttribute("authUser");
 		
 		cancelIDSvc.cancelID(user.getId());
-		return "/WEB-INF/view/logout.jsp";
+		return "/index.jsp";
 	}
 
 }
