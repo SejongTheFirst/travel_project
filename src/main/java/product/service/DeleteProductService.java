@@ -3,6 +3,7 @@ package product.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import image.dao.ImageDAO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 import product.dao.ProductContentDAO;
@@ -13,6 +14,7 @@ public class DeleteProductService {
 	
 	private ProductDAO productDAO = new ProductDAO();
 	private ProductContentDAO contentDAO = new ProductContentDAO();
+	private ImageDAO imageDAO = new ImageDAO();
 	
 	public void delete(DeleteRequest delReq) {
 	    Connection con = null;
@@ -31,6 +33,7 @@ public class DeleteProductService {
 
 	        productDAO.delete(con, product.getProductNum());
 	        contentDAO.delete(con, product.getProductNum());
+	        imageDAO.delete(con, product.getProductNum());
 	        con.commit();
 	    } catch (SQLException e) {
 	        JdbcUtil.rollback(con);

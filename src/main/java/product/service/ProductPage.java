@@ -3,17 +3,18 @@ package product.service;
 import java.util.List;
 
 import product.model.Product;
+import product.model.ProductWithImage;
 
 public class ProductPage {
 	
 	private int total;
 	private int currentPage;
-	private List<Product> content;
+	private List<ProductWithImage> content;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 
-	public ProductPage(int total, int currentPage, int size, List<Product> content) {
+	public ProductPage(int total, int currentPage, int size, List<ProductWithImage> content) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.content = content;
@@ -55,7 +56,7 @@ public class ProductPage {
 		return totalPages;
 	}
 	
-	public List<Product> getContent() {
+	public List<ProductWithImage> getContent() {
 		return content;
 	}
 	

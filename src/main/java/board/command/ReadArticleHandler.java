@@ -32,7 +32,7 @@ public class ReadArticleHandler implements CommandHandler {
             req.setAttribute("articleData", articleData);
             req.setAttribute("category", category);
             req.setAttribute("pageNo", pageNo);
-            return "/WEB-INF/view/Board/BoardRead.jsp";
+            return "/WEB-INF/view/board/boardRead.jsp";
         } catch (ArticleNotFoundException | ArticleContentNotFoundException e) {
             req.getServletContext().log("no article", e);
             res.sendError(HttpServletResponse.SC_NOT_FOUND);

@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import image.dao.ImageDAO;
+import image.model.Image;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 import product.dao.ProductContentDAO;
@@ -18,6 +20,7 @@ public class WriteProductService {
 	
 	private ProductDAO productDAO = new ProductDAO();
 	private ProductContentDAO contentDAO = new ProductContentDAO();
+	private ImageDAO imageDAO = new ImageDAO();
 	
 	public Integer write(WriteRequest req) {
 		Connection con=null;
@@ -37,7 +40,14 @@ public class WriteProductService {
 			ProductContent savedContent = contentDAO.insert(con, content);
 			
 			if (savedContent == null) {
-				throw new RuntimeException("fail to insert priduct_content");
+				throw new RuntimeException("fail to insert product_content");
+			}
+			
+			Image img = toImage(savedProduct, req);
+			Image savedImg = imageDAO.insert(con, img);
+			
+			if (savedImg == null) {
+				throw new RuntimeException("fail to insert image");
 			}
 			
 			con.commit();
@@ -62,6 +72,11 @@ public class WriteProductService {
 	private ProductContent toContent(Product save, WriteRequest req) {
 		Date now = new Date();
 		return new ProductContent(save.getProductNum(), req.getProductSubTitle(), req.getProductContent(), req.getProductType() , req.getGuests(), req.getLocation(), now, now);
+	}
+	
+	private Image toImage(Product save, WriteRequest req) {
+		
+		return new Image(null, req.getOriginalFileName(), req.getStoreFileName(), req.getWriter().getId(), save.getProductNum());
 	}
 	
 	private Date toDate(String date) {
