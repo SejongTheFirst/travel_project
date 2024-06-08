@@ -1,0 +1,179 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header .logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #5cd5fb;
+}
+
+header .search-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+header .search-bar{
+	width: 100%; /* search-bar 자체의 너비를 100%로 설정하여 중앙 정렬 */
+    max-width: 600px; /* 검색창의 최대 너비를 설정 */
+}
+
+header .search-bar input {
+    width: 100%;
+    max-width: 600px; 
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-size: 20px;
+    transition: box-shadow 0.3s;
+}
+header .search-bar input:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+header .register-link {
+	border: 1px solid #cdcdcd;
+    padding: 15px 30px !important; 
+    margin-right: 20px !important;
+    border-radius: 25px !important; 
+    background-color: #ffffff !important;
+    color: #000 !important;
+    font-size: 18px !important; 
+    font-weight: bold !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: background-color 0.3s !important;
+    line-height: normal !important; 
+}
+header .register-link:hover {
+    background-color: #cdcdcd !important;
+}
+header .profile-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+}
+header .profile-icon:hover {
+    background-color: #ccc;
+}
+header .profile-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.toggle-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.toggle-menu a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+.toggle-menu a:hover {
+    background-color: #f0f0f0;
+}
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.categories a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+.categories a:hover {
+    color: #ff385c;
+}
+main {
+    padding: 40px;
+}
+.section {
+    margin-bottom: 60px;
+}
+.section h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card {
+    width: calc(25% - 20px);
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.card .content {
+    padding: 20px;
+    text-align: center;
+}
+.card .title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+.card .price {
+    font-size: 16px;
+    font-weight: 400;
+    color: #777;
+}
+footer {
+    padding: 20px 40px;
+    text-align: center;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
