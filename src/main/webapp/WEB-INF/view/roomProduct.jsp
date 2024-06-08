@@ -8,40 +8,26 @@
 <title>게시글 목록</title>
 <link rel="stylesheet" href="/gza/css/listproduct.css">
 <style>
-.room{
-	margin-left: 20px;
-}
-.room h2{
-	font-size: 30px;
-}
-.experience{
-	margin-left: 20px;
-}
-.experience h2{
-	font-size: 30px;
-}
-
 .wrapper {
 	display: flex;
 	overflow-x: auto; /* 가로 스크롤바 추가 */
 	white-space: nowrap;
 	margin-bottom: 20px;
-	margin-left: 20px;
 }
 
 .container {
 	width: 300px;
 	border: 1px solid transparent; /* 투명 외곽선 */
 	padding: 10px;
-	margin: 0 20px 20px 20px;
+	margin: 10px;
 	text-align: center;
 	display: inline-block; /* 옆으로 정렬 */
 	box-sizing: border-box;
 }
 
 .img-box {
-	width: 300px;
-	height: 350px;
+	width: 180px;
+	height: 200px;
 	border: 2px dashed black;
 	margin-bottom: 10px;
 	display: flex;
@@ -104,7 +90,7 @@
 			</c:forEach>
 		</div>
 
-		<div class="experience">
+		<div>
 			<h2>체험</h2>
 		</div>
 		<div class="wrapper" id="container-wrapper-2">
@@ -123,6 +109,18 @@
 				</div>
 			</c:forEach>
 		</div>
+
+		<c:forEach var="product" items="${productPage.content}">
+			<tr>
+				<td>${product.productNum}</td>
+				<td><a
+					href="read.do?no=${product.productNum}&pageNo=${productPage.currentPage}">
+						<c:out value="${product.productTitle}" />
+				</a></td>
+				<td>${product.price}</td>
+				<td>${product.writer.id}</td>
+			</tr>
+		</c:forEach>
 		<c:if test="${productPage.hasProduct()}">
 			<tr>
 				<td colspan="4"><c:if test="${productPage.startPage>5}">
@@ -137,6 +135,6 @@
 		</c:if>
 	</main>
 	<footer> Footer Content </footer>
-	<script src="/gza/script/home.js"></script>
+	<script src="/gza/script/index.js"></script>
 </body>
 </html>

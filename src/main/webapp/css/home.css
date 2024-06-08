@@ -1,12 +1,16 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: #f8f9fa;
+    height: 100vh;
+    overflow: hidden;
 }
+
 header {
     display: flex;
     justify-content: space-between;
@@ -18,6 +22,7 @@ header {
     top: 0;
     z-index: 1000;
 }
+
 header .logo {
     font-size: 30px;
     font-weight: bold;
@@ -29,41 +34,45 @@ header .search-container {
     display: flex;
     justify-content: center;
 }
-header .search-bar{
-	width: 100%; /* search-bar 자체의 너비를 100%로 설정하여 중앙 정렬 */
-    max-width: 600px; /* 검색창의 최대 너비를 설정 */
+
+header .search-bar {
+    width: 100%;
+    max-width: 600px;
 }
 
 header .search-bar input {
     width: 100%;
-    max-width: 600px; 
     padding: 12px 20px;
     border: 1px solid #ddd;
     border-radius: 50px;
     font-size: 20px;
     transition: box-shadow 0.3s;
 }
+
 header .search-bar input:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     outline: none;
 }
+
 header .register-link {
-	border: 1px solid #cdcdcd;
-    padding: 15px 30px !important; 
+    border: 1px solid #cdcdcd;
+    padding: 15px 30px !important;
     margin-right: 20px !important;
-    border-radius: 25px !important; 
+    border-radius: 25px !important;
     background-color: #ffffff !important;
     color: #000 !important;
-    font-size: 18px !important; 
+    font-size: 18px !important;
     font-weight: bold !important;
     text-decoration: none !important;
     display: inline-block !important;
     transition: background-color 0.3s !important;
-    line-height: normal !important; 
+    line-height: normal !important;
 }
+
 header .register-link:hover {
     background-color: #cdcdcd !important;
 }
+
 header .profile-icon {
     display: flex;
     align-items: center;
@@ -76,14 +85,17 @@ header .profile-icon {
     transition: background-color 0.3s;
     position: relative;
 }
+
 header .profile-icon:hover {
     background-color: #ccc;
 }
+
 header .profile-icon img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
 }
+
 .toggle-menu {
     display: none;
     position: absolute;
@@ -95,6 +107,7 @@ header .profile-icon img {
     border-radius: 12px;
     overflow: hidden;
 }
+
 .toggle-menu a {
     display: block;
     padding: 10px 20px;
@@ -102,9 +115,11 @@ header .profile-icon img {
     color: #333;
     transition: background-color 0.3s;
 }
+
 .toggle-menu a:hover {
     background-color: #f0f0f0;
 }
+
 .categories {
     display: flex;
     justify-content: center;
@@ -113,6 +128,7 @@ header .profile-icon img {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
 }
+
 .categories a {
     text-decoration: none;
     color: #333;
@@ -120,57 +136,117 @@ header .profile-icon img {
     font-weight: 600;
     transition: color 0.3s;
 }
+
 .categories a:hover {
     color: #ff385c;
 }
-main {
-    padding: 40px;
+.section{
+	width : 66%;
+	margin: 10px;
+	padding : 20px;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
 }
-.section {
-    margin-bottom: 60px;
-}
-.section h2 {
-    margin-bottom: 20px;
-    font-size: 32px;
-    font-weight: 700;
-    color: #333;
-}
-.card-container {
+
+.main-content {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.card {
-    width: calc(25% - 20px);
-    background-color: #fff;
-    border-radius: 12px;
+    position: relative;
+    height: calc(100vh - 160px);
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    margin: 10px;
 }
-.card:hover {
-    transform: translateY(-10px);
+
+.wrapper {
+	width : 100%;
+    display: flex;
+    overflow-x: auto; /* 스크롤바 자동 설정 */
+    white-space: nowrap;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
 }
-.card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+
+.wrapper::-webkit-scrollbar {
+    height: 10px; /* 기본 상태에서는 스크롤바 높이를 0으로 설정 */
 }
-.card .content {
-    padding: 20px;
+
+.wrapper:hover::-webkit-scrollbar {
+    height: 10px; /* 호버 시 스크롤바 높이 설정 */
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+    background: #888; /* 스크롤바 색상 설정 */
+    border-radius: 5px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555; /* 스크롤바 호버 색상 설정 */
+}
+
+.container {
+    width: 300px;
+    border: 1px solid transparent;
+    padding: 10px;
+    margin: 0 20px 20px 20px;
     text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
 }
-.card .title {
-    font-size: 18px;
-    font-weight: 600;
+
+.img-box {
+    width: 300px;
+    height: 350px;
+    border: 2px dashed black;
     margin-bottom: 10px;
-    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.card .price {
+
+.img-box img {
+    max-width: 180px;
+    max-height: 100%;
+}
+
+.title, .price {
     font-size: 16px;
-    font-weight: 400;
-    color: #777;
+    margin: 5px 0;
+    text-align: left;
 }
+
+.community-section {
+    top: 0;
+    right: 0;
+    width: 33%;
+    height: 100%;
+    background-color: #f8f9fa;
+    border-left: 1px solid #ddd;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.community-table-wrapper {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.community-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.community-table th, .community-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.community-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
 footer {
     padding: 20px 40px;
     text-align: center;
