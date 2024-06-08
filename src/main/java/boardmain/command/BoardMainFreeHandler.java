@@ -23,6 +23,6 @@ public class BoardMainFreeHandler implements CommandHandler {
         req.setAttribute("latestFreeboardArticles", latestFreeboardArticles);
         req.setAttribute("latestTogetherboardArticles", latestTogetherboardArticles);
 
-        return "/WEB-INF/view/Main/BoardMain.jsp";
+        return "/WEB-INF/view/main/boardMain.jsp";
     }
 }
