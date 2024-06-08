@@ -9,7 +9,15 @@
 </head>
 <body>
 
-    <form action="write.do" method="post">
+    <form action="write.do" method="post" enctype="multipart/form-data" accept="image/*">
+    	<div>
+    		이미지 파일 선택 <br/><input id="file-upload" type="file" name="file" onchange="previewImage()">
+    		<div class="image-preview">
+    			<h2>이미지 미리보기</h2>
+    			<img id="image-preview" src="" alt="Image Preiview">
+    		</div>
+    	</div>
+    	
         <p>
             제목 : <br/><input type="text" name="title" value="${param.productTitle}">
             <c:if test="${errors.title}">제목을 입력하세요.</c:if>
@@ -49,5 +57,7 @@
         <input type="submit" value="새 글 등록">
     </form>
 
+<script type="text/javascript" src="/gza/resources/js/preview.js"></script>
+    
 </body>
 </html>
