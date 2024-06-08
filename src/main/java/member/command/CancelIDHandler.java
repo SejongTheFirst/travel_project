@@ -2,6 +2,7 @@ package member.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import auth.service.User;
 import member.service.CancelIDService;
@@ -32,6 +33,12 @@ public class CancelIDHandler implements CommandHandler {
 		User user = (User) req.getSession().getAttribute("authUser");
 		
 		cancelIDSvc.cancelID(user.getId());
+
+		HttpSession session = req.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+		
 		return "/index.jsp";
 	}
 
