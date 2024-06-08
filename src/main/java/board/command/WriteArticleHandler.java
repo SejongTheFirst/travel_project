@@ -13,7 +13,7 @@ import auth.service.User;
 import mvc.command.CommandHandler;
 
 public class WriteArticleHandler implements CommandHandler {
-	private static final String FORM_VIEW = "/WEB-INF/view/Board/BoardnewArticleForm.jsp";//경로 설정을 form_view로 설정
+	private static final String FORM_VIEW = "/WEB-INF/view/board/boardnewArticleForm.jsp";//경로 설정을 form_view로 설정
 	private WriteArticleService writeService = new WriteArticleService();
 	
 	@Override
@@ -47,7 +47,7 @@ public class WriteArticleHandler implements CommandHandler {
 		int newArticleNo = writeService.write(writeReq);
 		req.setAttribute("newArticleNo", newArticleNo);
 		
-		return "/WEB-INF/view/Board/BoardnewArticleSuccess.jsp";
+		return "/WEB-INF/view/board/boardnewArticleSuccess.jsp";
 	}
 
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {
