@@ -10,7 +10,6 @@ import image.model.Image;
 import jdbc.connection.ConnectionProvider;
 import product.dao.ProductDAO;
 import product.model.Product;
-import product.model.ProductWithImage;
 
 public class ListProductService {
 

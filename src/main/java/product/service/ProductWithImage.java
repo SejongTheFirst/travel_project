@@ -1,8 +1,9 @@
-package product.model;
+package product.service;
 
 import java.util.List;
 
 import image.model.Image;
+import product.model.Product;
 
 public class ProductWithImage {
 	private Product product;
