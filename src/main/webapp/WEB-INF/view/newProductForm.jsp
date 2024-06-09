@@ -33,27 +33,17 @@
 	</div>
 
 	<main>
-		<form class="product-form" action="write.do" method="post">
-			<div class="image-section">
-				<div class="main-image">
-					<img alt="img1" src="#">
-				</div>
-				<div class="sub-images">
-					<div class="sub-image">
-						<img alt="img2" src="#">
-					</div>
-					<div class="sub-image">
-						<img alt="img3" src="#">
-					</div>
-					<div class="sub-image">
-						<img alt="img4" src="#">
-					</div>
-					<div class="sub-image">
-						<img alt="img5" src="#">
-					</div>
-				</div>
-			</div>
+		<form class="product-form" action="write.do" method="post"
+			enctype="multipart/form-data" accept="image/*">
 			<div class="details-section">
+				<div>
+					이미지 파일 선택 <br /> <input id="file-upload" type="file" name="file"
+						onchange="previewImage()">
+					<div class="image-preview">
+						<h2>이미지 미리보기</h2>
+						<img id="image-preview" src="" alt="Image Preiview">
+					</div>
+				</div>
 				<div class="basic-info">
 					<label>main_title: <input type="text" name="title"
 						value="${param.productTitle}"></label>
@@ -61,7 +51,8 @@
 					<label>sub_title: <input type="text" name="subtitle"
 						value="${param.productSubTitle}"></label>
 					<c:if test="${errors.title}">서브제목을 입력하세요.</c:if>
-					<label>location : <input type="text" name="location"  value="${param.location}"></label>
+					<label>location : <input type="text" name="location"
+						value="${param.location}"></label>
 				</div>
 				<div class="content-info">
 					<label>Product_Content: <textarea name="content" rows="5"
@@ -70,75 +61,25 @@
 			</div>
 			<div class="pricing-section">
 				<label>₩ <input type="number" name="price"
-					value="${param.price}"> Price/박</label>
-				<c:if test="${errors.price}">가격을 입력하세요.</c:if>
-				<label>유형:
-					<select name="type">
-					<option value="숙박"
-						<c:if test="${param.type == '숙박'}">selected</c:if>>숙박</option>
-					<option value="체험"
-						<c:if test="${param.type == '체험'}">selected</c:if>>체험</option>
-					<option value="활동"
-						<c:if test="${param.type == '활동'}">selected</c:if>>활동</option>
-					</select>
+					value="${param.price}"> Price/박
 				</label>
-				<label>최대인원: <input type="number" name="guests"
-					value="${param.guests}"></label> 
+				<c:if test="${errors.price}">가격을 입력하세요.</c:if>
+				<label>유형: <select name="type">
+						<option value="숙박"
+							<c:if test="${param.type == '숙박'}">selected</c:if>>숙박</option>
+						<option value="체험"
+							<c:if test="${param.type == '체험'}">selected</c:if>>체험</option>
+						<option value="활동"
+							<c:if test="${param.type == '활동'}">selected</c:if>>활동</option>
+				</select>
+				</label> <label>최대인원: <input type="number" name="guests"
+					value="${param.guests}"></label>
 				<button type="submit">등록하기</button>
 			</div>
 		</form>
 	</main>
 	<script src="/gza/script/newProductForm.js"></script>
-=======
-    <form action="write.do" method="post" enctype="multipart/form-data" accept="image/*">
-    	<div>
-    		이미지 파일 선택 <br/><input id="file-upload" type="file" name="file" onchange="previewImage()">
-    		<div class="image-preview">
-    			<h2>이미지 미리보기</h2>
-    			<img id="image-preview" src="" alt="Image Preiview">
-    		</div>
-    	</div>
-    	
-        <p>
-            제목 : <br/><input type="text" name="title" value="${param.productTitle}">
-            <c:if test="${errors.title}">제목을 입력하세요.</c:if>
-        </p>
-        
-        <p>
-            서브제목 : <br/><input type="text" name="subtitle" value="${param.productSubTitle}">
-            <c:if test="${errors.title}">서브제목을 입력하세요.</c:if>
-        </p>
-        
-        <p>
-            내용 : <br/><textarea name="content" rows="5" cols="100">${param.productContent}</textarea>
-        </p>
-        
-        <p>
-            유형 : <br/>
-            <select name="type">
-                <option value="숙박" <c:if test="${param.type == '숙박'}">selected</c:if>>숙박</option>
-                <option value="체험" <c:if test="${param.type == '체험'}">selected</c:if>>체험</option>
-                <option value="활동" <c:if test="${param.type == '활동'}">selected</c:if>>활동</option>
-            </select>
-        </p>
-        
-        <p>
-            가격 : <br/><input type="number" name="price" value="${param.price}">
-            <c:if test="${errors.price}">가격을 입력하세요.</c:if>
-        </p>
-        
-        <p>
-            게스트 수 : <br/><input type="number" name="guests" value="${param.guests}">
-        </p>
-        
-        <p>
-            위치 : <br/><input type="text" name="location" value="${param.location}">
-        </p>
-        
-        <input type="submit" value="새 글 등록">
-    </form>
+	<script type="text/javascript" src="/gza/resources/js/preview.js"></script>
 
-<script type="text/javascript" src="/gza/resources/js/preview.js"></script>
-    
 </body>
 </html>
