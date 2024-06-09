@@ -22,7 +22,7 @@
 		<div class="profile-icon" onclick="toggleMenu()">
 			<img src="data:image/png;base64,{{base64_profile_image}}"
 				alt="Profile Icon">
-		</div>
+		</div>t
 		<div class="toggle-menu">
 			<a href="#">프로필</a> <a href="#">설정</a> <a href="#">로그아웃</a>
 		</div>
