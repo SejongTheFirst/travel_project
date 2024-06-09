@@ -3,6 +3,7 @@ package product.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import image.dao.ImageDAO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
 import product.dao.ProductContentDAO;
@@ -13,6 +14,7 @@ public class ModifyProductService {
 	
 	private ProductDAO productDAO = new ProductDAO();
 	private ProductContentDAO contentDAO = new ProductContentDAO();
+	private ImageDAO imageDAO = new ImageDAO();
 	
 	public void modify(ModifyRequest modReq) {
 		Connection con=null;
@@ -30,6 +32,7 @@ public class ModifyProductService {
 			}
 			productDAO.update(con, modReq.getProductTitle(), modReq.getPrice(), modReq.getProductNum());
 			contentDAO.update(con, modReq.getProductNum(), modReq.getProductSubtitle(),modReq.getProductContent());
+			imageDAO.update(con, modReq.getProductOriginFileName(), modReq.getProductStoreFileName(), modReq.getProductNum());
 			con.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(con);

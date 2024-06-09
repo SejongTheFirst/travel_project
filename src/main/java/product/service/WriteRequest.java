@@ -12,30 +12,23 @@ public class WriteRequest {
 	private String productContent;
 	private String productType;
 	private int price;
-	private String imgUrl;
+	private String originalFileName;
+	private String storeFileName;
 	private int guests;
 	private String location;
 
-	public WriteRequest(Writer writer, String productTitle, String productSubTitle, String productContent, String type, int price, String imgUrl, int guests,
-			String location) {
-		super();
+	public WriteRequest(Writer writer, String productTitle, String productSubTitle, String productContent,
+			String productType, int price, String originalFileName, String storeFileName, int guests, String location) {
 		this.writer = writer;
 		this.productTitle = productTitle;
-		this.productSubTitle=productSubTitle;
+		this.productSubTitle = productSubTitle;
 		this.productContent = productContent;
-		this.productType=type;
-		this.price=price;
-		this.imgUrl = imgUrl;
+		this.productType = productType;
+		this.price = price;
+		this.originalFileName = originalFileName;
+		this.storeFileName = storeFileName;
 		this.guests = guests;
 		this.location = location;
-	}
-	
-	public int getPrice() {
-		return price;
-	}
-	
-	public String getProductType() {
-		return productType;
 	}
 
 	public Writer getWriter() {
@@ -45,7 +38,7 @@ public class WriteRequest {
 	public String getProductTitle() {
 		return productTitle;
 	}
-	
+
 	public String getProductSubTitle() {
 		return productSubTitle;
 	}
@@ -54,8 +47,20 @@ public class WriteRequest {
 		return productContent;
 	}
 
-	public String getImgUrl() {
-		return imgUrl;
+	public String getProductType() {
+		return productType;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public String getStoreFileName() {
+		return storeFileName;
 	}
 
 	public int getGuests() {
