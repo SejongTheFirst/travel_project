@@ -43,7 +43,7 @@
 							<img alt="img" src="#">
 						</div>
 						<div class="title">
-							<a href="read.do?no=${product.productNum}"> <c:out
+							<a href="product/read.do?no=${product.productNum}"> <c:out
 									value="${product.productTitle}" />
 							</a>
 						</div>
@@ -101,6 +101,121 @@
 						<td>1</td>
 						<td>첫 번째 게시글</td>
 						<td>작성자 1</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>두 번째 게시글</td>
+						<td>작성자 2</td>
 					</tr>
 					<tr>
 						<td>2</td>
