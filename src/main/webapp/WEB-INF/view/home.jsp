@@ -43,7 +43,7 @@
 							<img alt="img" src="#">
 						</div>
 						<div class="title">
-							<a href="read.do?no=${product.productNum}"> <c:out
+							<a href="product/read.do?no=${product.productNum}"> <c:out
 									value="${product.productTitle}" />
 							</a>
 						</div>
