@@ -37,17 +37,19 @@
 				<h2>숙박</h2>
 			</div>
 			<div class="wrapper">
-				<c:forEach var="product" items="${productPage.product}">
+				<c:forEach var="product" items="${productPage.content}">
 					<div class="container">
 						<div class="img-box">
-							<img alt="img" src="#">
+							<c:forEach var="image" items="${product.images}">
+								<img src="/gza/imageStorage/${image.storeName}" alt="${image.originalName}">
+							</c:forEach>
 						</div>
 						<div class="title">
-							<a href="product/read.do?no=${product.productNum}"> <c:out
-									value="${product.productTitle}" />
+							<a href="product/read.do?no=${product.product.productNum}"> <c:out
+									value="${product.product.productTitle}" />
 							</a>
 						</div>
-						<div class="price">${product.price}</div>
+						<div class="price">${product.product.price}</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -55,17 +57,19 @@
 				<h2>체험</h2>
 			</div>
 			<div class="wrapper">
-				<c:forEach var="product" items="${productPage.product}">
+				<c:forEach var="product" items="${productPage.content}">
 					<div class="container">
 						<div class="img-box">
-							<img alt="img" src="#">
+							<c:forEach var="image" items="${product.images}">
+								<img src="/gza/imageStorage/${image.storeName}" alt="${image.originalName}">
+							</c:forEach>
 						</div>
 						<div class="title">
-							<a href="read.do?no=${product.productNum}"> <c:out
-									value="${product.productTitle}" />
+							<a href="read.do?no=${product.product.productNum}"> <c:out
+									value="${product.product.productTitle}" />
 							</a>
 						</div>
-						<div class="price">${product.price}</div>
+						<div class="price">${product.product.price}</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -73,17 +77,19 @@
 				<h2>체험</h2>
 			</div>
 			<div class="wrapper">
-				<c:forEach var="product" items="${productPage.product}">
+				<c:forEach var="product" items="${productPage.content}">
 					<div class="container">
 						<div class="img-box">
-							<img alt="img" src="#">
+							<c:forEach var="image" items="${product.images}">
+								<img src="/gza/imageStorage/${image.storeName}" alt="${image.originalName}">
+							</c:forEach>
 						</div>
 						<div class="title">
-							<a href="read.do?no=${product.productNum}"> <c:out
-									value="${product.productTitle}" />
+							<a href="read.do?no=${product.product.productNum}"> <c:out
+									value="${product.product.productTitle}" />
 							</a>
 						</div>
-						<div class="price">${product.price}</div>
+						<div class="price">${product.product.price}</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -372,6 +378,6 @@
 		</div>
 	</main>
 	<footer> Footer Content </footer>
-	<script src="/gza/script/home.js"></script>
+	<script type="text/javascript" src="/gza/script/home.js"></script>
 </body>
 </html>
