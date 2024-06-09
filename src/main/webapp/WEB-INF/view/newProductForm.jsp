@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>상품 등록</title>
+<title>상품 등록ㅇㄹㅇ</title>
 <link rel="stylesheet" href="/gza/css/newProductForm.css">
 </head>
 <body>
