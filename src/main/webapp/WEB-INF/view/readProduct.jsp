@@ -23,6 +23,10 @@
 			<td>${productData.content.productSubTitle}</td>
 		</tr>
 		<tr>
+			<td>이미지</td>
+			<td><img src="/gza/imageStorage/${productData.image.storeName}" alt="${prodyctData.image.originalName}" width="100" height="100"></td>
+		</tr>
+		<tr>
 			<td>내용</td>
 			<td><c:out value="${productData.content.productContent}" /></td>
 		</tr>
@@ -32,7 +36,7 @@
 		</tr>
 		<tr>
 			<td>가격</td>
-			<td>${productData.product.price}</td>
+			<td><span id="price">${productData.product.price}</span>원</td>
 		</tr>
 		<tr>
 			<td>게스트 수</td>
@@ -41,6 +45,17 @@
 		<tr>
 			<td>위치</td>
 			<td>${productData.content.location}</td>
+		</tr>
+		<tr>
+			<td>시작 날짜</td>
+			<td><input type="date" id="start_date" name="start_date" onchange="calculateTotalPrice()"></td>
+		</tr>
+		<tr>
+			<td>종료 날짜</td>
+			<td><input type="date" id="end_date" name="end_date" onchange="calculateTotalPrice()"></td>
+		<tr>
+			<td>총 가격</td>
+			<td><span id="total_price">0원</span></td>
 		</tr>
 
 	</table>
@@ -52,6 +67,16 @@
 			<a href="delete.do?no=${productData.product.productNum}">[게시글 삭제]</a>
 		</c:if>
 	</c:if>
+	<c:if test="${authUser.id != productData.product.writer.id}">
+		<form action="book.do" method="post">
+			<input type="hidden" name="productNum" value="${productData.product.productNum}">
+			<input type="hidden" name="start_date" id="start_date_input">
+			<input type="hidden" name="end_date" id="end_date_input">
+			<input type="hidden" name="total_price" id="total_price_input">
+			<input type="submit" value="예약하기">
+		</form>
+	</c:if>
 
+<script type="text/javascript" src="/gza/resources/js/book.js"></script>
 </body>
 </html>

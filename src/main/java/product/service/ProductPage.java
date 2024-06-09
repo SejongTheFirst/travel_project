@@ -2,8 +2,6 @@ package product.service;
 
 import java.util.List;
 
-import product.model.ProductWithImage;
-
 public class ProductPage {
 
 	private int total;
