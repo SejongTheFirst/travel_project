@@ -95,12 +95,15 @@
         event.preventDefault();
         var isDelete = confirm("정말로 삭제하시겠습니까?");
         if (isDelete) {
-            var deleteUrl = "delete.do?no=" + articleNumber + "&category=${category}&pageNo=${pageNo}";
             $.ajax({
-                type: "GET",
-                url: deleteUrl,
+                type: "POST",
+                url: "delete.do",
+                data: {
+                    action: "deleteArticle",
+                    id: articleNumber
+                },
                 success: function(response) {
-                    alert("게시글이 성공적으로 삭제되었습니다.");
+                    alert(response);
                     window.location.href = "list.do?category=${category}&pageNo=${pageNo}";
                 },
                 error: function(xhr, status, error) {
@@ -110,16 +113,19 @@
         }
     }
 
-    function confirmDeleteComment(event, commentId) {
+    function confirmDeleteComment(event, commentNo) {
         event.preventDefault();
         var isDelete = confirm("정말로 댓글을 삭제하시겠습니까?");
         if (isDelete) {
-            var deleteUrl = "comment.do?action=delete&type=comment&id=" + commentId + "&category=${category}&pageNo=${pageNo}";
             $.ajax({
-                type: "GET",
-                url: deleteUrl,
+                type: "POST",
+                url: "commentdelete.do",
+                data: {
+                    action: "deleteComment",
+                    id: commentNo
+                },
                 success: function(response) {
-                    alert("댓글이 성공적으로 삭제되었습니다.");
+                    alert(response);
                     window.location.href = "read.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}";
                 },
                 error: function(xhr, status, error) {
@@ -129,16 +135,19 @@
         }
     }
 
-    function confirmDeleteReply(event, replyId) {
+    function confirmDeleteReply(event, replyNo) {
         event.preventDefault();
         var isDelete = confirm("정말로 답글을 삭제하시겠습니까?");
         if (isDelete) {
-            var deleteUrl = "comment.do?action=delete&type=reply&id=" + replyId + "&category=${category}&pageNo=${pageNo}";
             $.ajax({
-                type: "GET",
-                url: deleteUrl,
+                type: "POST",
+                url: "commentdelete.do",
+                data: {
+                    action: "deleteReply",
+                    id: replyNo
+                },
                 success: function(response) {
-                    alert("답글이 성공적으로 삭제되었습니다.");
+                    alert(response);
                     window.location.href = "read.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}";
                 },
                 error: function(xhr, status, error) {

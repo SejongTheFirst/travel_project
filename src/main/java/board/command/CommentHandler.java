@@ -74,7 +74,8 @@ public class CommentHandler implements CommandHandler {
             return null;
         } else if ("delete".equals(action)) {
             try {
-                int id = parseParameter(req, "id");
+                int id = parseParameter(req, "commentNo");
+                int id1 = parseParameter(req, "replyNo");
                 if (id == -1) {
                     res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid ID");
                     return null;
@@ -84,7 +85,7 @@ public class CommentHandler implements CommandHandler {
                 if ("comment".equals(type)) {
                     commentService.deleteComment(id);
                 } else if ("reply".equals(type)) {
-                    commentService.deleteReply(id);
+                    commentService.deleteReply(id1);
                 } else {
                     res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid type");
                     return null;

@@ -50,7 +50,7 @@ public class CommentDao {
         List<Reply> replies = new ArrayList<>();
         try {
             pstmt = conn.prepareStatement(
-                    "SELECT * FROM reply WHERE comment_no = ? ORDER BY regdate DESC");
+                    "SELECT * FROM reply WHERE comment_no = ? ORDER BY regdate asc");
             pstmt.setInt(1, commentNo);
             rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -134,5 +134,8 @@ public class CommentDao {
         } finally {
             JdbcUtil.close(pstmt);
         }
+    }
+    public void updateComment(Connection conn, int commentNo) throws SQLException{
+    	PreparedStatement pstmt = null;
     }
 }
