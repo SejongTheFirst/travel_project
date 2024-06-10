@@ -39,7 +39,7 @@ public class CancelIDHandler implements CommandHandler {
 			session.invalidate();
 		}
 		
-		return "/index.jsp";
+		return "/home.do";
 	}
 
 }
