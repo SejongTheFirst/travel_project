@@ -17,7 +17,7 @@ import auth.service.User;
 import mvc.command.CommandHandler;
 
 public class ModifyArticleHandler implements CommandHandler {
-    private static final String FORM_VIEW = "/WEB-INF/view/board/boardModify.jsp";
+    private static final String FORM_VIEW = "/WEB-INF/view/board/Boardmodify.jsp";
 
     private ReadArticleService readService = new ReadArticleService();
     private ModifyArticleService modifyService = new ModifyArticleService();
@@ -98,7 +98,7 @@ public class ModifyArticleHandler implements CommandHandler {
             }
             req.setAttribute("category", category);
 
-            return "/WEB-INF/view/board/boardModifySuccess.jsp";
+            return "/WEB-INF/view/board/BoardmodifySuccess.jsp";
         } catch (ArticleNotFoundException e) {
             res.sendError(HttpServletResponse.SC_NOT_FOUND);
             return null;
@@ -108,3 +108,4 @@ public class ModifyArticleHandler implements CommandHandler {
         }
     }
 }
+
