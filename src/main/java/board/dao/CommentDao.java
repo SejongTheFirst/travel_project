@@ -113,7 +113,10 @@ public class CommentDao {
         try {
             pstmt = conn.prepareStatement("DELETE FROM comment WHERE comment_no = ?");
             pstmt.setInt(1, commentNo);
-            pstmt.executeUpdate();
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new SQLException("No comment found with comment_no: " + commentNo);
+            }
         } finally {
             JdbcUtil.close(pstmt);
         }
@@ -124,7 +127,10 @@ public class CommentDao {
         try {
             pstmt = conn.prepareStatement("DELETE FROM reply WHERE reply_no = ?");
             pstmt.setInt(1, replyNo);
-            pstmt.executeUpdate();
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new SQLException("No reply found with reply_no: " + replyNo);
+            }
         } finally {
             JdbcUtil.close(pstmt);
         }
