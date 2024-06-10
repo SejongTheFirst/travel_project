@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import jdbc.JdbcUtil;
 import product.model.ProductContent;
@@ -60,6 +62,29 @@ public class ProductContentDAO {
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(ps);
+		}
+	}
+	
+	public List<ProductContent> selectByCategory(Connection con, String category, int startrow, int size) throws SQLException{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String query = "select*from product_content where product_type=? order by product_num desc limit ?,?";
+		
+		try {
+			ps=con.prepareStatement(query);
+			ps.setString(1, category);
+			ps.setInt(2, startrow);
+			ps.setInt(3, size);
+			rs=ps.executeQuery();
+			
+			List<ProductContent> content=new ArrayList<>();
+			while (rs.next()) {
+				content.add(new ProductContent(rs.getInt("product_num"), rs.getString("product_subtitle"), rs.getString("product_content"), rs.getString("product_type"), rs.getInt("guests"), rs.getString("location"), toDate(rs.getTimestamp("reg_date")), toDate(rs.getTimestamp("update_date"))));
+			}
+			return content;
+		} finally {
+			JdbcUtil.close(ps);
+			JdbcUtil.close(rs);
 		}
 	}
 	

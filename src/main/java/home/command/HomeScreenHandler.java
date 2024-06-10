@@ -15,8 +15,10 @@ public class HomeScreenHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
-		HomePage page = homeScreenService.getHomePage(startRow);
-		req.setAttribute("productPage", page);
+		HomePage roompage = homeScreenService.getRoomPage(startRow);
+		HomePage experience = homeScreenService.getExperience(startRow);
+		req.setAttribute("roomPage", roompage);
+		req.setAttribute("experiencePage", experience);
 		return "/WEB-INF/view/home.jsp";
 	}
 

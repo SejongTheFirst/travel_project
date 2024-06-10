@@ -1,6 +1,7 @@
 package jdbc;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,6 +21,15 @@ public class JdbcUtil {
 		if (stmt != null) {
 			try {
 				stmt.close();
+			} catch (SQLException ex) {
+			}
+		}
+	}
+	
+	public static void close(PreparedStatement ps) {
+		if (ps != null) {
+			try {
+				ps.close();
 			} catch (SQLException ex) {
 			}
 		}
