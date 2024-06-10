@@ -18,16 +18,16 @@ public class BoardMainFreeDao {
 
 	public List<Article> getArticlesByCategory(Connection conn, String category) {
         List<Article> articles = new ArrayList<>();
-        String sql = "SELECT article_no, category, title, writer_id, writer_name, regdate " +
-                     "FROM Article WHERE category = ? ORDER BY regdate DESC LIMIT 6";
+        String sql = "SELECT board_num, category, title, id, writer_name, regdate " +
+                     "FROM comunity WHERE category = ? ORDER BY regdate DESC LIMIT 6";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, category);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Writer writer = new Writer(rs.getString("writer_id"), rs.getString("writer_name"));
+                Writer writer = new Writer(rs.getString("id"), rs.getString("writer_name"));
                 Article article = new Article(
-                    rs.getInt("article_no"),
+                    rs.getInt("board_num"),
                     rs.getString("title"),
                     writer,
                     rs.getTimestamp("regdate"),

@@ -105,7 +105,7 @@ h1 {
 				<c:forEach var="article" items="${latestLatterboardArticles}">
 					<tr>
 						<td><a href="read.do?no=${article.number}">${article.title}</a>
-							<span>${article.writer.name} - ${article.regDate}</span></td>
+							<span>${article.writer.name} - ${article.formattedRegDate}</span></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -119,7 +119,7 @@ h1 {
 				<c:forEach var="article" items="${latestFreeboardArticles}">
 					<tr>
 						<td><a href="read.do?no=${article.number}">${article.title}</a>
-							<span>${article.writer.name} - ${article.regDate}</span></td>
+							<span>${article.writer.name} - ${article.formattedRegDate}</span></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -133,7 +133,7 @@ h1 {
 				<c:forEach var="article" items="${latestTogetherboardArticles}">
 					<tr>
 						<td><a href="read.do?no=${article.number}">${article.title}</a>
-							<span>${article.writer.name} - ${article.regDate}</span></td>
+							<span>${article.writer.name} - ${article.formattedRegDate}</span></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -145,7 +145,7 @@ h1 {
 
 	<script type="text/javascript">
 		function FirstPage() {
-			window.location.href = 'index.jsp';
+			window.location.href = 'home.do';
 		}
 	</script>
 </body>
