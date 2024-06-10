@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>G•za</title>
@@ -37,19 +37,22 @@
 				<h2>숙박</h2>
 			</div>
 			<div class="wrapper">
-				<c:forEach var="product" items="${productPage.content}">
+				<c:forEach var="product" items="${roomPage.content}">
 					<div class="container">
-						<div class="img-box">
-							<c:forEach var="image" items="${product.images}">
-								<img src="/gza/imageStorage/${image.storeName}" alt="${image.originalName}">
-							</c:forEach>
-						</div>
-						<div class="title">
-							<a href="product/read.do?no=${product.product.productNum}"> <c:out
-									value="${product.product.productTitle}" />
-							</a>
-						</div>
-						<div class="price">${product.product.price}</div>
+						<c:forEach var="image" items="${product.images}">
+							<div class="img-box">
+								<img src="/gza/imageStorage/${image.storeName}"
+									alt="${image.originalName}">
+							</div>
+						</c:forEach>
+						<c:forEach var="pro" items="${product.product}">
+							<div class="title">
+								<a href="product/read.do?no=${pro.productNum}"> <c:out
+										value="${pro.productTitle}" />
+								</a>
+							</div>
+							<div class="price">${pro.price}</div>
+						</c:forEach>
 					</div>
 				</c:forEach>
 			</div>
@@ -57,42 +60,26 @@
 				<h2>체험</h2>
 			</div>
 			<div class="wrapper">
-				<c:forEach var="product" items="${productPage.content}">
+				<c:forEach var="product" items="${experiencePage.content}">
 					<div class="container">
-						<div class="img-box">
-							<c:forEach var="image" items="${product.images}">
-								<img src="/gza/imageStorage/${image.storeName}" alt="${image.originalName}">
-							</c:forEach>
-						</div>
-						<div class="title">
-							<a href="read.do?no=${product.product.productNum}"> <c:out
-									value="${product.product.productTitle}" />
-							</a>
-						</div>
-						<div class="price">${product.product.price}</div>
+						<c:forEach var="image" items="${product.images}">
+							<div class="img-box">
+								<img src="/gza/imageStorage/${image.storeName}"
+									alt="${image.originalName}">
+							</div>
+						</c:forEach>
+						<c:forEach var="pro" items="${product.product}">
+							<div class="title">
+								<a href="product/read.do?no=${pro.productNum}"> <c:out
+										value="${pro.productTitle}" />
+								</a>
+							</div>
+							<div class="price">${pro.price}</div>
+						</c:forEach>
 					</div>
 				</c:forEach>
 			</div>
-			<div class="room">
-				<h2>체험</h2>
-			</div>
-			<div class="wrapper">
-				<c:forEach var="product" items="${productPage.content}">
-					<div class="container">
-						<div class="img-box">
-							<c:forEach var="image" items="${product.images}">
-								<img src="/gza/imageStorage/${image.storeName}" alt="${image.originalName}">
-							</c:forEach>
-						</div>
-						<div class="title">
-							<a href="read.do?no=${product.product.productNum}"> <c:out
-									value="${product.product.productTitle}" />
-							</a>
-						</div>
-						<div class="price">${product.product.price}</div>
-					</div>
-				</c:forEach>
-			</div>
+
 		</div>
 		<div class="community-section">
 			<h2>커뮤니티 게시판</h2>

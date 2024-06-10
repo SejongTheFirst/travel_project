@@ -24,7 +24,7 @@ public class ListProductService {
 			List<ProductWithImage> content= new ArrayList<>();
 			for (Product product : products) {
 				List<Image> images = imageDAO.selectByProductNum(con, product.getProductNum());
-				content.add(new ProductWithImage(product, images));
+				content.add(new ProductWithImage(products, images));
 			}
 			return new ProductPage(total, pageNum, size, content);
 		} catch (SQLException e) {
