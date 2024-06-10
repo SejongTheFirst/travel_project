@@ -17,5 +17,5 @@ public class User {
 	public String getMemberName() {
 		return memberName;
 	}
-
+	
 }

@@ -19,11 +19,11 @@
         </tr>
         <tr>
             <td>제목</td>
-            <td><c:out value='${articleData.article.title}' /></td>
+            <td><c:out value="${articleData.article.title}" /></td>
         </tr>
         <tr>
             <td>내용</td>
-            <td><u:pre value='${articleData.content}' /></td>
+            <td><u:pre value="${articleData.content}" /></td>
         </tr>
         <tr>
             <td colspan="2">
@@ -42,17 +42,23 @@
         <h2>댓글</h2>
         <c:forEach var="comment" items="${comments}">
             <div>
-                <strong>${comment.writerName}</strong>
-                <span>${comment.regDate}</span>
+                <strong>${comment.commentId}</strong>
+                <span>${comment.formattedRegDate}</span>
                 <p>${comment.content}</p>
+                <c:if test="${authUser.id == comment.commentId}">
+                    <a href="#" onclick="confirmDeleteComment(event, ${comment.comment_no})">[댓글삭제]</a>
+                </c:if>
 
                 <!-- Display Replies -->
                 <div style="margin-left: 20px;">
                     <c:forEach var="reply" items="${comment.replies}">
                         <div>
-                            <strong>${reply.writerName}</strong>
-                            <span>${reply.regDate}</span>
+                            <strong>${reply.replyId}</strong>
+                            <span>${reply.formattedRegDate}</span>
                             <p>${reply.content}</p>
+                            <c:if test="${authUser.id == reply.replyId}">
+                                <a href="#" onclick="confirmDeleteReply(event, ${reply.reply_no})">[답글삭제]</a>
+                            </c:if>
                         </div>
                     </c:forEach>
                 </div>
@@ -60,8 +66,11 @@
                 <!-- Reply Form -->
                 <form action="comment.do" method="post">
                     <input type="hidden" name="action" value="addReply" />
-                    <input type="hidden" name="commentId" value="${comment.id}" />
-                    <input type="hidden" name="articleId" value="${articleData.article.number}" />
+                    <input type="hidden" name="commentNo" value="${comment.comment_no}" />
+                    <input type="hidden" name="articleNo" value="${articleData.article.number}" />
+                    <input type="hidden" name="category" value="${category}" />
+                    <input type="hidden" name="replyId" value="${authUser.id}" />
+                    <input type="hidden" name="replyName" value="${authUser.memberName}" />
                     <textarea name="content" placeholder="답글을 입력하세요"></textarea>
                     <button type="submit">답글 달기</button>
                 </form>
@@ -71,7 +80,10 @@
         <!-- Comment Form -->
         <form action="comment.do" method="post">
             <input type="hidden" name="action" value="addComment" />
-            <input type="hidden" name="articleId" value="${articleData.article.number}" />
+            <input type="hidden" name="articleNo" value="${articleData.article.number}" />
+            <input type="hidden" name="category" value="${category}" />
+            <input type="hidden" name="commentId" value="${authUser.id}" />
+            <input type="hidden" name="commentName" value="${authUser.memberName}" />
             <textarea name="content" placeholder="댓글을 입력하세요"></textarea>
             <button type="submit">댓글 달기</button>
         </form>
@@ -93,6 +105,44 @@
                 },
                 error: function(xhr, status, error) {
                     alert("게시글 삭제에 실패했습니다. 다시 시도해주세요. 오류: " + error);
+                }
+            });
+        }
+    }
+
+    function confirmDeleteComment(event, commentId) {
+        event.preventDefault();
+        var isDelete = confirm("정말로 댓글을 삭제하시겠습니까?");
+        if (isDelete) {
+            var deleteUrl = "comment.do?action=delete&type=comment&id=" + commentId + "&category=${category}&pageNo=${pageNo}";
+            $.ajax({
+                type: "GET",
+                url: deleteUrl,
+                success: function(response) {
+                    alert("댓글이 성공적으로 삭제되었습니다.");
+                    window.location.href = "read.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}";
+                },
+                error: function(xhr, status, error) {
+                    alert("댓글 삭제에 실패했습니다. 다시 시도해주세요. 오류: " + error);
+                }
+            });
+        }
+    }
+
+    function confirmDeleteReply(event, replyId) {
+        event.preventDefault();
+        var isDelete = confirm("정말로 답글을 삭제하시겠습니까?");
+        if (isDelete) {
+            var deleteUrl = "comment.do?action=delete&type=reply&id=" + replyId + "&category=${category}&pageNo=${pageNo}";
+            $.ajax({
+                type: "GET",
+                url: deleteUrl,
+                success: function(response) {
+                    alert("답글이 성공적으로 삭제되었습니다.");
+                    window.location.href = "read.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}";
+                },
+                error: function(xhr, status, error) {
+                    alert("답글 삭제에 실패했습니다. 다시 시도해주세요. 오류: " + error);
                 }
             });
         }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import board.model.Article;
 
+
+
 public class ArticlePage {
 
 	private int total;

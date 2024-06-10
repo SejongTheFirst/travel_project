@@ -7,6 +7,7 @@ public class ArticleData {
 
 	private Article article;
 	private ArticleContent content;
+	private String category;
 
 	public ArticleData(Article article, ArticleContent content) {
 		this.article = article;
@@ -19,6 +20,9 @@ public class ArticleData {
 
 	public String getContent() {
 		return content.getContent();
+	}
+	public String getCategoty() {
+		return category;
 	}
 
 }

@@ -12,7 +12,7 @@ public class DeleteArticleService {
 	private ArticleDao articleDao = new ArticleDao();
 	private ArticleContentDao contentDao = new ArticleContentDao();
 
-	public void deleteArticle(int articleNumber) throws ArticleNotFoundException {
+	public void delete(int articleNumber) throws ArticleNotFoundException {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
