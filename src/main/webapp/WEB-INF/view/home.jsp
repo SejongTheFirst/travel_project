@@ -19,13 +19,25 @@
 		<div class="register">
 			<a href="/gza/product/write.do" class="register-link" id="register">상품등록</a>
 		</div>
+		
 		<div class="profile-icon" onclick="toggleMenu()">
 			<img src="data:image/png;base64,{{base64_profile_image}}"
 				alt="Profile Icon">
 		</div>
-		<div class="toggle-menu">
-			<a href="#">프로필</a> <a href="#">설정</a> <a href="#">로그아웃</a>
-		</div>
+		<c:choose>
+        <c:when test="${authUser.id != null }">
+        <div class="toggle-menu">
+            <a href="/gza/modifyMem.do">내 정보 수정</a> <a href="#">내 상품</a> <a href="#">예약 내역</a>
+					<a href="/gza/logout.do">로그아웃</a> <a href="/gza/cancelID.do">회원 탈퇴</a>
+        </div>
+        </c:when>
+        <c:otherwise>
+        <div class="toggle-menu">
+            <a href="/gza/join.do">회원 가입</a> <a href="/gza/login.do">로그인</a>
+        </div>
+        </c:otherwise>
+        </c:choose>
+        
 	</header>
 	<div class="categories">
 		<a href="#">캘리포니아</a> <a href="#">와이파이 가능</a> <a href="#">휴양지</a> <a
