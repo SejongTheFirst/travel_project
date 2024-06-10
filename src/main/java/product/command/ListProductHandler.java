@@ -18,7 +18,7 @@ public class ListProductHandler implements CommandHandler{
 		if(pageNoVal != null) {
 			pageNo=Integer.parseInt(pageNoVal);
 		}
-		ProductPage productPage=listService.getProductPage(pageNo);
+		ProductPage productPage=listService.getRoomProductPage(pageNo);
 		req.setAttribute("productPage", productPage);
 		return "/WEB-INF/view/listProduct.jsp";
 	}
