@@ -1,5 +1,7 @@
 package member.command;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,7 +31,7 @@ public class CancelIDHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 	
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		User user = (User) req.getSession().getAttribute("authUser");
 		
 		cancelIDSvc.cancelID(user.getId());
@@ -38,8 +40,8 @@ public class CancelIDHandler implements CommandHandler {
 		if (session != null) {
 			session.invalidate();
 		}
-		
-		return "/home.do";
+		res.sendRedirect(req.getContextPath() + "/home.do");
+        return null;
 	}
 
 }

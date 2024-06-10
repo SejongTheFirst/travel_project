@@ -1,5 +1,6 @@
 package member.command;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,8 +53,9 @@ public class JoinHandler implements CommandHandler {
 		
 		try {
 			joinService.join(joinReq);
-			return "/WEB-INF/view/login.jsp";
-		} catch (DuplicateIdException e) {
+			res.sendRedirect(req.getContextPath() + "/login.do");
+	        return null;
+		} catch (DuplicateIdException | IOException e) {
 			errors.put("duplicateId", Boolean.TRUE);
 			return FORM_VIEW;
 		}
