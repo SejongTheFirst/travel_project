@@ -46,8 +46,16 @@
                 <span>${comment.formattedRegDate}</span>
                 <p>${comment.content}</p>
                 <c:if test="${authUser.id == comment.commentId}">
-                    <a href="#" onclick="confirmDeleteComment(event, ${comment.comment_no})">[댓글삭제]</a>
+                    <a href="#" onclick="confirmDeleteComment(event, ${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo})">[댓글삭제]</a>
+                    <a href="#" onclick="showEditCommentForm(${comment.comment_no}, '${comment.content}', ${articleData.article.number}, '${category}', ${pageNo})">[댓글수정]</a>
                 </c:if>
+
+                <!-- Edit Comment Form -->
+                <form id="editCommentForm_${comment.comment_no}" style="display:none;" onsubmit="event.preventDefault(); updateComment(${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo});">
+                    <textarea id="editCommentContent_${comment.comment_no}" name="content">${comment.content}</textarea>
+                    <button type="submit">수정하기</button>
+                    <button type="button" onclick="hideEditCommentForm(${comment.comment_no})">취소</button>
+                </form>
 
                 <!-- Display Replies -->
                 <div style="margin-left: 20px;">
@@ -57,8 +65,16 @@
                             <span>${reply.formattedRegDate}</span>
                             <p>${reply.content}</p>
                             <c:if test="${authUser.id == reply.replyId}">
-                                <a href="#" onclick="confirmDeleteReply(event, ${reply.reply_no})">[답글삭제]</a>
+                                <a href="#" onclick="confirmDeleteReply(event, ${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo})">[답글삭제]</a>
+                                <a href="#" onclick="showEditReplyForm(${reply.reply_no}, '${reply.content}', ${articleData.article.number}, '${category}', ${pageNo})">[답글수정]</a>
                             </c:if>
+
+                            <!-- Edit Reply Form -->
+                            <form id="editReplyForm_${reply.reply_no}" style="display:none;" onsubmit="event.preventDefault(); updateReply(${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo});">
+                                <textarea id="editReplyContent_${reply.reply_no}" name="content">${reply.content}</textarea>
+                                <button type="submit">수정하기</button>
+                                <button type="button" onclick="hideEditReplyForm(${reply.reply_no})">취소</button>
+                            </form>
                         </div>
                     </c:forEach>
                 </div>
@@ -99,11 +115,12 @@
                 type: "POST",
                 url: "delete.do",
                 data: {
-                    action: "deleteArticle",
-                    id: articleNumber
+                    no: articleNumber,
+                    category: '${category}',
+                    pageNo: '${pageNo}'
                 },
                 success: function(response) {
-                    alert(response);
+                    alert("게시글이 삭제되었습니다.");
                     window.location.href = "list.do?category=${category}&pageNo=${pageNo}";
                 },
                 error: function(xhr, status, error) {
@@ -113,7 +130,7 @@
         }
     }
 
-    function confirmDeleteComment(event, commentNo) {
+    function confirmDeleteComment(event, commentNo, articleNo, category, pageNo) {
         event.preventDefault();
         var isDelete = confirm("정말로 댓글을 삭제하시겠습니까?");
         if (isDelete) {
@@ -122,11 +139,14 @@
                 url: "commentdelete.do",
                 data: {
                     action: "deleteComment",
-                    id: commentNo
+                    id: commentNo,
+                    articleNo: articleNo,
+                    category: category,
+                    pageNo: pageNo
                 },
                 success: function(response) {
-                    alert(response);
-                    window.location.href = "read.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}";
+                    alert("댓글이 삭제되었습니다.");
+                    window.location.href = "read.do?no=" + articleNo + "&category=" + category + "&pageNo=" + pageNo;
                 },
                 error: function(xhr, status, error) {
                     alert("댓글 삭제에 실패했습니다. 다시 시도해주세요. 오류: " + error);
@@ -135,7 +155,7 @@
         }
     }
 
-    function confirmDeleteReply(event, replyNo) {
+    function confirmDeleteReply(event, replyNo, articleNo, category, pageNo) {
         event.preventDefault();
         var isDelete = confirm("정말로 답글을 삭제하시겠습니까?");
         if (isDelete) {
@@ -144,11 +164,14 @@
                 url: "commentdelete.do",
                 data: {
                     action: "deleteReply",
-                    id: replyNo
+                    id: replyNo,
+                    articleNo: articleNo,
+                    category: category,
+                    pageNo: pageNo
                 },
                 success: function(response) {
-                    alert(response);
-                    window.location.href = "read.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}";
+                    alert("답글이 삭제되었습니다.");
+                    window.location.href = "read.do?no=" + articleNo + "&category=" + category + "&pageNo=" + pageNo;
                 },
                 error: function(xhr, status, error) {
                     alert("답글 삭제에 실패했습니다. 다시 시도해주세요. 오류: " + error);
@@ -156,6 +179,71 @@
             });
         }
     }
+
+    function showEditCommentForm(commentNo, content, articleNo, category, pageNo) {
+        document.getElementById('editCommentForm_' + commentNo).style.display = 'block';
+        document.getElementById('editCommentContent_' + commentNo).value = content;
+    }
+
+    function hideEditCommentForm(commentNo) {
+        document.getElementById('editCommentForm_' + commentNo).style.display = 'none';
+    }
+
+    function updateComment(commentNo, articleNo, category, pageNo) {
+        var content = document.getElementById('editCommentContent_' + commentNo).value;
+        $.ajax({
+            type: "POST",
+            url: "commentupdate.do",
+            data: {
+                action: "updateComment",
+                id: commentNo,
+                content: content,
+                articleNo: articleNo,
+                category: category,
+                pageNo: pageNo
+            },
+            success: function(response) {
+                alert("댓글이 수정되었습니다.");
+                window.location.href = "read.do?no=" + articleNo + "&category=" + category + "&pageNo=" + pageNo;
+            },
+            error: function(xhr, status, error) {
+                alert("댓글 수정에 실패했습니다. 다시 시도해주세요. 오류: " + error);
+            }
+        });
+    }
+
+    function showEditReplyForm(replyNo, content, articleNo, category, pageNo) {
+        document.getElementById('editReplyForm_' + replyNo).style.display = 'block';
+        document.getElementById('editReplyContent_' + replyNo).value = content;
+    }
+
+    function hideEditReplyForm(replyNo) {
+        document.getElementById('editReplyForm_' + replyNo).style.display = 'none';
+    }
+
+    function updateReply(replyNo, articleNo, category, pageNo) {
+        var content = document.getElementById('editReplyContent_' + replyNo).value;
+        $.ajax({
+            type: "POST",
+            url: "commentupdate.do",
+            data: {
+                action: "updateReply",
+                id: replyNo,
+                content: content,
+                articleNo: articleNo,
+                category: category,
+                pageNo: pageNo
+            },
+            success: function(response) {
+                alert("답글이 수정되었습니다.");
+                window.location.href = "read.do?no=" + articleNo + "&category=" + category + "&pageNo=" + pageNo;
+            },
+            error: function(xhr, status, error) {
+                alert("답글 수정에 실패했습니다. 다시 시도해주세요. 오류: " + error);
+            }
+        });
+    }
     </script>
 </body>
 </html>
+

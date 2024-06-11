@@ -138,4 +138,29 @@ public class CommentDao {
     public void updateComment(Connection conn, int commentNo) throws SQLException{
     	PreparedStatement pstmt = null;
     }
+    public void updateComment(Connection conn, int commentNo, String content) throws SQLException {
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = conn.prepareStatement(
+                    "UPDATE comment SET content = ? WHERE comment_no = ?");
+            pstmt.setString(1, content);
+            pstmt.setInt(2, commentNo);
+            pstmt.executeUpdate();
+        } finally {
+            JdbcUtil.close(pstmt);
+        }
+    }
+
+    public void updateReply(Connection conn, int replyNo, String content) throws SQLException {
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = conn.prepareStatement(
+                    "UPDATE reply SET content = ? WHERE reply_no = ?");
+            pstmt.setString(1, content);
+            pstmt.setInt(2, replyNo);
+            pstmt.executeUpdate();
+        } finally {
+            JdbcUtil.close(pstmt);
+        }
+    }
 }

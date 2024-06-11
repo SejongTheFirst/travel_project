@@ -52,4 +52,19 @@ public class CommentService {
             throw new RuntimeException(e);
         }
     }
+    public void updateComment(int commentNo, String content) {
+        try (Connection conn = ConnectionProvider.getConnection()) {
+            commentDao.updateComment(conn, commentNo, content);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateReply(int replyNo, String content) {
+        try (Connection conn = ConnectionProvider.getConnection()) {
+            commentDao.updateReply(conn, replyNo, content);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
