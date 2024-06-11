@@ -205,5 +205,69 @@ public class ArticleDao {
             return sdfDate.format(date);
         }
     }
-    
+    public int Myboard(Connection conn, String id) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("SELECT COUNT(*) FROM comunity WHERE id = ?");
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
+    public List<Article> selectMyboard(Connection conn, String id, int startRow, int size)
+            throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn
+                    .prepareStatement("SELECT * FROM comunity WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?");
+            pstmt.setString(1, id);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, size);
+            rs = pstmt.executeQuery();
+            List<Article> result = new ArrayList<>();
+            while (rs.next()) {
+                result.add(convertArticle(rs));
+            }
+            return result;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
+    public int countArticlesByUser(Connection conn, String userId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM comunity WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return 0;
+            }
+        }
+    }
+
+    public List<Article> findArticlesByUser(Connection conn, String userId, int startRow, int size) throws SQLException {
+        String sql = "SELECT * FROM comunity WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, size);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                List<Article> result = new ArrayList<>();
+                while (rs.next()) {
+                    result.add(convertArticle(rs));
+                }
+                return result;
+            }
+        }
+    }
 }
