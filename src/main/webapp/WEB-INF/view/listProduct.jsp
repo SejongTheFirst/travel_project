@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header>
-		<div class="logo">G•za</div>
+		<div class="logo"><a href="/gza/home.do" class="home-link">G•za</a></div>
 		<div class="search-container">
 			<div class="search-bar">
 				<input type="text" placeholder="검색">
@@ -45,7 +45,7 @@
 						</c:forEach>
 						<c:forEach var="pro" items="${product.product}">
 							<div class="title">
-								<a href="product/read.do?no=${pro.productNum}"> <c:out
+								<a href="read.do?no=${pro.productNum}"> <c:out
 										value="${pro.productTitle}" />
 								</a>
 							</div>

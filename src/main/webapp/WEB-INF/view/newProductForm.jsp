@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header>
-		<div class="logo">G•za</div>
+		<div class="logo"><a href="/gza/home.do" class="home-link">G•za</a></div>
 		<div class="search-container">
 			<div class="search-bar">
 				<input type="text" placeholder="검색">

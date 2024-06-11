@@ -74,6 +74,11 @@ header .register-link:hover {
     background-color: #cdcdcd;
 }
 
+header .home-link{
+	text-decoration: none;
+	color : #5cd5fb;
+}
+
 header .profile-icon {
     display: flex;
     align-items: center;

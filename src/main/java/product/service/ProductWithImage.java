@@ -8,6 +8,7 @@ import product.model.ProductContent;
 
 public class ProductWithImage {
 	private List<Product> product;
+	private Product pro;
 	private List<ProductContent> content;
 	private List<Image> images;
 
@@ -18,6 +19,10 @@ public class ProductWithImage {
 	}
 	public ProductWithImage(List<Product> product, List<Image> images) {
 		this.product = product;
+		this.images = images;
+	}
+	public ProductWithImage(Product pro, List<Image> images) {
+		this.pro = pro;
 		this.images = images;
 	}
 	
@@ -31,5 +36,9 @@ public class ProductWithImage {
 
 	public List<Image> getImages() {
 		return images;
+	}
+	
+	public Product getPro() {
+		return pro;
 	}
 }

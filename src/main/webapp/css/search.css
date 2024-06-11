@@ -144,86 +144,14 @@ header .profile-icon img {
     color: #ff385c;
 }
 
-.section {
-    height: auto;
-    width: 100%;
-    margin: 10px;
-    padding: 10px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-}
-
-.main-content {
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-    height: 1000px;
-}
-
-.wrapper {
-    width: 100%;
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-}
-
-.wrapper::-webkit-scrollbar {
-    height: 10px;
-}
-
-.wrapper:hover::-webkit-scrollbar {
-    height: 10px;
-}
-
-.wrapper::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-}
-
-.wrapper::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-.container {
-    width: 300px;
-    border: 1px solid transparent;
-    padding: 10px;
-    margin: 0 20px 0 20px;
-    text-align: center;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.img-box {
-    width: 300px;
-    height: 350px;
-    border: 1px dashed black;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.img-box img {
-    max-width: 300%;
-    max-height: 100%;
-    object-fit : cover;
-}
-
-.title, .price {
-    font-size: 16px;
-    margin: 5px 0;
-    text-align: left;
+.table img {
+    height: 150px;
 }
 
 
-footer {
-    padding: 20px 40px;
-    text-align: center;
-    background-color: #fff;
-    border-top: 1px solid #ddd;
-}
+
+
+
+
+
+
