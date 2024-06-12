@@ -64,12 +64,24 @@
 						<td>${product.pro.productNum}</td>
 						<c:forEach var="img" items="${product.images}">
 							<td><img src="/gza/imageStorage/${img.storeName}"
-									alt="${img.originalName}"></td>
+								alt="${img.originalName}"></td>
 						</c:forEach>
 						<td>${product.pro.productTitle}</td>
 						<td>${product.pro.writer.id}</td>
 					</tr>
 				</c:forEach>
+				<c:if test="${productPage.hasProduct()}">
+					<tr>
+						<td colspan="4"><c:if test="${productPage.startPage>5}">
+								<a href="search.do?pageNo=${productPage.startPage-5}&keyword=${param.keyword}">[이전]</a>
+							</c:if> <c:forEach var="pNo" begin="${productPage.startPage}"
+								end="${productPage.endPage}">
+								<a href="search.do?pageNo=${pNo}&keyword=${param.keyword}">[${pNo}]</a>
+							</c:forEach> <c:if test="${productPage.endPage<productPage.totalPages}">
+								<a href="search.do?pageNo=${productPage.startPage+5}&keyword=${param.keyword}">[다음]</a>
+							</c:if></td>
+					</tr>
+				</c:if>
 			</table>
 		</div>
 	</main>

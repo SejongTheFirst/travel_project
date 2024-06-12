@@ -71,9 +71,9 @@ header .register-link:hover {
     background-color: #cdcdcd !important;
 }
 
-header .home-link{
-	text-decoration: none;
-	color : #5cd5fb;
+header .home-link {
+    text-decoration: none;
+    color: #5cd5fb;
 }
 
 header .profile-icon {
@@ -144,14 +144,24 @@ header .profile-icon img {
     color: #ff385c;
 }
 
+.table-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+}
+
 .table img {
     height: 150px;
 }
 
-
-
-
-
-
-
-
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
