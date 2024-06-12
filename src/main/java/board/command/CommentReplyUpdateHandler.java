@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import board.service.CommentService;
 import mvc.command.CommandHandler;
 
-public class CommentReplyDeleteHandler implements CommandHandler {
+public class CommentReplyUpdateHandler implements CommandHandler {
 
     private CommentService commentService = new CommentService();
 
@@ -14,19 +14,18 @@ public class CommentReplyDeleteHandler implements CommandHandler {
     public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
         String action = req.getParameter("action");
         int id = Integer.parseInt(req.getParameter("id"));
+        String content = req.getParameter("content");
         int articleNo = Integer.parseInt(req.getParameter("articleNo"));
         String category = req.getParameter("category");
-        String pageNoVal = req.getParameter("pageNo");
-        int pageNo = pageNoVal != null ? Integer.parseInt(pageNoVal) : 1;
         String responseMessage;
 
         try {
-            if ("deleteComment".equals(action)) {
-                commentService.deleteComment(id);
-                responseMessage = "댓글이 성공적으로 삭제되었습니다.";
-            } else if ("deleteReply".equals(action)) {
-                commentService.deleteReply(id);
-                responseMessage = "답글이 성공적으로 삭제되었습니다.";
+            if ("updateComment".equals(action)) {
+                commentService.updateComment(id, content);
+                responseMessage = "댓글이 성공적으로 수정되었습니다.";
+            } else if ("updateReply".equals(action)) {
+                commentService.updateReply(id, content);
+                responseMessage = "답글이 성공적으로 수정되었습니다.";
             } else {
                 responseMessage = "알 수 없는 작업입니다.";
             }
@@ -35,8 +34,7 @@ public class CommentReplyDeleteHandler implements CommandHandler {
         }
 
         req.setAttribute("responseMessage", responseMessage);
-        res.sendRedirect(req.getContextPath() + "/read.do?no=" + articleNo + "&category=" + category + "&pageNo=" + pageNo);
+        res.sendRedirect("read.do?no=" + articleNo + "&category=" + category);
         return null;
     }
 }
-

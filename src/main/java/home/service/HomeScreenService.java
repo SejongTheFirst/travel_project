@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import board.model.Article;
+import boardmain.dao.BoardMainFreeDao;
 import image.dao.ImageDAO;
 import image.model.Image;
 import jdbc.connection.ConnectionProvider;
@@ -20,6 +22,7 @@ public class HomeScreenService {
 	private ProductContentDAO contentDAO = new ProductContentDAO();
 	private ImageDAO imageDAO = new ImageDAO();
 	private int size = 10; // 최대 10개의 자료 출력
+	private BoardMainFreeDao articleDao = new BoardMainFreeDao();
 
 	public HomePage getRoomPage(int page) {
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -57,23 +60,11 @@ public class HomeScreenService {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public HomePage getAtivity(int page) {
-		try (Connection con = ConnectionProvider.getConnection()) {
-			List<ProductContent> activites = contentDAO.selectByCategory(con, "활동", page, size);
-			List<ProductWithImage> pwi = new ArrayList<>();
-			
-			for (ProductContent activity : activites) {
-				System.out.println("활동 Content: " + activity.getProductType());
-				List<Product> products = productDAO.selectByCategory(con, activity.getProductNum(), page, size);
-				List<Image> images = imageDAO.selectByProductNum(con, activity.getProductNum());
-				pwi.add(new ProductWithImage(products, images));
-			}
-			
-			return new HomePage(pwi);
+	public List<Article> getAllList() {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			return articleDao.AllList(conn);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
-
 }

@@ -11,6 +11,23 @@ public class Reply {
 	    private String content;
 	    private Date regDate;
 	    private String category;
+	    private String articleTitle;
+	    private int article_no;
+	    private int board_num;
+	    
+	    public Reply(int comment_no, int reply_no, String replyId, String replyName, String content, Date regDate, String category, String articleTitle
+	    		,int article_no, int board_num) {
+	        this.comment_no = comment_no;
+	        this.reply_no = reply_no;
+	        this.replyId = replyId;
+	        this.replyName = replyName;
+	        this.content = content;
+	        this.regDate = regDate;
+	        this.category = category;
+	        this.articleTitle = articleTitle;  
+	        this.article_no= article_no;
+	        this.board_num = board_num;
+	    }
 
     public Reply(int comment_no, int reply_no, String replyId, String replyName, String content, Date regDate,
                 String category) {
@@ -21,6 +38,16 @@ public class Reply {
         this.content = content;
         this.regDate = regDate;
         this.category = category;
+    }
+    public Reply(int comment_no, int reply_no, String replyId, String replyName, String content, Date regDate, String category, String articleTitle) {
+        this.comment_no = comment_no;
+        this.reply_no = reply_no;
+        this.replyId = replyId;
+        this.replyName = replyName;
+        this.content = content;
+        this.regDate = regDate;
+        this.category = category;
+        this.articleTitle = articleTitle;  
     }
 
     public Reply() {
@@ -33,6 +60,10 @@ public class Reply {
         this.category = null;
     }
 
+    public int getBoard_num() {
+        return board_num;
+    }
+    
     public String getCategory() {
         return category;
     }
@@ -79,10 +110,16 @@ public class Reply {
         }
     }
 
-    // 추가: 대댓글 내용 설정 메서드
+
     public void setReplyContent(String replyId, String replyName, String content) {
         this.replyId = replyId;
         this.replyName = replyName;
         this.content = content;
+    }
+    public String getArticleTitle() {
+		return articleTitle;
+	}
+    public int getArticle_no() {
+        return article_no;
     }
 }

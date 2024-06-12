@@ -13,6 +13,8 @@ public class Comment {
 	private Date regDate;
 	private String category;
 	private List<Reply> replies;
+	private String articleTitle;
+	
 
 	public Comment(int article_no, int comment_no, String commentId, String commentName, String content, Date regDate,
 			String category) {
@@ -24,7 +26,17 @@ public class Comment {
 		this.regDate = regDate;
 		this.category = category;
 	}
-
+	public Comment(int article_no, int comment_no, String commentId, String commentName, String content, Date regDate,
+			String category, String articleTitle) {  
+		this.article_no = article_no;
+		this.comment_no = comment_no;
+		this.commentId = commentId;
+		this.commentName = commentName;
+		this.content = content;
+		this.regDate = regDate;
+		this.category = category;
+		this.articleTitle = articleTitle;
+	}
 	public Comment() {
 	}
 
@@ -81,11 +93,16 @@ public class Comment {
 			return sdfDate.format(date);
 		}
 	}
-
+	public void setArticleTitle(String articleTitle) {
+		this.articleTitle = articleTitle;
+	}
 	// 추가: 댓글 내용 설정 메서드
 	public void setCommentContent(String commentId, String commentName, String content) {
 		this.commentId = commentId;
 		this.commentName = commentName;
 		this.content = content;
+	}
+	public String getArticleTitle() {
+		return articleTitle;
 	}
 }

@@ -22,4 +22,64 @@ public class ListArticleService {
 			throw new RuntimeException(e);
 		}
 	}
+
+	public ArticlePage getArticlePageByTitle(String title, int pageNum) {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			List<Article> content = articleDao.searchByTitle(conn, title);
+			int total = content.size();
+			int fromIndex = (pageNum - 1) * size;
+			int toIndex = Math.min(fromIndex + size, total);
+			if (fromIndex > toIndex) {
+				return new ArticlePage(total, pageNum, size, List.of());
+			}
+			return new ArticlePage(total, pageNum, size, content.subList(fromIndex, toIndex));
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public ArticlePage getArticlePageByWriterName(String writerName, int pageNum) {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			List<Article> content = articleDao.searchByWriterName(conn, writerName);
+			int total = content.size();
+			int fromIndex = (pageNum - 1) * size;
+			int toIndex = Math.min(fromIndex + size, total);
+			if (fromIndex > toIndex) {
+				return new ArticlePage(total, pageNum, size, List.of());
+			}
+			return new ArticlePage(total, pageNum, size, content.subList(fromIndex, toIndex));
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public ArticlePage searchByTitleAndCategory(String category, String title, int pageNum) {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			List<Article> content = articleDao.searchByTitleAndCategory(conn, category, title);
+			int total = content.size();
+			int fromIndex = (pageNum - 1) * size;
+			int toIndex = Math.min(fromIndex + size, total);
+			if (fromIndex > toIndex) {
+				return new ArticlePage(total, pageNum, size, List.of());
+			}
+			return new ArticlePage(total, pageNum, size, content.subList(fromIndex, toIndex));
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public ArticlePage searchByWriterNameAndCategory(String category, String writerName, int pageNum) {
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			List<Article> content = articleDao.searchByWriterNameAndCategory(conn, category, writerName);
+			int total = content.size();
+			int fromIndex = (pageNum - 1) * size;
+			int toIndex = Math.min(fromIndex + size, total);
+			if (fromIndex > toIndex) {
+				return new ArticlePage(total, pageNum, size, List.of());
+			}
+			return new ArticlePage(total, pageNum, size, content.subList(fromIndex, toIndex));
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
