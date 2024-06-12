@@ -12,7 +12,7 @@ import jdbc.JdbcUtil;
 
 public class BookProductDAO {
 
-	public BookProduct insert(Connection con, BookProduct bookProduct) throws SQLException {
+	public BookProduct insert(Connection con, BookProduct bookProduct, Book book) throws SQLException {
 		PreparedStatement ps = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -21,7 +21,7 @@ public class BookProductDAO {
 
 		try {
 			ps = con.prepareStatement(query);
-			ps.setInt(1, bookProduct.getBookCode());
+			ps.setInt(1, book.getBookCode());
 			ps.setInt(2, bookProduct.getProductNum());
 			ps.setInt(3, bookProduct.getPrice());
 			ps.setInt(4, bookProduct.getDays());
@@ -32,7 +32,7 @@ public class BookProductDAO {
 
 			if (result > 0) {
 				stmt = con.createStatement();
-				rs = stmt.executeQuery("select last_insert_id() from product");
+				rs = stmt.executeQuery("select last_insert_id() from book_product");
 				if (rs.next()) {
 					
 					return new BookProduct(rs.getInt(1), bookProduct.getBookCode(), bookProduct.getProductNum(),

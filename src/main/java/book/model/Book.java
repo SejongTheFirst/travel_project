@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Book {
 	private Integer bookCode;
-	private Seller seller;
+	private String sellerId;
 	private Customer customer;
 	private String title;
 	private String location;
@@ -12,10 +12,10 @@ public class Book {
 	private Date startDate;
 	private Date endDate;
 
-	public Book(Integer bookCode, Seller seller, Customer customer, String title, String location, String imgUrl,
+	public Book(Integer bookCode, String sellerId, Customer customer, String title, String location, String imgUrl,
 			Date startDate, Date endDate) {
 		this.bookCode = bookCode;
-		this.seller = seller;
+		this.sellerId = sellerId;
 		this.customer = customer;
 		this.title = title;
 		this.location = location;
@@ -28,8 +28,8 @@ public class Book {
 		return bookCode;
 	}
 
-	public Seller getSeller() {
-		return seller;
+	public String getSellerId() {
+		return sellerId;
 	}
 
 	public Customer getCustomer() {
