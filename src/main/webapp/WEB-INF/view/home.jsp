@@ -24,6 +24,9 @@
 			<img src="/gza/img/profile.PNG"
 				alt="Profile Icon">
 		</div>
+		<div class="toggle-menu">
+			<a href="#">프로필</a> <a href="#">설정</a><a href="myboard.do">내가 쓴 게시물</a> <a href="#">로그아웃</a>
+		</div>
 		<c:choose>
         <c:when test="${authUser.id != null }">
         <div class="toggle-menu">
