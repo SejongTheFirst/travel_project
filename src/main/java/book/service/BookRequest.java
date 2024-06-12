@@ -1,19 +1,21 @@
 package book.service;
 
-import java.sql.Date;
 import java.util.Map;
+
+import book.model.Customer;
 
 public class BookRequest {
 	private String merchantUid;
 	private int amount;
+	private Customer customer;
 	private String buyerEmail;
 	private String buyerName;
 	private String buyerTel;
 	private int productId;
 	private String productName;
 	private int productPrice;
-	private java.sql.Date startDate;
-	private java.sql.Date endDate;
+	private String startDate;
+	private String endDate;
 	private int days;
 	private int guest;
 	private String sellerId;
@@ -22,11 +24,12 @@ public class BookRequest {
 	private String location;
 	private String paymentMethod;
 
-	public BookRequest(String merchantUid, int amount, String buyerEmail, String buyerName, String buyerTel,
-			int productId, String productName, int productPrice, Date startDate, Date endDate, int days, int guest,
-			String sellerId, String imageUrl, String title, String location, String paymentMethod) {
+	public BookRequest(String merchantUid, int amount, Customer customer, String buyerEmail, String buyerName,
+			String buyerTel, int productId, String productName, int productPrice, String startDate, String endDate,
+			int days, int guest, String sellerId, String imageUrl, String title, String location, String paymentMethod) {
 		this.merchantUid = merchantUid;
 		this.amount = amount;
+		this.customer = customer;
 		this.buyerEmail = buyerEmail;
 		this.buyerName = buyerName;
 		this.buyerTel = buyerTel;
@@ -50,6 +53,10 @@ public class BookRequest {
 
 	public int getAmount() {
 		return amount;
+	}
+
+	public Customer getCustomer() {
+		return customer;
 	}
 
 	public String getBuyerEmail() {
@@ -76,11 +83,11 @@ public class BookRequest {
 		return productPrice;
 	}
 
-	public java.sql.Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public java.sql.Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
@@ -117,4 +124,5 @@ public class BookRequest {
 			errors.put("merchantUid", Boolean.TRUE);
 		}
 	}
+	
 }

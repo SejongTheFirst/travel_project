@@ -29,11 +29,11 @@
             <div class="section-title">사용자 정보</div>
             <p>
                 <label for="buyer_email">이메일:</label>
-                <input type="email" id="buyer_email" name="buyer_email" required>
+                <input type="email" id="buyer_email" name="buyer_email"  required>
             </p>
             <p>
                 <label for="buyer_name">이름:</label>
-                <input type="text" id="buyer_name" name="buyer_name" required>
+                <input type="text" id="buyer_name" name="buyer_name" value="${authUser.id}"required>
             </p>
             <p>
                 <label for="buyer_tel">전화번호:</label>
