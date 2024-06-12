@@ -91,6 +91,27 @@ public class ProductDAO {
 		}
 	}
 	
+	public List<Product> selectByCategory(Connection con, int num, int startRow, int size) throws SQLException{
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		try {
+			ps=con.prepareStatement("select*from product where product_num=? order by product_num desc limit ?,?");
+			ps.setInt(1, num);
+			ps.setInt(2, startRow);
+			ps.setInt(3, size);
+			rs=ps.executeQuery();
+			List<Product> result=new ArrayList<Product>();
+			while(rs.next()) {
+				result.add(convertProduct(rs));
+			}
+			return result;
+			
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(ps);
+		}
+	}
+	
 	private Product convertProduct(ResultSet rs) throws SQLException {
 		return new Product(rs.getInt("product_num"), rs.getString("product_title"), rs.getInt("price"), new Writer(rs.getString("writer_id"), null));
 	}

@@ -4,6 +4,10 @@ import java.util.Map;
 
 import board.model.Writer;
 
+
+
+
+
 public class WriteRequest {
 
 	public String getCategory() {
