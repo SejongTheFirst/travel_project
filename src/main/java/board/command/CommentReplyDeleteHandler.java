@@ -2,6 +2,7 @@ package board.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import board.service.CommentService;
 import mvc.command.CommandHandler;
 
@@ -13,6 +14,10 @@ public class CommentReplyDeleteHandler implements CommandHandler {
     public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
         String action = req.getParameter("action");
         int id = Integer.parseInt(req.getParameter("id"));
+        int articleNo = Integer.parseInt(req.getParameter("articleNo"));
+        String category = req.getParameter("category");
+        String pageNoVal = req.getParameter("pageNo");
+        int pageNo = pageNoVal != null ? Integer.parseInt(pageNoVal) : 1;
         String responseMessage;
 
         try {
@@ -26,11 +31,11 @@ public class CommentReplyDeleteHandler implements CommandHandler {
                 responseMessage = "알 수 없는 작업입니다.";
             }
         } catch (RuntimeException e) {
-            responseMessage = "삭제에 실패했습니다: " + e.getMessage();
+            responseMessage = "작업에 실패했습니다: " + e.getMessage();
         }
 
-        res.setContentType("text/plain; charset=utf-8");
-        res.getWriter().write(responseMessage);
+        req.setAttribute("responseMessage", responseMessage);
+        res.sendRedirect(req.getContextPath() + "/read.do?no=" + articleNo + "&category=" + category + "&pageNo=" + pageNo);
         return null;
     }
 }

@@ -18,11 +18,15 @@ public class BoardMainFreeHandler implements CommandHandler {
         List<Article> latestLatterboardArticles = articleService.getLatestArticlesByCategory("latterboard");
         List<Article> latestFreeboardArticles = articleService.getLatestArticlesByCategory("freeboard");
         List<Article> latestTogetherboardArticles = articleService.getLatestArticlesByCategory("togetherboard");
-
+        List<Article> AllList = articleService.getAllList();
+        
+        
+        
         req.setAttribute("latestLatterboardArticles", latestLatterboardArticles);
         req.setAttribute("latestFreeboardArticles", latestFreeboardArticles);
         req.setAttribute("latestTogetherboardArticles", latestTogetherboardArticles);
-
+        req.setAttribute("AllList", AllList);
+       
         return "/WEB-INF/view/main/boardMain.jsp";
     }
 }

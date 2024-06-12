@@ -17,26 +17,45 @@ public class BoardMainFreeDao {
 	private ResultSet rs;
 
 	public List<Article> getArticlesByCategory(Connection conn, String category) {
+		List<Article> articles = new ArrayList<>();
+		String sql = "SELECT board_num, category, title, id, writer_name, regdate "
+				+ "FROM comunity WHERE category = ? ORDER BY regdate DESC LIMIT 6";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, category);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Writer writer = new Writer(rs.getString("id"), rs.getString("writer_name"));
+				Article article = new Article(rs.getInt("board_num"), rs.getString("title"), writer,
+						rs.getTimestamp("regdate"), rs.getString("category"));
+				articles.add(article);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(ps);
+		}
+		return articles;
+	}
+
+	public List<Article> AllList(Connection conn) {
         List<Article> articles = new ArrayList<>();
-        String sql = "SELECT board_num, category, title, id, writer_name, regdate " +
-                     "FROM comunity WHERE category = ? ORDER BY regdate DESC LIMIT 6";
+        String sql = "SELECT board_num, category, title, id, writer_name, regdate,read_cnt  FROM comunity ORDER BY regdate DESC LIMIT 20";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
         try {
             ps = conn.prepareStatement(sql);
-            ps.setString(1, category);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Writer writer = new Writer(rs.getString("id"), rs.getString("writer_name"));
-                Article article = new Article(
-                    rs.getInt("board_num"),
-                    rs.getString("title"),
-                    writer,
-                    rs.getTimestamp("regdate"),
-                    rs.getString("category")
-                );
+                Article article = new Article(rs.getInt("board_num"), rs.getString("title"), writer,
+                        rs.getTimestamp("regdate"), rs.getString("category"),rs.getInt("read_cnt"));
                 articles.add(article);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); 
         } finally {
             JdbcUtil.close(rs);
             JdbcUtil.close(ps);

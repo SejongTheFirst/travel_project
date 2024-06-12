@@ -14,7 +14,18 @@ public class DeleteHandler implements CommandHandler {
     public String process(HttpServletRequest req, HttpServletResponse res) 
             throws Exception {
         String noVal = req.getParameter("no");
-        int articleNum = Integer.parseInt(noVal);
+        if (noVal == null || noVal.isEmpty()) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid article id");
+            return null;
+        }
+
+        int articleNum;
+        try {
+            articleNum = Integer.parseInt(noVal);
+        } catch (NumberFormatException e) {
+            res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid article id format");
+            return null;
+        }
 
         String category = req.getParameter("category");
         if (category == null) {

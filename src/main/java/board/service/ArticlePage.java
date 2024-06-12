@@ -14,6 +14,7 @@ public class ArticlePage {
 	private int totalPages;
 	private int startPage;
 	private int endPage;
+	
 
 	public ArticlePage(int total, int currentPage, int size, List<Article> content) {
 		this.total = total;
@@ -36,6 +37,7 @@ public class ArticlePage {
 			if (endPage > totalPages) endPage = totalPages;
 		}
 	}
+	
 
 	public int getTotal() {
 		return total;

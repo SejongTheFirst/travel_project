@@ -70,5 +70,14 @@
 			window.location.href = 'home.do';
 		}
 	</script>
+<form action="categorysearch.do" method="get">
+		<input type="hidden" name="category" value="${category}">
+		<select name="searchType">
+			<option value="title">제목</option>
+			<option value="writerName">작성자</option>
+		</select>
+		<input type="text" name="keyword" placeholder="검색어를 입력하세요" required>
+		<button type="submit">검색</button>
+	</form>
 </body>
 </html>

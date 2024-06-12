@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header>
-		<div class="logo">G•za</div>
+		<div class="logo"><a href="/gza/home.do" class="home-link">G•za</a></div>
 		<div class="search-container">
 			<div class="search-bar">
 				<input type="text" placeholder="검색">
@@ -21,8 +21,11 @@
 		</div>
 		
 		<div class="profile-icon" onclick="toggleMenu()">
-			<img src="data:image/png;base64,{{base64_profile_image}}"
+			<img src="/gza/img/profile.PNG"
 				alt="Profile Icon">
+		</div>
+		<div class="toggle-menu">
+			<a href="#">프로필</a> <a href="#">설정</a><a href="myboard.do">내가 쓴 게시물</a> <a href="#">로그아웃</a>
 		</div>
 		<c:choose>
         <c:when test="${authUser.id != null }">
@@ -40,8 +43,7 @@
         
 	</header>
 	<div class="categories">
-		<a href="#">캘리포니아</a> <a href="#">와이파이 가능</a> <a href="#">휴양지</a> <a
-			href="#">체험</a> <a href="#">로맨틱</a> <a href="#">독특한 숙소</a>
+		<a href="/gza/product/list.do">숙박 / 체험 / 활동</a> <a href="#">커뮤니티</a>
 	</div>
 	<main class="main-content">
 		<div class="section">
@@ -91,287 +93,54 @@
 					</div>
 				</c:forEach>
 			</div>
+			<div class="room">
+				<h2>활동</h2>
+			</div>
+			<div class="wrapper">
+				<c:forEach var="product" items="${activityPage.content}">
+					<div class="container">
+						<c:forEach var="image" items="${product.images}">
+							<div class="img-box">
+								<img src="/gza/imageStorage/${image.storeName}"
+									alt="${image.originalName}">
+							</div>
+						</c:forEach>
+						<c:forEach var="pro" items="${product.product}">
+							<div class="title">
+								<a href="product/read.do?no=${pro.productNum}"> <c:out
+										value="${pro.productTitle}" />
+								</a>
+							</div>
+							<div class="price">${pro.price}</div>
+						</c:forEach>
+					</div>
+				</c:forEach>
+			</div>
 
 		</div>
 		<div class="community-section">
 			<h2>커뮤니티 게시판</h2>
+			<a href="MainBoard.do" style="float: right;">더보기</a>
 			<div class="community-table-wrapper">
 				<table class="community-table">
+
 					<tr>
-						<th>번호</th>
 						<th>제목</th>
+						<th>작성일</th>
 						<th>작성자</th>
+						<th>조회수</th>
+						<th>카테고리</th>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>첫 번째 게시글</td>
-						<td>작성자 1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>두 번째 게시글</td>
-						<td>작성자 2</td>
-					</tr>
+					<c:forEach var="comunity" items="${AllList}">
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}</th>
+							<th>${comunity.writer.id}</th>
+							<th>${comunity.readCount}</th>
+							<th>${comunity.category}</th>
+						</tr>
+					</c:forEach>
+
 				</table>
 			</div>
 		</div>
