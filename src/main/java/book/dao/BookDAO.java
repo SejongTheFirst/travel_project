@@ -22,7 +22,7 @@ public class BookDAO {
 
 		try {
 			ps = con.prepareStatement(query);
-			ps.setString(1, book.getSeller().getId());
+			ps.setString(1, book.getSellerId());
 			ps.setString(2, book.getCustomer().getId());
 			ps.setString(3, book.getTitle());
 			ps.setString(4, book.getLocation());
@@ -37,7 +37,7 @@ public class BookDAO {
 				rs = stmt.executeQuery("select last_insert_id() from book");
 				if (rs.next()) {
 					Integer code = rs.getInt(1);
-					return new Book(code, book.getSeller(), book.getCustomer(), book.getTitle(), book.getLocation(),
+					return new Book(code, book.getSellerId(), book.getCustomer(), book.getTitle(), book.getLocation(),
 							book.getImgUrl(), book.getStartDate(), book.getEndDate());
 				}
 			}

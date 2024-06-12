@@ -30,6 +30,7 @@ public class LoginHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
+		req.setAttribute("showLoginModal", true);
 		return FORM_VIEW;
 	}
 
@@ -42,11 +43,12 @@ public class LoginHandler implements CommandHandler {
 		req.setAttribute("errors", errors);
 
 		if (id == null || id.isEmpty())
-			errors.put("id", Boolean.TRUE);
+			errors.put("id", true);
 		if (password == null || password.isEmpty())
-			errors.put("password", Boolean.TRUE);
+			errors.put("password", true);
 
 		if (!errors.isEmpty()) {
+			req.setAttribute("showLoginModal", true);
 			return FORM_VIEW;
 		}
 
@@ -57,6 +59,7 @@ public class LoginHandler implements CommandHandler {
 			return null;
 		} catch (LoginFailException e) {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);
+			req.setAttribute("showLoginModal", true);
 			return FORM_VIEW;
 		}
 	}

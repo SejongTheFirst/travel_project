@@ -29,17 +29,16 @@ public class ModifyMemberHandler implements CommandHandler {
         }
     }
 
-    // Process the GET request to display the form with existing member data
     private String processForm(HttpServletRequest req, HttpServletResponse res) {
         User user = (User) req.getSession().getAttribute("authUser");
 
         Member member = modifyMemSvc.getMemberById(user.getId());
 
-        req.setAttribute("member", member); // Set the member object in the request scope
+        req.setAttribute("member", member);
+        req.setAttribute("showModifyModal", true);
         return FORM_VIEW;
     }
 
-    // Process the POST request to handle the form submission
     private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
         User user = (User) req.getSession().getAttribute("authUser");
         
@@ -52,27 +51,28 @@ public class ModifyMemberHandler implements CommandHandler {
         String newPhoneNum = req.getParameter("newPhoneNum");
         String newBirthday = req.getParameter("newBirthday");
         
-        // Validate form inputs
         if (curPwd == null || curPwd.isEmpty()) {
-            errors.put("curPwd", Boolean.TRUE);
+            errors.put("curPwd", true);
         }
         if (newPwd == null || newPwd.isEmpty()) {
-            errors.put("newPwd", Boolean.TRUE);
+            errors.put("newPwd", true);
         }
         if (!errors.isEmpty()) {
             Member member = modifyMemSvc.getMemberById(user.getId());
             req.setAttribute("member", member);
+            req.setAttribute("showModifyModal", true);
             return FORM_VIEW;
         }
         
         try {
-            // Call service method to update member information
             modifyMemSvc.modifyMember(user.getId(), newMemberName, curPwd, newPwd, newPhoneNum, newBirthday);
-            return "/WEB-INF/view/my.jsp";
+            res.sendRedirect(req.getContextPath() + "/home.do");
+			return null;
         } catch (InvalidPasswordException e) {
             errors.put("badCurPwd", Boolean.TRUE);
             Member member = modifyMemSvc.getMemberById(user.getId());
-            req.setAttribute("member", member); // Set the member object back in the request scope
+            req.setAttribute("member", member);
+            req.setAttribute("showModifyModal", true);
             return FORM_VIEW;
         } catch (MemberNotFoundException e) {
             res.sendError(HttpServletResponse.SC_BAD_REQUEST);

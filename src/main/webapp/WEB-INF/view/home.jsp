@@ -24,9 +24,6 @@
 			<img src="/gza/img/profile.PNG"
 				alt="Profile Icon">
 		</div>
-		<div class="toggle-menu">
-			<a href="#">프로필</a> <a href="#">설정</a><a href="myboard.do">내가 쓴 게시물</a> <a href="#">로그아웃</a>
-		</div>
 		<c:choose>
         <c:when test="${authUser.id != null }">
         <div class="toggle-menu">
@@ -36,10 +33,15 @@
         </c:when>
         <c:otherwise>
         <div class="toggle-menu">
-            <a href="/gza/join.do">회원 가입</a> <a href="/gza/login.do">로그인</a>
+            <a href="/gza/join.do" id="openJoinModal">회원 가입</a> <a href="/gza/login.do" id="openLoginModal">로그인</a>
         </div>
         </c:otherwise>
         </c:choose>
+        
+        <div id="joinModalContainer"></div>
+        <div id="loginModalContainer"></div>
+        <div id="modifyModalContainer"></div>
+        <div id="cancelIDModalContainer"></div>
         
 	</header>
 	<div class="categories">
