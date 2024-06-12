@@ -22,8 +22,10 @@ public class HomeScreenHandler implements CommandHandler{
 		List<Article> AllList = articleService.getAllList();
 		HomePage roompage = homeScreenService.getRoomPage(startRow);
 		HomePage experience = homeScreenService.getExperience(startRow);
+		HomePage activity = homeScreenService.getAvtivity(startRow);
 		req.setAttribute("roomPage", roompage);
 		req.setAttribute("experiencePage", experience);
+		req.setAttribute("activityPage", activity);
 		req.setAttribute("AllList", AllList);
 		return "/WEB-INF/view/home.jsp";
 	}

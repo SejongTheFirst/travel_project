@@ -19,7 +19,7 @@ public class SearchHandler implements CommandHandler{
 			pageNo=Integer.parseInt(pageNoVal);
 		}
 		
-		ProductPage productPage = search.getPage(pageNo, req.getParameter("keyword"));
+		ProductPage productPage = search.getProductPage(pageNo, req.getParameter("keyword"));
 		
 		req.setAttribute("productPage", productPage);
 		return "/WEB-INF/view/search.jsp";

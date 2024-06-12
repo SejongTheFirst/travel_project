@@ -11,3 +11,16 @@ function toggleMenu() {
                 }
             }
         }
+        
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.keyword');
+
+    searchInput.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `/gza/search.do?page1&keyword=${encodeURIComponent(query)}`;
+            }
+        }
+    });
+});
