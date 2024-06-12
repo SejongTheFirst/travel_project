@@ -18,7 +18,7 @@ public class BookDAO {
 		Statement stmt = null;
 		ResultSet rs = null;
 
-		String query = "insert into book (seller_id, general_id, title, location, start_date, end_date) values(?, ?, ?, ?, ?, ?)";
+		String query = "insert into book (seller_id, general_id, title, location, img_url, start_date, end_date) values(?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			ps = con.prepareStatement(query);
@@ -27,8 +27,8 @@ public class BookDAO {
 			ps.setString(3, book.getTitle());
 			ps.setString(4, book.getLocation());
 			ps.setString(5, book.getImgUrl());
-			ps.setTimestamp(5, toTimestamp(book.getStartDate()));
-			ps.setTimestamp(6, toTimestamp(book.getEndDate()));
+			ps.setTimestamp(6, toTimestamp(book.getStartDate()));
+			ps.setTimestamp(7, toTimestamp(book.getEndDate()));
 
 			int result = ps.executeUpdate();
 

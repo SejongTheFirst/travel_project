@@ -18,7 +18,7 @@ public class CommentDao {
 	public List<Comment> selectCommentsByUser(Connection conn, String userId, int startRow, int size)
 			throws SQLException {
 		String sql = "SELECT c.*, com.title AS articleTitle FROM comment c "
-				+ "JOIN comunity com ON c.board_num = com.board_num "
+				+ "JOIN community com ON c.board_num = com.board_num "
 				+ "WHERE c.comment_id = ? ORDER BY c.regdate DESC LIMIT ?, ?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, userId);
@@ -37,7 +37,7 @@ public class CommentDao {
 	public List<Reply> selectRepliesByUser(Connection conn, String userId, int startRow, int size) throws SQLException {
 		String sql = "SELECT r.*, com.board_num, c.board_num AS article_no, com.title AS articleTitle FROM reply r "
 				+ "JOIN comment c ON r.comment_no = c.comment_no "
-				+ "JOIN comunity com ON c.board_num = com.board_num "
+				+ "JOIN community com ON c.board_num = com.board_num "
 				+ "WHERE r.reply_id = ? ORDER BY r.regdate DESC LIMIT ?, ?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, userId);
