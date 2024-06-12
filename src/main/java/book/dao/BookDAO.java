@@ -48,6 +48,8 @@ public class BookDAO {
 			JdbcUtil.close(ps);
 		}
 	}
+	
+	public List<Book> select(Connection con, int startRow int )
 
 	private Timestamp toTimestamp(Date date) {
 		return new Timestamp(date.getTime());
