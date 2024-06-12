@@ -35,6 +35,7 @@ public class ModifyMemberHandler implements CommandHandler {
         Member member = modifyMemSvc.getMemberById(user.getId());
 
         req.setAttribute("member", member);
+        req.setAttribute("showModifyModal", true);
         return FORM_VIEW;
     }
 
@@ -51,14 +52,15 @@ public class ModifyMemberHandler implements CommandHandler {
         String newBirthday = req.getParameter("newBirthday");
         
         if (curPwd == null || curPwd.isEmpty()) {
-            errors.put("curPwd", Boolean.TRUE);
+            errors.put("curPwd", true);
         }
         if (newPwd == null || newPwd.isEmpty()) {
-            errors.put("newPwd", Boolean.TRUE);
+            errors.put("newPwd", true);
         }
         if (!errors.isEmpty()) {
             Member member = modifyMemSvc.getMemberById(user.getId());
             req.setAttribute("member", member);
+            req.setAttribute("showModifyModal", true);
             return FORM_VIEW;
         }
         
@@ -70,6 +72,7 @@ public class ModifyMemberHandler implements CommandHandler {
             errors.put("badCurPwd", Boolean.TRUE);
             Member member = modifyMemSvc.getMemberById(user.getId());
             req.setAttribute("member", member);
+            req.setAttribute("showModifyModal", true);
             return FORM_VIEW;
         } catch (MemberNotFoundException e) {
             res.sendError(HttpServletResponse.SC_BAD_REQUEST);
