@@ -334,5 +334,21 @@ public class ArticleDao {
 			}
 		}
 	}
+	
+	public List<Article> searchAllByTitle(Connection conn, String partTitle, int startRow, int size) throws SQLException {
+        String sql = "SELECT * FROM comunity WHERE title LIKE ? ORDER BY regdate DESC LIMIT ?, ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, "%" + partTitle + "%");
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, size);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                List<Article> result = new ArrayList<>();
+                while (rs.next()) {
+                    result.add(convertArticle(rs));
+                }
+                return result;
+            }
+        }
+    }
 
 }
