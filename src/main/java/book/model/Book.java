@@ -4,19 +4,22 @@ import java.util.Date;
 
 public class Book {
 	private Integer bookCode;
-	private Customer custId;
-	private Seller sellerId;
+	private Seller seller;
+	private Customer customer;
 	private String title;
 	private String location;
+	private String imgUrl;
 	private Date startDate;
 	private Date endDate;
 
-	public Book(Integer bookCode, Customer custId, Seller sellerId, String title, String location, Date startDate, Date endDate) {
+	public Book(Integer bookCode, Seller seller, Customer customer, String title, String location, String imgUrl,
+			Date startDate, Date endDate) {
 		this.bookCode = bookCode;
-		this.custId = custId;
-		this.sellerId = sellerId;
+		this.seller = seller;
+		this.customer = customer;
 		this.title = title;
 		this.location = location;
+		this.imgUrl = imgUrl;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
@@ -25,12 +28,12 @@ public class Book {
 		return bookCode;
 	}
 
-	public Customer getCustId() {
-		return custId;
+	public Seller getSeller() {
+		return seller;
 	}
 
-	public Seller getSellerId() {
-		return sellerId;
+	public Customer getCustomer() {
+		return customer;
 	}
 
 	public String getTitle() {
@@ -41,6 +44,10 @@ public class Book {
 		return location;
 	}
 
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -48,5 +55,4 @@ public class Book {
 	public Date getEndDate() {
 		return endDate;
 	}
-
 }
