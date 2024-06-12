@@ -19,7 +19,7 @@ public class BoardMainFreeDao {
 	public List<Article> getArticlesByCategory(Connection conn, String category) {
 		List<Article> articles = new ArrayList<>();
 		String sql = "SELECT board_num, category, title, id, writer_name, regdate "
-				+ "FROM comunity WHERE category = ? ORDER BY regdate DESC LIMIT 6";
+				+ "FROM community WHERE category = ? ORDER BY regdate DESC LIMIT 6";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, category);
@@ -41,7 +41,7 @@ public class BoardMainFreeDao {
 
 	public List<Article> AllList(Connection conn) {
         List<Article> articles = new ArrayList<>();
-        String sql = "SELECT board_num, category, title, id, writer_name, regdate,read_cnt  FROM comunity ORDER BY regdate DESC LIMIT 20";
+        String sql = "SELECT board_num, category, title, id, writer_name, regdate,read_cnt  FROM community ORDER BY regdate DESC LIMIT 20";
         PreparedStatement ps = null;
         ResultSet rs = null;
         

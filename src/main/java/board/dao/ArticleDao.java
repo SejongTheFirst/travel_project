@@ -22,7 +22,7 @@ public class ArticleDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("insert into comunity "
+			pstmt = conn.prepareStatement("insert into community "
 					+ "(id, writer_name, title, regdate, moddate, read_cnt, category) " + "values (?,?,?,?,?,0,?)");
 			pstmt.setString(1, article.getWriter().getId());
 			pstmt.setString(2, article.getWriter().getName());
@@ -34,7 +34,7 @@ public class ArticleDao {
 
 			if (insertedCount > 0) {
 				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select last_insert_id() from comunity");
+				rs = stmt.executeQuery("select last_insert_id() from community");
 				if (rs.next()) {
 					Integer newNo = rs.getInt(1);
 					return new Article(newNo, article.getWriter(), article.getTitle(), article.getRegDate(),
@@ -58,7 +58,7 @@ public class ArticleDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from comunity");
+			rs = stmt.executeQuery("select count(*) from community");
 			if (rs.next()) {
 				return rs.getInt(1);
 			}
@@ -73,7 +73,7 @@ public class ArticleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from comunity " + "order by board_num desc limit ?, ?");
+			pstmt = conn.prepareStatement("select * from community " + "order by board_num desc limit ?, ?");
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, size);
 			rs = pstmt.executeQuery();
@@ -102,7 +102,7 @@ public class ArticleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM comunity WHERE board_num = ?");
+			pstmt = conn.prepareStatement("SELECT * FROM community WHERE board_num = ?");
 			pstmt.setInt(1, articleNo);
 			rs = pstmt.executeQuery();
 			Article article = null;
@@ -118,7 +118,7 @@ public class ArticleDao {
 
 	public void increaseReadCount(Connection conn, int no) throws SQLException {
 		try (PreparedStatement pstmt = conn
-				.prepareStatement("update comunity set read_cnt = read_cnt + 1 where board_num = ?")) {
+				.prepareStatement("update community set read_cnt = read_cnt + 1 where board_num = ?")) {
 			pstmt.setInt(1, no);
 			pstmt.executeUpdate();
 		}
@@ -126,7 +126,7 @@ public class ArticleDao {
 
 	public int update(Connection conn, int no, String title) throws SQLException {
 		try (PreparedStatement pstmt = conn
-				.prepareStatement("update comunity set title = ?, moddate = now() " + "where board_num = ?")) {
+				.prepareStatement("update community set title = ?, moddate = now() " + "where board_num = ?")) {
 			pstmt.setString(1, title);
 			pstmt.setInt(2, no);
 
@@ -137,7 +137,7 @@ public class ArticleDao {
 	public void delete(Connection conn, int articleNumber) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement("DELETE FROM comunity WHERE board_num = ?");
+			pstmt = conn.prepareStatement("DELETE FROM community WHERE board_num = ?");
 			pstmt.setInt(1, articleNumber);
 			pstmt.executeUpdate();
 		} finally {
@@ -149,7 +149,7 @@ public class ArticleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT COUNT(*) FROM comunity WHERE category = ?");
+			pstmt = conn.prepareStatement("SELECT COUNT(*) FROM community WHERE category = ?");
 			pstmt.setString(1, category);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -168,7 +168,7 @@ public class ArticleDao {
 		ResultSet rs = null;
 		try {
 			pstmt = conn
-					.prepareStatement("SELECT * FROM comunity WHERE category = ? ORDER BY board_num DESC LIMIT ?, ?");
+					.prepareStatement("SELECT * FROM community WHERE category = ? ORDER BY board_num DESC LIMIT ?, ?");
 			pstmt.setString(1, category);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, size);
@@ -202,7 +202,7 @@ public class ArticleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT COUNT(*) FROM comunity WHERE id = ?");
+			pstmt = conn.prepareStatement("SELECT COUNT(*) FROM community WHERE id = ?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -219,7 +219,7 @@ public class ArticleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM comunity WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?");
+			pstmt = conn.prepareStatement("SELECT * FROM community WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?");
 			pstmt.setString(1, id);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, size);
@@ -236,7 +236,7 @@ public class ArticleDao {
 	}
 
 	public int countArticlesByUser(Connection conn, String userId) throws SQLException {
-		String sql = "SELECT COUNT(*) FROM comunity WHERE id = ?";
+		String sql = "SELECT COUNT(*) FROM community WHERE id = ?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, userId);
 			try (ResultSet rs = pstmt.executeQuery()) {
@@ -250,7 +250,7 @@ public class ArticleDao {
 
 	public List<Article> findArticlesByUser(Connection conn, String userId, int startRow, int size)
 			throws SQLException {
-		String sql = "SELECT * FROM comunity WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?";
+		String sql = "SELECT * FROM community WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, userId);
 			pstmt.setInt(2, startRow);
@@ -269,7 +269,7 @@ public class ArticleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM comunity WHERE title LIKE ? ORDER BY board_num DESC");
+			pstmt = conn.prepareStatement("SELECT * FROM community WHERE title LIKE ? ORDER BY board_num DESC");
 			pstmt.setString(1, "%" + partialTitle + "%");
 			rs = pstmt.executeQuery();
 			List<Article> result = new ArrayList<>();
@@ -287,7 +287,7 @@ public class ArticleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM comunity WHERE writer_name LIKE ? ORDER BY board_num DESC");
+			pstmt = conn.prepareStatement("SELECT * FROM community WHERE writer_name LIKE ? ORDER BY board_num DESC");
 			pstmt.setString(1, "%" + partialWriterName + "%");
 			rs = pstmt.executeQuery();
 			List<Article> result = new ArrayList<>();
@@ -304,7 +304,7 @@ public class ArticleDao {
 	// 카테고리별 제목으로 검색
 	public List<Article> searchByTitleAndCategory(Connection conn, String category, String partialTitle)
 			throws SQLException {
-		String sql = "SELECT * FROM comunity WHERE category = ? AND title LIKE ? ORDER BY board_num DESC";
+		String sql = "SELECT * FROM community WHERE category = ? AND title LIKE ? ORDER BY board_num DESC";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, category);
 			pstmt.setString(2, "%" + partialTitle + "%");
@@ -321,7 +321,7 @@ public class ArticleDao {
 	// 카테고리별 작성자 이름으로 검색
 	public List<Article> searchByWriterNameAndCategory(Connection conn, String category, String partialWriterName)
 			throws SQLException {
-		String sql = "SELECT * FROM comunity WHERE category = ? AND writer_name LIKE ? ORDER BY board_num DESC";
+		String sql = "SELECT * FROM community WHERE category = ? AND writer_name LIKE ? ORDER BY board_num DESC";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, category);
 			pstmt.setString(2, "%" + partialWriterName + "%");
