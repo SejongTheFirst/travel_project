@@ -71,6 +71,11 @@ header .register-link:hover {
     background-color: #cdcdcd !important;
 }
 
+header .home-link{
+	text-decoration: none;
+	color : #5cd5fb;
+}
+
 header .profile-icon {
     display: flex;
     align-items: center;
@@ -195,16 +200,18 @@ header .profile-icon img {
 .img-box {
     width: 300px;
     height: 350px;
-    border: 2px dashed black;
+    border: 1px dashed black;
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .img-box img {
-    max-width: 180px;
+    max-width: 300%;
     max-height: 100%;
+    object-fit : cover;
 }
 
 .title, .price {
