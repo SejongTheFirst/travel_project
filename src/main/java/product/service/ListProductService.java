@@ -55,5 +55,23 @@ public class ListProductService {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public ProductPage getActivityProductPage(int pageNum) {
+		try (Connection con = ConnectionProvider.getConnection()) {
+			int total = productDAO.selectCount(con);
+			
+			List<ProductContent> activites = contentDAO.selectByCategory(con, "활동", (pageNum-1)*size, size);
+			List<ProductWithImage> PWI= new ArrayList<>();
+			
+			for (ProductContent activity : activites) {
+				List<Product> products = productDAO.selectByCategory(con, activity.getProductNum(), (pageNum - 1) * size, size);
+				List<Image> images = imageDAO.selectByProductNum(con, activity.getProductNum());
+				PWI.add(new ProductWithImage(products, images));
+			}
+			return new ProductPage(total, pageNum, size, PWI);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

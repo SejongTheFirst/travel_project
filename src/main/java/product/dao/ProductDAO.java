@@ -71,6 +71,24 @@ public class ProductDAO {
 		}
 	}
 	
+	public int selectCountWithTitle(Connection con, String title) throws SQLException{
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		try {
+			ps = con.prepareStatement("select count(*) from product where product_title=?");
+			ps.setString(1, title);
+			rs=ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(ps);
+			JdbcUtil.close(rs);
+		}
+	}
+	
 	public List<Product> select(Connection con, int startRow, int size) throws SQLException{
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -97,6 +115,27 @@ public class ProductDAO {
 		try {
 			ps=con.prepareStatement("select*from product where product_num=? order by product_num desc limit ?,?");
 			ps.setInt(1, num);
+			ps.setInt(2, startRow);
+			ps.setInt(3, size);
+			rs=ps.executeQuery();
+			List<Product> result=new ArrayList<Product>();
+			while(rs.next()) {
+				result.add(convertProduct(rs));
+			}
+			return result;
+			
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(ps);
+		}
+	}
+	
+	public List<Product> selectByKeyword(Connection con, int startRow, int size, String keyword) throws SQLException{
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		try {
+			ps=con.prepareStatement("select*from product where product_title=? order by product_num desc limit ?,?");
+			ps.setString(1, keyword);
 			ps.setInt(2, startRow);
 			ps.setInt(3, size);
 			rs=ps.executeQuery();

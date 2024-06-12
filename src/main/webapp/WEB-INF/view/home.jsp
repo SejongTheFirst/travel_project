@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header>
-		<div class="logo">G•za</div>
+		<div class="logo"><a href="/gza/home.do" class="home-link">G•za</a></div>
 		<div class="search-container">
 			<div class="search-bar">
 				<input type="text" placeholder="검색">
@@ -21,7 +21,7 @@
 		</div>
 		
 		<div class="profile-icon" onclick="toggleMenu()">
-			<img src="data:image/png;base64,{{base64_profile_image}}"
+			<img src="/gza/img/profile.PNG"
 				alt="Profile Icon">
 		</div>
 		<c:choose>
@@ -40,8 +40,7 @@
         
 	</header>
 	<div class="categories">
-		<a href="#">캘리포니아</a> <a href="#">와이파이 가능</a> <a href="#">휴양지</a> <a
-			href="#">체험</a> <a href="#">로맨틱</a> <a href="#">독특한 숙소</a>
+		<a href="/gza/product/list.do">숙박 / 체험 / 활동</a> <a href="#">커뮤니티</a>
 	</div>
 	<main class="main-content">
 		<div class="section">
@@ -73,6 +72,29 @@
 			</div>
 			<div class="wrapper">
 				<c:forEach var="product" items="${experiencePage.content}">
+					<div class="container">
+						<c:forEach var="image" items="${product.images}">
+							<div class="img-box">
+								<img src="/gza/imageStorage/${image.storeName}"
+									alt="${image.originalName}">
+							</div>
+						</c:forEach>
+						<c:forEach var="pro" items="${product.product}">
+							<div class="title">
+								<a href="product/read.do?no=${pro.productNum}"> <c:out
+										value="${pro.productTitle}" />
+								</a>
+							</div>
+							<div class="price">${pro.price}</div>
+						</c:forEach>
+					</div>
+				</c:forEach>
+			</div>
+			<div class="room">
+				<h2>활동</h2>
+			</div>
+			<div class="wrapper">
+				<c:forEach var="product" items="${activityPage.content}">
 					<div class="container">
 						<c:forEach var="image" items="${product.images}">
 							<div class="img-box">
