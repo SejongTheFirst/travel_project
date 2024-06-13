@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@include file="includes/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,25 +10,6 @@
 <link rel="stylesheet" href="/gza/css/listproduct.css">
 </head>
 <body>
-	<header>
-		<div class="logo"><a href="/gza/home.do" class="home-link">G•za</a></div>
-		<div class="search-container">
-			<div class="search-bar">
-				<input type="text" placeholder="검색">
-			</div>
-		</div>
-		<a href="/gza/product/write.do" class="register-link">상품등록</a>
-		<div class="profile-icon" onclick="toggleMenu()">
-			<img src="/gza/img/profile.PNG"
-				alt="Profile Icon">
-		</div>
-		<div class="toggle-menu">
-			<a href="#">프로필</a> <a href="#">설정</a> <a href="#">로그아웃</a>
-		</div>
-	</header>
-	<div class="categories">
-		<a href="/gza/product/list.do">숙박 / 체험 / 활동</a> <a href="#">커뮤니티</a>
-	</div>
 	<main class="main-content">
 	
 		<div class="section">
@@ -87,7 +69,7 @@
 					<div class="container">
 						<c:forEach var="image" items="${product.images}">
 							<div class="img-box">
-								<img src="/gza/imageStorage/${image.storeName}"
+								<img src="/gza/imageStorage/${image.originalName}"
 									alt="${image.originalName}">
 							</div>
 						</c:forEach>
@@ -118,7 +100,6 @@
 			</c:if>
 		</div>
 	</main>
-	<footer> Footer Content </footer>
-	<script src="/gza/script/home.js"></script>
+	<%@include file="includes/footer.jsp"%>
 </body>
 </html>

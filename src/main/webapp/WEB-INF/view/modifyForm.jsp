@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@include file="includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +44,6 @@
 		<input type="submit" value="글 수정">
 	</form>
 
-<script type="text/javascript" src="/gza_test/resources/js/preview.js"></script>
+<%@include file="includes/footer.jsp"%>
 </body>
 </html>

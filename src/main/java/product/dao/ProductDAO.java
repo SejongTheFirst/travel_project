@@ -76,8 +76,8 @@ public class ProductDAO {
 		ResultSet rs=null;
 		
 		try {
-			ps = con.prepareStatement("select count(*) from product where product_title=?");
-			ps.setString(1, title);
+			ps = con.prepareStatement("select count(*) from product where product_title like ?");
+			ps.setString(1, "%"+title+"%");
 			rs=ps.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
@@ -134,8 +134,8 @@ public class ProductDAO {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		try {
-			ps=con.prepareStatement("select*from product where product_title=? order by product_num desc limit ?,?");
-			ps.setString(1, keyword);
+			ps=con.prepareStatement("select*from product where product_title like ? order by product_num desc limit ?,?");
+			ps.setString(1, "%"+keyword+"%");
 			ps.setInt(2, startRow);
 			ps.setInt(3, size);
 			rs=ps.executeQuery();

@@ -13,7 +13,7 @@ public class ArticleContentDao {
 	public ArticleContent insert(Connection conn, ArticleContent content) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement("insert into comunity_content " + "(board_num, board_content) values (?,?)");
+			pstmt = conn.prepareStatement("insert into community_content " + "(board_num, board_content) values (?,?)");
 			pstmt.setLong(1, content.getNumber());
 			pstmt.setString(2, content.getContent());
 			int insertedCount = pstmt.executeUpdate();
@@ -31,7 +31,7 @@ public class ArticleContentDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from comunity_content where board_num = ?");
+			pstmt = conn.prepareStatement("select * from community_content where board_num = ?");
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			ArticleContent content = null;
@@ -47,7 +47,7 @@ public class ArticleContentDao {
 
 	public int update(Connection conn, int no, String content) throws SQLException {
 		try (PreparedStatement pstmt = conn
-				.prepareStatement("update comunity_content set board_content = ? " + "where board_num = ?")) {
+				.prepareStatement("update community_content set board_content = ? " + "where board_num = ?")) {
 			pstmt.setString(1, content);
 			pstmt.setInt(2, no);
 			return pstmt.executeUpdate();
@@ -57,7 +57,7 @@ public class ArticleContentDao {
 	public void delete(Connection conn, int articleNumber) throws SQLException {
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = conn.prepareStatement("delete from comunity_content where board_num = ?");
+			pstmt = conn.prepareStatement("delete from community_content where board_num = ?");
 			pstmt.setInt(1, articleNumber);
 			pstmt.executeUpdate();
 		} finally {

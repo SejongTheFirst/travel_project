@@ -60,6 +60,25 @@ public class HomeScreenService {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public HomePage getAvtivity(int page) {
+		try (Connection con = ConnectionProvider.getConnection()) {
+			List<ProductContent> activites = contentDAO.selectByCategory(con, "활동", page, size);
+			List<ProductWithImage> pwi = new ArrayList<>();
+			
+			for (ProductContent activity : activites) {
+				System.out.println("체험 Content: " + activity.getProductType());
+				List<Product> products = productDAO.selectByCategory(con, activity.getProductNum(), page, size);
+				List<Image> images = imageDAO.selectByProductNum(con, activity.getProductNum());
+				pwi.add(new ProductWithImage(products, images));
+			}
+			
+			return new HomePage(pwi);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	public List<Article> getAllList() {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			return articleDao.AllList(conn);

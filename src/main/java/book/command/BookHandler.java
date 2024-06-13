@@ -1,6 +1,5 @@
 package book.command;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,8 +44,8 @@ public class BookHandler implements CommandHandler {
 		req.setAttribute("newBookCode", "newBookCode");
 
 		try {
-			// res.sendRedirect(req.getContextPath() + "/home.jsp");
-			return "/WEB-INF/view/home.jsp";
+			 res.sendRedirect(req.getContextPath() + "/home.do");
+			return  null;//"/WEB-INF/view/home.jsp";
 		} catch (Exception e) {
 			return FORM_VIEW;
 		}
