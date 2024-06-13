@@ -8,9 +8,9 @@
 <link rel="stylesheet" href="/gza/css/footer.css">
 </head>
 <body>
-<footer> Footer Content </footer>
 	<script type="text/javascript" src="/gza/script/header.js"></script>
 	<script src="/gza/resources/js/preview.js"></script>
 	
 </body>
+<footer> Footer Content </footer>
 </html>
