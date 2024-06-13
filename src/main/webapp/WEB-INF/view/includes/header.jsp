@@ -37,7 +37,7 @@
 			<c:when test="${authUser.id != null }">
 				<div class="toggle-menu">
 					<a href="/gza/modifyMem.do">내 정보 수정</a> <a href="#">내 상품</a> <a
-						href="#">예약 내역</a> <a href="/gza/logout.do">로그아웃</a> <a
+						href="#">예약 내역</a> <a href="/gza/myboard.do">내가 쓴 게시글</a><a href="/gza/logout.do">로그아웃</a> <a
 						href="/gza/cancelID.do">회원 탈퇴</a>
 				</div>
 			</c:when>

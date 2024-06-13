@@ -1,5 +1,7 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../includes/header.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -8,24 +10,7 @@
 <link rel="stylesheet" href="/gza/css/home.css">
 </head>
 <body>
-<header>
-		<div class="logo">G•za</div>
-		<div class="search-container">
-			<div class="search-bar">
-				<input type="text" placeholder="검색">
-			</div>
-		</div>
-		<div class="register">
-			<a href="/gza/product/write.do" class="register-link" id="register">상품등록</a>
-		</div>
-		<div class="profile-icon" onclick="toggleMenu()">
-			<img src="data:image/png;base64,{{base64_profile_image}}"
-				alt="Profile Icon">
-		</div>
-		<div class="toggle-menu">
-			<a href="#">프로필</a> <a href="#">설정</a><a href="myboard.do">내가 쓴 게시물</a> <a href="#">로그아웃</a>
-		</div>
-	</header>
+
 	
 	<h2>검색 결과</h2>
 	<p>검색 유형: ${param.searchType == 'title' ? '제목' : '작성자'}</p>
@@ -91,4 +76,5 @@
 		<button type="submit">검색</button>
 	</form>
 </body>
+<%@include file="../includes/footer.jsp"%>
 </html>
