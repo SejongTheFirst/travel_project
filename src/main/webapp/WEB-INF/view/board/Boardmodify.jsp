@@ -1,9 +1,13 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../includes/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>게시글 수정</title>
+<link rel="stylesheet" href="/gza/css/home.css">
 </head>
 <body>
 <form action="modify.do" method="post">
@@ -34,5 +38,5 @@
 		}
 	}
 </script>
-
+<%@include file="../includes/footer.jsp"%>
 </html>

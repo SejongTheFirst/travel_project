@@ -14,7 +14,6 @@ body {
     width: 100%;
     margin: 10px;
     padding: 10px;
-    overflow-y: auto;
     scroll-behavior: smooth;
 }
 
@@ -23,7 +22,7 @@ body {
     position: relative;
     overflow: hidden;
     margin: 10px;
-    height: 1000px;
+    height: 100%;;
 }
 
 .wrapper {
