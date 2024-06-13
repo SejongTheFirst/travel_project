@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@include file="../includes/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -20,27 +21,7 @@
 </style>
 </head>
 <body>
-	<header>
-		<div class="logo">
-			<a href="home.do" class="no-style-link">G•za</a>
-		</div>
-		<div class="search-container">
-			<div class="search-bar">
-				<input type="text" placeholder="검색">
-			</div>
-		</div>
-		<div class="register">
-			<a href="/gza/product/write.do" class="register-link" id="register">상품등록</a>
-		</div>
-		<div class="profile-icon" onclick="toggleMenu()">
-			<img src="data:image/png;base64,${base64_profile_image}"
-				alt="Profile Icon">
-		</div>
-		<div class="toggle-menu">
-			<a href="#">프로필</a> <a href="#">설정</a> <a href="myboard.do">내가 쓴
-				게시물</a> <a href="#">로그아웃</a>
-		</div>
-	</header>
+	
 	<div class="community-section" style="width : 90%; ">
 		<div class="flex-container" style="margin-left: 10%;">
 			<div class="content-box" style="width:60%;">
@@ -186,7 +167,7 @@
 			</div>
 		</div>
 	</div>
-	<footer> Footer Content </footer>
 	<script type="text/javascript" src="/gza/script/home.js"></script>
 </body>
+<%@include file="../includes/footer.jsp"%>
 </html>

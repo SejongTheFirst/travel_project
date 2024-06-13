@@ -1,15 +1,16 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@include file="../includes/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BoardMain</title>
+<title>G•za</title>
+<link rel="stylesheet" href="/gza/css/home.css">
 <style type="text/css">
 body {
-	font-family: 'Arial', sans-serif;
 	margin: 0;
 	padding: 0;
 	background-color: #f8f8f8;
@@ -25,9 +26,11 @@ h1 {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
+	
 }
 
 .test {
+ display: inline-block;
 	width: 800px; background : #fff;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -93,8 +96,12 @@ h1 {
 }
 </style>
 </head>
+
 <body>
-	<h1>BoardMain</h1>
+
+
+		
+	
 
 	<div class="container">
 		<div class="test">
@@ -148,7 +155,7 @@ h1 {
 			window.location.href = 'home.do';
 		}
 	</script>
-	<form action="search.do" method="get">
+	<form action="/gza/board/search.do" method="get">
 		<select name="searchType">
 			<option value="title">제목</option>
 			<option value="writerName">작성자</option>
@@ -157,4 +164,5 @@ h1 {
 		<button type="submit">검색</button>
 	</form>
 </body>
+<%@include file="../includes/footer.jsp"%>
 </html>

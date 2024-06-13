@@ -1,11 +1,13 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
-
+<%@include file="../includes/header.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>게시글 읽기</title>
+<link rel="stylesheet" href="/gza/css/home.css">
 </head>
 <body>
     <table border="1" width="100%">
@@ -245,5 +247,6 @@
     }
     </script>
 </body>
+<%@include file="../includes/footer.jsp"%>
 </html>
 
