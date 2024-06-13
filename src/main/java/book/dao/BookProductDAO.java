@@ -53,7 +53,7 @@ public class BookProductDAO {
 	public List<BookProduct> selectByBookCode(Connection con, int bookCode, int startRow, int size) throws SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String query = "select * from book_product where book_code=? oreder by book_code desc limit ?, ?";
+		String query = "select * from book_product where book_code=? order by book_code desc limit ?, ?";
 
 		try {
 			ps = con.prepareStatement(query);
