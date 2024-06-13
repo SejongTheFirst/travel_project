@@ -51,7 +51,7 @@
 						</c:forEach>
 						<c:forEach var="pro" items="${product.product}">
 							<div class="title">
-								<a href="product/read.do?no=${pro.productNum}"> <c:out
+								<a href="read.do?no=${pro.productNum}"> <c:out
 										value="${pro.productTitle}" />
 								</a>
 							</div>
@@ -75,7 +75,7 @@
 						</c:forEach>
 						<c:forEach var="pro" items="${product.product}">
 							<div class="title">
-								<a href="product/read.do?no=${pro.productNum}"> <c:out
+								<a href="read.do?no=${pro.productNum}"> <c:out
 										value="${pro.productTitle}" />
 								</a>
 							</div>
@@ -85,10 +85,9 @@
 				</c:forEach>
 			</div>
 
-
 			<c:if test="${productPage.hasProduct()}">
 				<tr>
-					<td colspan="4"><c:if test="${productPage.startPage>5}">AV
+					<td colspan="4"><c:if test="${productPage.startPage>5}">
 							<a href="list.do?pageNo=${productPage.startPage-5}">[이전]</a>
 						</c:if> <c:forEach var="pNo" begin="${productPage.startPage}"
 							end="${productPage.endPage}">

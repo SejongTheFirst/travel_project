@@ -116,7 +116,7 @@ body {
 .product-container-book {
     display: flex;
     flex-direction: column;
-    padding: 8px;
+    padding: 8px 14px;
     background-color: #ffffff;
     border-radius: 10px;
     max-width: 100%;

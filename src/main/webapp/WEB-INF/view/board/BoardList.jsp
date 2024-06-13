@@ -1,12 +1,24 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../includes/header.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
-<title>게시글 목록</title>
+<title>게시판</title>
+<link rel="stylesheet" href="/gza/css/home.css"><base>
+<style type="text/css">
+.body{
+width: 90%;
+
+}
+</style>
 </head>
 <body>
+<div class="body">
+
 	<c:set var="category" value="${param.category}" />
 
 	<table border="1">
@@ -79,5 +91,7 @@
 		<input type="text" name="keyword" placeholder="검색어를 입력하세요" required>
 		<button type="submit">검색</button>
 	</form>
+	</div>
 </body>
+<%@include file="../includes/footer.jsp"%>
 </html>

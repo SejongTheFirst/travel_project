@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@include file="includes/header.jsp"%>
+<%@include file="includes/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,8 +35,8 @@
 							value="${param.location}"></label>
 					</div>
 					<div class="content-info">
-						<label>Product_Content: <br><textarea name="content" rows="5"
-								cols="100">${param.productContent}</textarea></label>
+						<label>Product_Content: <br>
+						<textarea name="content" rows="5" cols="100">${param.productContent}</textarea></label>
 					</div>
 				</div>
 				<div class="vertical-line"></div>
@@ -60,6 +60,23 @@
 			</div>
 		</form>
 	</main>
+	<script type="text/javascript">
+		function previewImage() {
+			var preview = document.getElementById('image-preview')
+			var file = document.getElementById('file-upload').files[0];
+			var reader = new FileReader();
+
+			reader.onload = function() {
+				preview.src = reader.result;
+			}
+
+			if (file) {
+				reader.readAsDataURL(file);
+			} else {
+				preview.src = "";
+			}
+		}
+	</script>
 	<%@include file="includes/footer.jsp"%>
 
 </body>
