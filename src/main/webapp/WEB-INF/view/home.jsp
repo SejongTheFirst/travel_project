@@ -66,7 +66,7 @@
 					<div class="container">
 						<c:forEach var="image" items="${product.images}">
 							<div class="img-box">
-								<img src="/gza/imageStorage/${image.originalName}"
+								<img src="/gza/imageStorage/${image.storeName}"
 									alt="${image.originalName}">
 							</div>
 						</c:forEach>
