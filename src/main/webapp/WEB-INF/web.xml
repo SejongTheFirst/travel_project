@@ -66,6 +66,7 @@
 		<url-pattern>/cancelID.do</url-pattern>
 		<url-pattern>/product/write.do</url-pattern>
 		<url-pattern>/product/modify.do</url-pattern>
+		<url-pattern>/product/verify.do</url-pattern>
 	</filter-mapping>
 
 </web-app>

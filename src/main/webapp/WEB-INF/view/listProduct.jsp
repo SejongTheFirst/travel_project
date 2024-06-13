@@ -88,7 +88,7 @@
 
 			<c:if test="${productPage.hasProduct()}">
 				<tr>
-					<td colspan="4"><c:if test="${productPage.startPage>5}">
+					<td colspan="4"><c:if test="${productPage.startPage>5}">AV
 							<a href="list.do?pageNo=${productPage.startPage-5}">[이전]</a>
 						</c:if> <c:forEach var="pNo" begin="${productPage.startPage}"
 							end="${productPage.endPage}">
