@@ -14,6 +14,23 @@
 .body {
 	width: 90%;
 }
+.제목 {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 기본 색상 유지 */
+    transition: color 0.3s; /* 색상 변환 시 애니메이션 적용 (선택 사항) */
+}
+
+a:visited {
+    color: inherit; /* 방문한 링크 색상 유지 */
+}
+
+a:hover {
+    color: inherit; /* 호버 시 색상 유지 */
+}
+
+a:active {
+    color: inherit; /* 클릭 시 색상 유지 */
+}
 </style>
 </head>
 <body>
@@ -46,10 +63,10 @@
         <tr>
             <td colspan="2">
                 <c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />
-                <a href="list.do?category=${category}&pageNo=${pageNo}">[목록]</a>
+                <a class="제목" href="list.do?category=${category}&pageNo=${pageNo}">목록</a>
                 <c:if test="${authUser.id == articleData.article.writer.id}">
-                    <a href="modify.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}">[게시글수정]</a>
-                    <a href="#" onclick="confirmDelete(event, ${articleData.article.number})">[게시글삭제]</a>
+                    <a  class="제목" href="modify.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}">게시글수정</a>
+                    <a  class="제목" href="#" onclick="confirmDelete(event, ${articleData.article.number})">게시글삭제</a>
                 </c:if>
             </td>
         </tr>
@@ -61,12 +78,14 @@
 <c:forEach var="comment" items="${comments}">
     <div>
         <strong>${comment.commentId}</strong>
-        <span>${comment.formattedRegDate}</span>
+        <span style="float: right;">${comment.formattedRegDate}</span>
+        <c:if test="${authUser.id == comment.commentId}">          
+            <a href="#" style="float: right; margin-right: 50px;"class="제목" onclick="showEditCommentForm(${comment.comment_no}, '${comment.content}', ${articleData.article.number}, '${category}', ${pageNo})">/댓글수정</a>
+             <a href="#" style="float: right;" class="제목" onclick="confirmDeleteComment(event, ${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo})">댓글삭제</a>
+       </c:if>
         <p>${comment.content}</p>
         <c:if test="${authUser.id == comment.commentId}">
-            <a href="#" onclick="confirmDeleteComment(event, ${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo})">[댓글삭제]</a>
-            <a href="#" onclick="showEditCommentForm(${comment.comment_no}, '${comment.content}', ${articleData.article.number}, '${category}', ${pageNo})">[댓글수정]</a>
-            <a href="#" onclick="toggleReplyForm(${comment.comment_no})">[답글 달기]</a> <!-- 수정된 부분 -->
+            <a class="제목" href="#" onclick="toggleReplyForm(${comment.comment_no})">[답글 달기]</a> <!-- 수정된 부분 -->
         </c:if>
 
         <!-- Edit Comment Form -->
@@ -84,8 +103,8 @@
                     <span>${reply.formattedRegDate}</span>
                     <p>${reply.content}</p>
                     <c:if test="${authUser.id == reply.replyId}">
-                        <a href="#" onclick="confirmDeleteReply(event, ${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo})">[답글삭제]</a>
-                        <a href="#" onclick="showEditReplyForm(${reply.reply_no}, '${reply.content}', ${articleData.article.number}, '${category}', ${pageNo})">[답글수정]</a>
+                        <a class="제목" href="#" style="float: right; margin-right: 50px;" onclick="confirmDeleteReply(event, ${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo})">/답글삭제</a>
+                        <a class="제목" href="#" style="float: right;"onclick="showEditReplyForm(${reply.reply_no}, '${reply.content}', ${articleData.article.number}, '${category}', ${pageNo})">답글수정</a>
                     </c:if>
 
                     <!-- Edit Reply Form -->
@@ -108,7 +127,7 @@
             <input type="hidden" name="replyName" value="${authUser.memberName}" />
             <textarea name="content" placeholder="답글을 입력하세요"></textarea>
             <button type="submit">답글 달기</button>
-            <button type="submit" onclick="toggleReplyForm(${comment.comment_no})">취소</button> <!-- 추가된 부분 -->
+           
         </form>
     </div>
 </c:forEach>

@@ -14,6 +14,27 @@
 .body {
 	width: 90%;
 }
+.제목{
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 기본 색상 유지 */
+    transition: color 0.3s; /* 색상 변환 시 애니메이션 적용 (선택 사항) */
+  
+}
+
+a:visited {
+    color: inherit; /* 방문한 링크 색상 유지 */
+}
+
+a:hover {
+    color: inherit; /* 호버 시 색상 유지 */
+}
+
+a:active {
+    color: inherit; /* 클릭 시 색상 유지 */
+}
+.current-page {
+    color: #007bff; /* 원하는 색상으로 변경 */
+    font-weight: bold;
 </style>
 </head>
 <body>
@@ -27,7 +48,7 @@
 					<h2>${category}</h2>
 					<div class="community-table-wrapper">
 						<table class="community-table">
-						<td colspan="5"><a href="write.do?category=${category}">[게시글쓰기]</a>
+						<td colspan="5"><a href="write.do?category=${category}" class="제목" style="float: right; margin-right: 80px;">게시글쓰기</a>
 								</td>
 							<tr>
 								<td>번호</td>
@@ -42,7 +63,7 @@
 							<c:forEach var="article" items="${articlePage.content}">
 								<tr>
 									<td>${article.number}</td>
-									<td><a
+									<td><a class="제목"
 										href="read.do?no=${article.number}&category=${category}&pageNo=${articlePage.currentPage}">
 											${article.title} </a></td>
 									<td>${article.writer.name}</td>
@@ -53,19 +74,19 @@
 
 							<c:if test="${articlePage.total > 0}">
 			<tr>
-				<td colspan="4"><c:if test="${articlePage.currentPage > 1}">
-						<a
-							href="list.do?category=${category}&pageNo=${articlePage.currentPage - 1}">[이전]</a>
+				<td colspan="5"><c:if test="${articlePage.currentPage > 1}">
+						<a class="제목"
+							href="list.do?category=${category}&pageNo=${articlePage.currentPage - 1}">이전</a>
 					</c:if> <c:forEach begin="1" end="${articlePage.totalPages}" var="pNo">
-						<c:if test="${pNo == articlePage.currentPage}">
-							<span>[${pNo}]</span>
+						<c:if test="${pNo == articlePage.currentPage}" >
+							<span class="current-page">${pNo}</span>
 						</c:if>
 						<c:if test="${pNo != articlePage.currentPage}">
-							<a href="list.do?category=${category}&pageNo=${pNo}">[${pNo}]</a>
+							<a href="list.do?category=${category}&pageNo=${pNo}" class="제목">${pNo}</a>
 						</c:if>
 					</c:forEach> <c:if test="${articlePage.currentPage < articlePage.totalPages}">
-						<a
-							href="list.do?category=${category}&pageNo=${articlePage.currentPage + 1}">[다음]</a>
+						<a class="제목"
+							href="list.do?category=${category}&pageNo=${articlePage.currentPage + 1}">다음</a>
 					</c:if></td>
 			</tr>
 		</c:if>
@@ -84,7 +105,7 @@
 								<option value="writerName">작성자</option>
 							</select> <input type="text" name="keyword" placeholder="검색어를 입력하세요"
 								required>
-							<button type="submit">검색</button>
+							&emsp;<button type="submit">검색</button>
 						</form>
 					</div>
 				</div>
