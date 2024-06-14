@@ -17,8 +17,8 @@ public class LoginHandler implements CommandHandler {
 	private LoginService loginService = new LoginService();
 
 	@Override
-	public String process(HttpServletRequest req, HttpServletResponse res) 
-	throws Exception {
+	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		req.setAttribute("showLoginModal", false);
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
@@ -34,8 +34,7 @@ public class LoginHandler implements CommandHandler {
 		return FORM_VIEW;
 	}
 
-	private String processSubmit(HttpServletRequest req, HttpServletResponse res) 
-	throws Exception {
+	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String id = trim(req.getParameter("id"));
 		String password = trim(req.getParameter("password"));
 
@@ -55,6 +54,7 @@ public class LoginHandler implements CommandHandler {
 		try {
 			User user = loginService.login(id, password);
 			req.getSession().setAttribute("authUser", user);
+			req.getSession().setAttribute("showLoginModal", false);
 			res.sendRedirect(req.getContextPath() + "/home.do");
 			return null;
 		} catch (LoginFailException e) {
