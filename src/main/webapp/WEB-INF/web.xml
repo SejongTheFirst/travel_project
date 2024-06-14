@@ -15,7 +15,7 @@
 			jdbcdriver=com.mysql.cj.jdbc.Driver
 			jdbcUrl=jdbc:mysql://localhost:3306/travel?characterEncoding=utf8
 			dbUser=root
-			dbPass=mysql
+			dbPass=8967
 			validationQuery=select 1
 			minIdle=3
 			maxTotal=30
