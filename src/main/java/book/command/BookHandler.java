@@ -41,10 +41,10 @@ public class BookHandler implements CommandHandler {
 		}
 
 		int newBookCode = bookService.register(request);
-		req.setAttribute("newBookCode", "newBookCode");
+		req.setAttribute("newBookCode", newBookCode);
 
 		try {
-			 res.sendRedirect(req.getContextPath() + "/home.do");
+			 res.sendRedirect(req.getContextPath() + "/book/list.do");
 			return  null;//"/WEB-INF/view/home.jsp";
 		} catch (Exception e) {
 			return FORM_VIEW;

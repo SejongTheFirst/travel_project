@@ -15,7 +15,7 @@
 			jdbcdriver=com.mysql.cj.jdbc.Driver
 			jdbcUrl=jdbc:mysql://localhost:3306/travel?characterEncoding=utf8
 			dbUser=root
-			dbPass=8967
+			dbPass=mysql
 			validationQuery=select 1
 			minIdle=3
 			maxTotal=30
@@ -66,6 +66,7 @@
 		<url-pattern>/cancelID.do</url-pattern>
 		<url-pattern>/product/write.do</url-pattern>
 		<url-pattern>/product/modify.do</url-pattern>
+		<url-pattern>/product/verify.do</url-pattern>
 		<url-pattern>/write.do</url-pattern>
 		<url-pattern>/modify.do</url-pattern>
 
