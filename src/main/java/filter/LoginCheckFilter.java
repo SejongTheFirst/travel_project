@@ -19,9 +19,10 @@ public class LoginCheckFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("authUser") == null) {	//change
+		if (session == null || session.getAttribute("authUser") == null) {
 			HttpServletResponse response = (HttpServletResponse)res;
-			response.sendRedirect(request.getContextPath() + "/login.do");
+			session.setAttribute("showLoginModal", true);
+			response.sendRedirect(request.getContextPath() + "/home.do");
 		} else {
 			chain.doFilter(req, res);
 		}
