@@ -16,9 +16,10 @@ public class JoinHandler implements CommandHandler {
 
 	private static final String FORM_VIEW = "/WEB-INF/view/join.jsp";
 	private JoinService joinService = new JoinService();
-	
+
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		req.setAttribute("showJoinModal", false);
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
@@ -42,26 +43,26 @@ public class JoinHandler implements CommandHandler {
 		joinReq.setConfirmPassword(req.getParameter("confirmPassword"));
 		joinReq.setPhoneNum(req.getParameter("phoneNum"));
 		joinReq.setBirthday(req.getParameter("birthday"));
-		
+
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
-		
+
 		joinReq.validate(errors);
-		
+
 		if (!errors.isEmpty()) {
 			req.setAttribute("showJoinModal", true);
 			return FORM_VIEW;
 		}
-		
+
 		try {
 			joinService.join(joinReq);
-			res.sendRedirect(req.getContextPath() + "/login.do");
-	        return null;
+			req.getSession().setAttribute("showLoginModal", true);
+			res.sendRedirect(req.getContextPath() + "/home.do");
+			return null;
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", true);
 			req.setAttribute("showJoinModal", true);
 			return FORM_VIEW;
 		}
 	}
-
 }

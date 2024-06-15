@@ -16,6 +16,7 @@ public class ListBookHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
+		
 		User authUser = (User)req.getSession().getAttribute("authUser");
 		
 		String pageNoVal=req.getParameter("pageNo");
