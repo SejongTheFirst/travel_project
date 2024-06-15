@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+.body {
+    width: 90%;
+}
+.제목 {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 기본 색상 유지 */
+    transition: color 0.3s; /* 색상 변환 시 애니메이션 적용 (선택 사항) */
+}
+
+a:visited {
+    color: inherit; /* 방문한 링크 색상 유지 */
+}
+
+a:hover {
+    color: inherit; /* 호버 시 색상 유지 */
+}
+
+a:active {
+    color: inherit; /* 클릭 시 색상 유지 */
+}
+
+.center { 
+    text-align: justify;
+    padding: 60px;
+    border: 5px double #007bff; 
+} 
+
+textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 80%; /* Adjust width as needed */
+    min-height: 70px; /* Adjust minimum height as needed */
+    resize: vertical; /* Allow vertical resizing */
+    transition: box-shadow 0.3s;
+}
+
+textarea:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px; /* Adjust margin as needed */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.fa-icon {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+.comment-item, .reply-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.comment-item:last-child, .reply-item:last-child {
+    border-bottom: none;
+}
+
+.comment-id, .reply-id {
+    display: flex;
+    align-items: center;
+}
+
+.comment-id i, .reply-id i {
+    margin-right: 10px;
+}
+
+.comment-actions, .reply-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Space between actions */
+}
+
+.comment-actions a, .reply-actions a {
+    margin-left: 10px; /* Space between actions */
+}
