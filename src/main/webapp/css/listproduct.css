@@ -9,21 +9,22 @@ body {
     background-color: #f8f9fa;
 }
 
+.main-content {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    height : auto;
+	min-height : 1000px;
+}
 .section {
-    height: auto;
+    height: 100%;
     width: 100%;
     margin: 10px;
     padding: 10px;
     scroll-behavior: smooth;
 }
 
-.main-content {
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-    height: 100%;;
-}
 
 .wrapper {
     width: 100%;
@@ -84,10 +85,3 @@ body {
     text-align: left;
 }
 
-
-footer {
-    padding: 20px 40px;
-    text-align: center;
-    background-color: #fff;
-    border-top: 1px solid #ddd;
-}
