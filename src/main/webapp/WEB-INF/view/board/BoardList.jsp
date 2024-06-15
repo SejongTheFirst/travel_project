@@ -10,32 +10,8 @@
 <title>게시판</title>
 <link rel="stylesheet" href="/gza/css/header.css">
 <link rel="stylesheet" href="/gza/css/boardMain.css">
-<style type="text/css">
-.body {
-	width: 90%;
-}
-.제목{
-    text-decoration: none; /* 밑줄 제거 */
-    color: inherit; /* 기본 색상 유지 */
-    transition: color 0.3s; /* 색상 변환 시 애니메이션 적용 (선택 사항) */
-  
-}
+<link rel="stylesheet" href="/gza/css/boardRead.css">
 
-a:visited {
-    color: inherit; /* 방문한 링크 색상 유지 */
-}
-
-a:hover {
-    color: inherit; /* 호버 시 색상 유지 */
-}
-
-a:active {
-    color: inherit; /* 클릭 시 색상 유지 */
-}
-.current-page {
-    color: #007bff; /* 원하는 색상으로 변경 */
-    font-weight: bold;
-</style>
 </head>
 <body>
 

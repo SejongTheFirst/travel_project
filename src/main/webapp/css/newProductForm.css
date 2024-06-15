@@ -1,4 +1,3 @@
-/* 기존의 다른 스타일들 */
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
@@ -10,143 +9,6 @@ body {
     background-color: #f8f9fa;
     height: 100vh;
     overflow-y: auto;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header .logo {
-    font-size: 30px;
-    font-weight: bold;
-    color: #5cd5fb;
-}
-
-header .search-container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-}
-
-header .search-bar {
-    width: 100%;
-    max-width: 600px;
-}
-
-header .search-bar input {
-    width: 100%;
-    padding: 12px 20px;
-    border: 1px solid #ddd;
-    border-radius: 50px;
-    font-size: 20px;
-    transition: box-shadow 0.3s;
-}
-
-header .search-bar input:focus {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    outline: none;
-}
-
-header .register-link {
-    border: 1px solid #cdcdcd;
-    padding: 15px 30px;
-    border-radius: 25px;
-    background-color: #ffffff;
-    color: #000;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s;
-    line-height: normal;
-    margin-right: 20px;
-}
-
-header .register-link:hover {
-    background-color: #cdcdcd;
-}
-
-header .home-link{
-	text-decoration: none;
-	color : #5cd5fb;
-}
-
-header .profile-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #ddd;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    position: relative;
-}
-
-header .profile-icon:hover {
-    background-color: #ccc;
-}
-
-header .profile-icon img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-.toggle-menu {
-    margin-top: 15px;
-    margin-right: 15px;
-    display: none;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 200px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.toggle-menu a {
-    display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #333;
-    transition: background-color 0.3s;
-}
-
-.toggle-menu a:hover {
-    background-color: #f0f0f0;
-}
-
-.categories {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 20px 0;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-}
-
-.categories a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.categories a:hover {
-    color: #ff385c;
 }
 
 main {
@@ -237,25 +99,55 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: auto;
 }
 
 .basic-info label{
+	font-size : 20px;
+	height: 70px;
+	margin: 5px;
+}
+
+.basic-info input{
+	width : 100%;
 	height: 30px;
+	font-size: 20px;
 }
 
 .content-info textarea{
 	width : 100%;
 }
 
+.content-info label{
+	font-size: 20px;
+}
+
 
 .pricing-section {
     width: 33%;
+    height : auto;
     border: 2px solid #ddd;
     border-radius: 10px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.pricing-section label{
+	font-size : 20px;
+	height: 30px;
+	margin: 5px;
+}
+
+.pricing-section input{
+	height: 20px;
+	font-size: 20px;
+}
+
+.pricing-section select{
+	height: 25px;
+	font-size: 20px;
 }
 
 .vertical-line {
@@ -267,9 +159,19 @@ main {
 	width: 100%;
 }
 
-footer {
-    padding: 20px 40px;
-    text-align: center;
-    background-color: #fff;
-    border-top: 1px solid #ddd;
+.registerBtn{
+	width : 100%;
+	background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
+.registerBtn:hover {
+    background-color: #0056b3;
+}
+
+

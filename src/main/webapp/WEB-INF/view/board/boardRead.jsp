@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../includes/header.jsp"%>
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -10,143 +9,137 @@
 <title>게시글 읽기</title>
 <link rel="stylesheet" href="/gza/css/header.css">
 <link rel="stylesheet" href="/gza/css/boardMain.css">
-<style type="text/css">
-.body {
-	width: 90%;
-}
-.제목 {
-    text-decoration: none; /* 밑줄 제거 */
-    color: inherit; /* 기본 색상 유지 */
-    transition: color 0.3s; /* 색상 변환 시 애니메이션 적용 (선택 사항) */
-}
+<link rel="stylesheet" href="/gza/css/boardRead.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-a:visited {
-    color: inherit; /* 방문한 링크 색상 유지 */
-}
-
-a:hover {
-    color: inherit; /* 호버 시 색상 유지 */
-}
-
-a:active {
-    color: inherit; /* 클릭 시 색상 유지 */
-}
-</style>
 </head>
 <body>
 
-	<%@include file="../includes/sidebar.jsp"%>
-	<div class="content">
-		<div class="left">
-			<div class="content-box">
-				<c:set var="category" value="${param.category}" />
-				<div class="community-section">
-					<h2>${category}</h2>
-					<div class="community-table-wrapper">
-						<table class="community-table">
-        <tr>
-            <td>번호</td>
-            <td>${articleData.article.number}</td>
-        </tr>
-        <tr>
-            <td>작성자</td>
-            <td>${articleData.article.writer.name}</td>
-        </tr>
-        <tr>
-            <td>제목</td>
-            <td><c:out value="${articleData.article.title}" /></td>
-        </tr>
-        <tr>
-            <td>내용</td>
-            <td><c:out value="${articleData.content}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />
-                <a class="제목" href="list.do?category=${category}&pageNo=${pageNo}">목록</a>
-                <c:if test="${authUser.id == articleData.article.writer.id}">
-                    <a  class="제목" href="modify.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}">게시글수정</a>
-                    <a  class="제목" href="#" onclick="confirmDelete(event, ${articleData.article.number})">게시글삭제</a>
-                </c:if>
-            </td>
-        </tr>
-    </table>
+<%@include file="../includes/sidebar.jsp"%>
+<div class="content">
+    <div class="left">
+        <div class="content-box">
+            <c:set var="category" value="${param.category}" />
+            <div class="community-section">
+                <h2>${category}</h2>
+                <div class="community-table-wrapper">
+                    <table class="community-table">
+                        <tr>
+                            <td>번호</td>
+                            <td>${articleData.article.number}</td>
+                        </tr>
+                        <tr>
+                            <td>작성자</td>
+                            <td>${articleData.article.writer.name}</td>
+                        </tr>
+                        <tr>
+                            <td>제목</td>
+                            <td><c:out value="${articleData.article.title}" /></td>
+                        </tr>
+                        <tr>
+                            <td>내용</td>
+                            <td><c:out value="${articleData.content}" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />&nbsp;
+                                <a class="제목" href="list.do?category=${category}&pageNo=${pageNo}">목록</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <c:if test="${authUser.id == articleData.article.writer.id}">
+                                    <a class="제목" href="modify.do?no=${articleData.article.number}&category=${category}&pageNo=${pageNo}">게시글수정</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="제목" href="#" onclick="confirmDelete(event, ${articleData.article.number})">게시글삭제</a>
+                                </c:if>
+                            </td>
+                        </tr>
+                    </table>
 
-<br>
-    <!-- Display Comments -->
-        <h3>COMMENT [댓글]</h3>
-<c:forEach var="comment" items="${comments}">
-    <div>
-        <strong>${comment.commentId}</strong>
-        <span style="float: right;">${comment.formattedRegDate}</span>
-        <c:if test="${authUser.id == comment.commentId}">          
-            <a href="#" style="float: right; margin-right: 50px;"class="제목" onclick="showEditCommentForm(${comment.comment_no}, '${comment.content}', ${articleData.article.number}, '${category}', ${pageNo})">/댓글수정</a>
-             <a href="#" style="float: right;" class="제목" onclick="confirmDeleteComment(event, ${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo})">댓글삭제</a>
-       </c:if>
-        <p>${comment.content}</p>
-        <c:if test="${authUser.id == comment.commentId}">
-            <a class="제목" href="#" onclick="toggleReplyForm(${comment.comment_no})">[답글 달기]</a> <!-- 수정된 부분 -->
-        </c:if>
+                    <br>
 
-        <!-- Edit Comment Form -->
-        <form id="editCommentForm_${comment.comment_no}" style="display:none;" onsubmit="event.preventDefault(); updateComment(${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo});">
-            <textarea id="editCommentContent_${comment.comment_no}" name="content">${comment.content}</textarea>
-            <button type="submit">수정하기</button>
-            <button type="button" onclick="hideEditCommentForm(${comment.comment_no})">취소</button>
-        </form>
+                    <div class="center">
+                        <!-- Display Comments -->
+                        <h2><i class="fa-icon fas fa-comments"></i>댓글</h2>
+                        <c:forEach var="comment" items="${comments}">
+                            <div class="comment-item">
+                                <div class="comment-id">
+                                    <i class="fa fa-user"></i> <!-- Man icon -->
+                                    <strong>${comment.commentId}</strong>
+                                </div>
+                                <span style="float: right;">${comment.formattedRegDate}</span>
+                                <div class="comment-actions">
+                                    <c:if test="${authUser.id == comment.commentId}">
+                                        <a href="#" class="제목" onclick="showEditCommentForm(${comment.comment_no}, '${comment.content}', ${articleData.article.number}, '${category}', ${pageNo})"><i class="fa-icon fas fa-edit"></i>댓글수정</a>
+                                        <a href="#" class="제목" onclick="confirmDeleteComment(event, ${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo})"><i class="fa-icon fas fa-trash-alt"></i>댓글삭제</a>
+                                    </c:if>
+                                </div>
+                                <p>${comment.content}</p>
+                                <c:if test="${authUser.id == comment.commentId}">
+                                    <a class="제목" href="#" onclick="toggleReplyForm(${comment.comment_no})"><i class="fa-icon fas fa-reply"></i>답글 달기</a>
+                                </c:if>
 
-        <!-- Display Replies -->
-        <div style="margin-left: 20px;">
-            <c:forEach var="reply" items="${comment.replies}">
-                <div>
-                    <strong>${reply.replyId}</strong>
-                    <span>${reply.formattedRegDate}</span>
-                    <p>${reply.content}</p>
-                    <c:if test="${authUser.id == reply.replyId}">
-                        <a class="제목" href="#" style="float: right; margin-right: 50px;" onclick="confirmDeleteReply(event, ${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo})">/답글삭제</a>
-                        <a class="제목" href="#" style="float: right;"onclick="showEditReplyForm(${reply.reply_no}, '${reply.content}', ${articleData.article.number}, '${category}', ${pageNo})">답글수정</a>
-                    </c:if>
+                                <!-- Edit Comment Form -->
+                                <form id="editCommentForm_${comment.comment_no}" style="display:none;" onsubmit="event.preventDefault(); updateComment(${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo});">
+                                    <textarea id="editCommentContent_${comment.comment_no}" name="content">${comment.content}</textarea>
+                                    <button type="submit">수정하기</button>
+                                    <button type="submit" onclick="hideEditCommentForm(${comment.comment_no})">취소</button>
+                                </form>
 
-                    <!-- Edit Reply Form -->
-                    <form id="editReplyForm_${reply.reply_no}" style="display:none;" onsubmit="event.preventDefault(); updateReply(${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo});">
-                        <textarea id="editReplyContent_${reply.reply_no}" name="content">${reply.content}</textarea>
-                        <button type="submit">수정하기</button>
-                        <button type="submit" onclick="hideEditReplyForm(${reply.reply_no})">취소</button>
-                    </form>
+                                <!-- Display Replies -->
+                                <div style="margin-left: 20px;">
+                                    <c:forEach var="reply" items="${comment.replies}">
+                                        <div class="reply-item">
+                                            <div class="reply-id">
+                                                <i class="fa fa-user"></i> <!-- Man icon -->
+                                                <strong>${reply.replyId}</strong>
+                                            </div>
+                                            <span>${reply.formattedRegDate}</span>
+                                            <div class="reply-actions">
+                                                <c:if test="${authUser.id == reply.replyId}">
+                                                    <a class="제목" href="#" onclick="confirmDeleteReply(event, ${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo})"><i class="fa-icon fas fa-trash-alt"></i>답글삭제</a>
+                                                    <a class="제목" href="#" onclick="showEditReplyForm(${reply.reply_no}, '${reply.content}', ${articleData.article.number}, '${category}', ${pageNo})"><i class="fa-icon fas fa-edit"></i>답글수정</a>
+                                                </c:if>
+                                            </div>
+                                            <p>${reply.content}</p>
+
+                                            <!-- Edit Reply Form -->
+                                            <form id="editReplyForm_${reply.reply_no}" style="display:none;" onsubmit="event.preventDefault(); updateReply(${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo});">
+                                                <textarea id="editReplyContent_${reply.reply_no}" name="content">${reply.content}</textarea>
+                                                <button type="submit">수정하기</button>
+                                                <button type="submit" onclick="hideEditReplyForm(${reply.reply_no})">취소</button>
+                                            </form>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+
+                                <!-- Reply Form -->
+                                <form id="replyForm_${comment.comment_no}" action="comment.do" method="post" style="display:none;">
+                                    <input type="hidden" name="action" value="addReply" />
+                                    <input type="hidden" name="commentNo" value="${comment.comment_no}" />
+                                    <input type="hidden" name="articleNo" value="${articleData.article.number}" />
+                                    <input type="hidden" name="category" value="${category}" />
+                                    <input type="hidden" name="replyId" value="${authUser.id}" />
+                                    <input type="hidden" name="replyName" value="${authUser.memberName}" />
+                                    <textarea name="content" placeholder="답글을 입력하세요"></textarea>
+                                    <button type="submit">답글 달기</button>
+                                </form>
+                            </div>
+                        </c:forEach>
+
+                        <!-- Comment Form -->
+                        <form action="comment.do" method="post">
+                            <input type="hidden" name="action" value="addComment" />
+                            <input type="hidden" name="articleNo" value="${articleData.article.number}" />
+                            <input type="hidden" name="category" value="${category}" />
+                            <input type="hidden" name="commentId" value="${authUser.id}" />
+                            <input type="hidden" name="commentName" value="${authUser.memberName}" />
+                            <textarea name="content" placeholder="댓글을 입력하세요"></textarea>
+                            <button type="submit">댓글 달기</button>
+                        </form>
+                    </div>
                 </div>
-            </c:forEach>
+            </div>
         </div>
-
-        <!-- Reply Form -->
-        <form id="replyForm_${comment.comment_no}" action="comment.do" method="post" style="display:none;"> <!-- 수정된 부분 -->
-            <input type="hidden" name="action" value="addReply" />
-            <input type="hidden" name="commentNo" value="${comment.comment_no}" />
-            <input type="hidden" name="articleNo" value="${articleData.article.number}" />
-            <input type="hidden" name="category" value="${category}" />
-            <input type="hidden" name="replyId" value="${authUser.id}" />
-            <input type="hidden" name="replyName" value="${authUser.memberName}" />
-            <textarea name="content" placeholder="답글을 입력하세요"></textarea>
-            <button type="submit">답글 달기</button>
-           
-        </form>
     </div>
-</c:forEach>
+</div>
 
-<!-- Comment Form -->
-<form action="comment.do" method="post">
-    <input type="hidden" name="action" value="addComment" />
-    <input type="hidden" name="articleNo" value="${articleData.article.number}" />
-    <input type="hidden" name="category" value="${category}" />
-    <input type="hidden" name="commentId" value="${authUser.id}" />
-    <input type="hidden" name="commentName" value="${authUser.memberName}" />
-    <textarea name="content" placeholder="댓글을 입력하세요"></textarea>
-    <button type="submit">댓글 달기</button>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -299,5 +292,6 @@ function toggleReplyForm(commentNo) {
 </script>
 </div>
 </body>
+</div>
 <%@include file="../includes/footer.jsp"%>
 </html>

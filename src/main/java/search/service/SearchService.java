@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import board.dao.ArticleDao;
+import board.model.Article;
+import board.service.ArticlePage;
 import image.dao.ImageDAO;
 import image.model.Image;
 import jdbc.connection.ConnectionProvider;
@@ -16,24 +19,33 @@ import product.service.ProductWithImage;
 public class SearchService {
 	
 	private ProductDAO productDAO = new ProductDAO();
+	private ArticleDao articleDAO = new ArticleDao();
 	private ImageDAO imageDAO = new ImageDAO();
 	private int size=10;
 	
-	public ProductPage getProductPage(int page, String keyword) {
+	public SearchPage getProductPage(int page, String keyword) {
 		try (Connection con = ConnectionProvider.getConnection()){
 			
-			int total = productDAO.selectCountWithTitle(con, keyword);
-			
-			System.out.println(total);
 			List<Product> products = productDAO.selectByKeyword(con, (page-1)*size, size, keyword);
+			List<Article> articles = articleDAO.searchAllByTitle(con, keyword, (page-1)*size, size);
 			List<ProductWithImage> pwi = new ArrayList<>();
+			
+			int totalProduct = productDAO.selectCountWithTitle(con, keyword);
+			int totalArticle = articles.size();
+			int total;
+			
+			if(totalProduct >= totalArticle) {
+				total=totalProduct;
+			} else {
+				total=totalArticle;
+			}
 			
 			for(Product product : products) {
 				List<Image> images = imageDAO.selectByProductNum(con, product.getProductNum());
 				pwi.add(new ProductWithImage(product, images));
 			}
 			
-			return new ProductPage(total, page, size, pwi); 
+			return new SearchPage(total, page, size, pwi, articles); 
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -41,21 +53,13 @@ public class SearchService {
 	}
 	
 	//06_12수정
-	public ProductPage getArticlePage(int page, String keyword) {
+	public ArticlePage getArticlePage(int page, String keyword) {
 		try (Connection con = ConnectionProvider.getConnection()){
 			
-			int total = productDAO.selectCountWithTitle(con, keyword);
+			List<Article> articles = articleDAO.searchAllByTitle(con, keyword, page, size);
+			int total = articles.size();
 			
-			System.out.println(total);
-			List<Product> products = productDAO.selectByKeyword(con, (page-1)*size, size, keyword);
-			List<ProductWithImage> pwi = new ArrayList<>();
-			
-			for(Product product : products) {
-				List<Image> images = imageDAO.selectByProductNum(con, product.getProductNum());
-				pwi.add(new ProductWithImage(product, images));
-			}
-			
-			return new ProductPage(total, page, size, pwi); 
+			return new ArticlePage(total, page, size, articles); 
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

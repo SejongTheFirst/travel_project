@@ -103,17 +103,717 @@
 						<th>조회수</th>
 						<th>카테고리</th>
 					</tr>
-					<c:forEach var="comunity" items="${AllList}">
+					 <%-- <c:forEach var="comunity" items="${AllList}">  --%>
 						<tr>
-							 <td><a class="board" href="read.do?no=${comunity.number}&category=${comunity.category}" class="truncate">${comunity.title}</a></td>
-							<th><fmt:formatDate value="${comunity.regDate}"
-									pattern="yyyy-MM-dd" /></th>
-							<th>${comunity.writer.id}</th>
-							<th>${comunity.readCount}</th>
-							<th>${comunity.category}</th>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
 						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						<tr>
+							<td><a href="read.do?no=${comunity.number}" class="truncate">${comunity.title}</a></td>
+							<th>${comunity.regDate}1</th>
+							<th>${comunity.writer.id}1</th>
+							<th>${comunity.readCount}1</th>
+							<th>${comunity.category}1</th>
+						</tr>
+						
+					<%-- </c:forEach>  --%>
 
-					</c:forEach>
 
 				</table>
 			</div>
