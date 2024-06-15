@@ -3,8 +3,10 @@ package search.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.service.ArticlePage;
 import mvc.command.CommandHandler;
 import product.service.ProductPage;
+import search.service.SearchPage;
 import search.service.SearchService;
 
 public class SearchHandler implements CommandHandler{
@@ -19,9 +21,9 @@ public class SearchHandler implements CommandHandler{
 			pageNo=Integer.parseInt(pageNoVal);
 		}
 		
-		ProductPage productPage = search.getProductPage(pageNo, req.getParameter("keyword"));
+		SearchPage searchPage = search.getProductPage(pageNo, req.getParameter("keyword"));
 		
-		req.setAttribute("productPage", productPage);
+		req.setAttribute("searchPage", searchPage);
 		return "/WEB-INF/view/search.jsp";
 	}
 

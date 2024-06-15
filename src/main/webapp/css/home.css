@@ -12,7 +12,7 @@ body {
 
 
 .section {
-    height: auto;
+    height: 1000px;
     width: 66%;
     margin: 10px;
     padding: 10px;
@@ -25,7 +25,8 @@ body {
     position: relative;
     overflow: hidden;
     margin: 10px;
-    height: 1300px;
+    height: auto;
+    min-height: 100%;
 }
 
 .wrapper {
@@ -92,6 +93,7 @@ body {
     right: 0;
     width: 33%;
     height: auto;
+    max-height : 1000px;
     background-color: #f8f9fa;
     border-left: 1px solid #ddd;
     box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
@@ -99,7 +101,8 @@ body {
 }
 
 .community-table-wrapper {
-    height: 1200px;
+    height: auto;
+    max-height : 94%;
     overflow-y: auto;
 }
 

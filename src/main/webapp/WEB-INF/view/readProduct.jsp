@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="includes/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,8 +39,8 @@
 				</div>
 				<div class="product-container-content">
 					<div class="product-item-content">
-						<span class="value"><c:out
-								value="${productData.content.productContent}" /></span>
+					<c:set var="userInput" value="${productData.content.productContent}"/>
+						<div class="value" id="output"></div>
 					</div>
 				</div>
 				<div class="product-container-location">
@@ -67,7 +68,7 @@
 							onchange="calculateTotalPrice()">
 					</div>
 					<div class="product-item-enddate">
-						<span class="label">Check Out:</span> <input type="date"
+						<span class="label">Check Out :</span> <input type="date"
 							id="end_date" name="end_date" onchange="calculateTotalPrice()">
 					</div>
 					<div class="product-item-totalprice">
@@ -121,6 +122,16 @@
 		</form>
 	</c:if>
 	<script>
+		function processText() {
+        	var userInput = `<c:out value='${fn:escapeXml(userInput)}' />`;
+        	
+        	var processedText = userInput.replace(/\n/g, '<br>');
+        	
+        	document.getElementById('output').innerHTML = processedText;
+    	}
+    	window.onload = processText;
+	
+	
 		function handleReservation() {
 			if (validateForm()) {
 				document.getElementById('reservationForm').submit();

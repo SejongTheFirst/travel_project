@@ -11,7 +11,7 @@ public class MultiProvider {
 
 	//여기는 컴퓨터 절대경로 주소입니다!! 여기를 고쳐주세요!!
 
-	private static final String path = "C:\\project\\work\\mywork\\gza\\src\\main\\webapp\\imageStorage";
+	private static final String path = "/Users/seoungwon/git/travel_project/src/main/webapp/imageStorage";
 
 	public static MultipartRequest getMulti(HttpServletRequest req) {
 
