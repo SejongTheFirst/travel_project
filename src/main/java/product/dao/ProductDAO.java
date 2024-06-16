@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import jdbc.JdbcUtil;
@@ -69,14 +67,32 @@ public class ProductDAO {
 
 			List<Product> products = new ArrayList<>();
 			while (rs.next()) {
-				products.add(new Product(rs.getInt("product_id"), new Seller(rs.getString("seller_id")),
-						rs.getString("product_title"), rs.getString("product_category"), rs.getString("location"),
-						rs.getInt("price"), rs.getString("status")));
+				products.add(convertToProduct(rs));
 			}
 			return products;
 		} finally {
 			JdbcUtil.close(ps);
 			JdbcUtil.close(rs);
+		}
+	}
+
+	// ReadProductService
+	public Product selectByProductId(Connection con, int productId) throws SQLException {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			ps = con.prepareStatement("select*from product where product_id=?");
+			ps.setInt(1, productId);
+			rs = ps.executeQuery();
+			Product product = null;
+
+			if (rs.next()) {
+				product = convertToProduct(rs);
+			}
+			return product;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(ps);
 		}
 	}
 
@@ -126,7 +142,7 @@ public class ProductDAO {
 			rs = ps.executeQuery();
 			List<Product> result = new ArrayList<Product>();
 			while (rs.next()) {
-				result.add(convertProduct(rs));
+				result.add(convertToProduct(rs));
 			}
 			return result;
 
@@ -136,26 +152,6 @@ public class ProductDAO {
 		}
 	}
 
-	public List<Product> selectByProductId(Connection con, int productId, int startRow, int size) throws SQLException {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			ps = con.prepareStatement("select*from product where product_id=? order by product_num desc limit ?,?");
-			ps.setInt(1, productId);
-			ps.setInt(2, startRow);
-			ps.setInt(3, size);
-			rs = ps.executeQuery();
-			List<Product> result = new ArrayList<Product>();
-			while (rs.next()) {
-				result.add(convertProduct(rs));
-			}
-			return result;
-
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(ps);
-		}
-	}
 
 	public List<Product> selectByKeyword(Connection con, int startRow, int size, String keyword) throws SQLException {
 		PreparedStatement ps = null;
@@ -169,7 +165,7 @@ public class ProductDAO {
 			rs = ps.executeQuery();
 			List<Product> result = new ArrayList<Product>();
 			while (rs.next()) {
-				result.add(convertProduct(rs));
+				result.add(convertToProduct(rs));
 			}
 			return result;
 
@@ -179,29 +175,11 @@ public class ProductDAO {
 		}
 	}
 
-	private Product convertProduct(ResultSet rs) throws SQLException {
+	// return Product
+	private Product convertToProduct(ResultSet rs) throws SQLException {
 		return new Product(rs.getInt("product_id"), new Seller(rs.getString("seller_id")),
 				rs.getString("product_title"), rs.getString("product_category"), rs.getString("location"),
-				rs.getInt("price"), rs.getString("stastus"));
-	}
-
-	public Product selectById(Connection con, int no) throws SQLException {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			ps = con.prepareStatement("select*from product where product_num=?");
-			ps.setInt(1, no);
-			rs = ps.executeQuery();
-			Product product = null;
-
-			if (rs.next()) {
-				product = convertProduct(rs);
-			}
-			return product;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(ps);
-		}
+				rs.getInt("price"), rs.getString("status"));
 	}
 
 	public int update(Connection con, String title, int price, int no) throws SQLException {

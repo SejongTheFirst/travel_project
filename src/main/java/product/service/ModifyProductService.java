@@ -22,7 +22,7 @@ public class ModifyProductService {
 			con = ConnectionProvider.getConnection();
 			con.setAutoCommit(false);
 
-			Product pro = productDAO.selectById(con, modReq.getProductNum());
+			Product pro = productDAO.selectByProductId(con, modReq.getProductNum());
 
 			if (pro == null) {
 				throw new ProductNotFoundException(null);

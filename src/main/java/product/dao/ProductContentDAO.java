@@ -39,7 +39,8 @@ public class ProductContentDAO {
 		}
 	}
 
-	public ProductContent selectById(Connection con, int ProductId) throws SQLException {
+	// ReadProductService
+	public ProductContent selectByProductId(Connection con, int ProductId) throws SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
@@ -50,7 +51,7 @@ public class ProductContentDAO {
 			ProductContent content = null;
 			if (rs.next()) {
 				content = new ProductContent(rs.getInt("product_id"), rs.getString("product_content"),
-						rs.getString("product_subtitle"), rs.getInt("max_guest"), toDate(rs.getTimestamp("reg_date")),
+						rs.getString("product_subtitle"), rs.getInt("max_guests"), toDate(rs.getTimestamp("reg_date")),
 						toDate(rs.getTimestamp("mod_date")));
 			}
 			return content;

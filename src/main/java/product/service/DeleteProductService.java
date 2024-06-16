@@ -22,7 +22,7 @@ public class DeleteProductService {
 	        con = ConnectionProvider.getConnection();
 	        con.setAutoCommit(false);
 
-	        Product product = productDAO.selectById(con, delReq.getProductNum());
+	        Product product = productDAO.selectByProductId(con, delReq.getProductNum());
 
 	        if (product == null) {
 	            throw new ProductNotFoundException("Product not found: " + delReq.getProductNum());

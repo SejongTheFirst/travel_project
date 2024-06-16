@@ -10,12 +10,12 @@ public class ProductData {
 
 	private Product product;
 	private ProductContent content;
-	private List<Image> image;
+	private List<Image> images;
 
-	public ProductData(Product product, ProductContent content, List<Image> image) {
+	public ProductData(Product product, ProductContent content, List<Image> images) {
 		this.product = product;
 		this.content = content;
-		this.image = image;
+		this.images = images;
 	}
 
 	public Product getProduct() {
@@ -26,7 +26,7 @@ public class ProductData {
 		return content;
 	}
 
-	public List<Image> getImage() {
-		return image;
+	public List<Image> getImages() {
+		return images;
 	}
 }

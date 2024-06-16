@@ -18,23 +18,23 @@ public class ReadProductService {
 	private ProductContentDAO contentDAO = new ProductContentDAO();
 	private ImageDAO imgDAO = new ImageDAO();
 
-	public ProductData getProduct(int productNum) {
+	public ProductData getProduct(int productId) {
 		try (Connection con = ConnectionProvider.getConnection()) {
-			Product product = productDAO.selectById(con, productNum);
+			Product product = productDAO.selectByProductId(con, productId);
 			if (product == null) {
 				throw new ProductNotFoundException(null);
 			}
 
-			ProductContent content = contentDAO.selectById(con, productNum);
+			ProductContent content = contentDAO.selectByProductId(con, productId);
 			if (content == null) {
 				throw new ProductContentNotFoundException();
 			}
 
-			List<Image> img = imgDAO.selectByProductId(con, productNum);
-			if (img == null) {
+			List<Image> images = imgDAO.selectByProductId(con, productId);
+			if (images == null) {
 			}
 
-			return new ProductData(product, content, img);
+			return new ProductData(product, content, images);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

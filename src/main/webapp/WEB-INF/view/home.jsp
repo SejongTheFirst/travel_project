@@ -31,7 +31,7 @@
                                 alt="${display.thumbnail.fileName}">
                         </div>
                         <div class="title">
-                            <a href="read.do?no=${display.product.productId}"> 
+                            <a href="product/read.do?no=${display.product.productId}"> 
                                 <c:out value="${display.product.productTitle}" />
                             </a>
                         </div>
@@ -51,7 +51,7 @@
                                 alt="${display.thumbnail.fileName}">
                         </div>
                         <div class="title">
-                            <a href="read.do?no=${display.product.productId}"> 
+                            <a href="product/read.do?no=${display.product.productId}"> 
                                 <c:out value="${display.product.productTitle}" />
                             </a>
                         </div>
@@ -71,7 +71,7 @@
                                 alt="${display.thumbnail.fileName}">
                         </div>
                         <div class="title">
-                            <a href="read.do?no=${display.product.productId}"> 
+                            <a href="product/read.do?no=${display.product.productId}"> 
                                 <c:out value="${display.product.productTitle}" />
                             </a>
                         </div>
