@@ -46,7 +46,7 @@
 	<script type="text/javascript" src="/gza/script/header.js"></script>
 	<script src="/gza/resources/js/preview.js"></script>
 	
-<footer> Footer Content </footer>
+
 </body>
 </html>
 
