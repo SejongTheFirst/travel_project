@@ -1,18 +1,18 @@
-package book.service;
+package payment.service;
 
 import java.util.Map;
 
-import book.model.Customer;
+import booking.model.Customer;
 
-public class BookRequest {
+public class PaymentRequest {
 	private String merchantUid;
-	private int amount;
+	private int totalPrice;
 	private Customer customer;
 	private String buyerEmail;
 	private String buyerName;
 	private String buyerTel;
 	private int productId;
-	private String productName;
+	private String productTitle;
 	private int productPrice;
 	private String startDate;
 	private String endDate;
@@ -24,17 +24,18 @@ public class BookRequest {
 	private String location;
 	private String paymentMethod;
 
-	public BookRequest(String merchantUid, int amount, Customer customer, String buyerEmail, String buyerName,
-			String buyerTel, int productId, String productName, int productPrice, String startDate, String endDate,
-			int days, int guest, String sellerId, String imageUrl, String title, String location, String paymentMethod) {
+	public PaymentRequest(String merchantUid, int totalPrice, Customer customer, String buyerEmail, String buyerName,
+			String buyerTel, int productId, String productTitle, int productPrice, String startDate, String endDate,
+			int days, int guest, String sellerId, String imageUrl, String title, String location,
+			String paymentMethod) {
 		this.merchantUid = merchantUid;
-		this.amount = amount;
+		this.totalPrice = totalPrice;
 		this.customer = customer;
 		this.buyerEmail = buyerEmail;
 		this.buyerName = buyerName;
 		this.buyerTel = buyerTel;
 		this.productId = productId;
-		this.productName = productName;
+		this.productTitle = productTitle;
 		this.productPrice = productPrice;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -51,8 +52,8 @@ public class BookRequest {
 		return merchantUid;
 	}
 
-	public int getAmount() {
-		return amount;
+	public int getTotalPrice() {
+		return totalPrice;
 	}
 
 	public Customer getCustomer() {
@@ -75,8 +76,8 @@ public class BookRequest {
 		return productId;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getProductTitle() {
+		return productTitle;
 	}
 
 	public int getProductPrice() {
@@ -124,5 +125,5 @@ public class BookRequest {
 			errors.put("merchantUid", Boolean.TRUE);
 		}
 	}
-	
+
 }

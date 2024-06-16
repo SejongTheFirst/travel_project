@@ -1,4 +1,4 @@
-package book.model;
+package booking.model;
 
 public class Seller {
     private String id;

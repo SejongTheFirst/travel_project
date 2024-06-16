@@ -1,17 +1,17 @@
-package book.service;
+package booking.service;
 
 import java.util.List;
 
-public class BookPage {
+public class BookingPage {
 
 	private int total;
 	private int currentPage;
-	private List<BookData> data;
+	private List<BookingData> data;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 
-	public BookPage(int total, int currentPage, int size, List<BookData> data) {
+	public BookingPage(int total, int currentPage, int size, List<BookingData> data) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.data = data;
@@ -55,7 +55,7 @@ public class BookPage {
 		return totalPages;
 	}
 
-	public List<BookData> getData() {
+	public List<BookingData> getData() {
 		return data;
 	}
 

@@ -120,7 +120,7 @@
         </div>
     </div>
     <c:if test="${authUser.id != productData.product.seller.id}">
-        <form action="verify.do" method="post" id="reservationForm">
+        <form action="book.do" method="post" id="reservationForm">
             <input type="hidden" name="productId" value="${productData.product.productId}">
             <input type="hidden" name="title" value="${productData.product.productTitle}">
             <input type="hidden" name="price" value="${productData.product.price}">
