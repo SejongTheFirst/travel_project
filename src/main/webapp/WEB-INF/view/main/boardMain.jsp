@@ -49,7 +49,7 @@
                     <c:forEach var="article" items="${latestLatterboardArticles}">
                         <tr>
                             <td><a href="read.do?no=${article.number}&category=latterboard">${article.title}</a>
-                                <span style="float: right;">${article.writer.name}&emsp;
+                                <span style="float: right;">${article.writer.id}&emsp;
                                     ${article.formattedRegDate}</span></td>
                         </tr>
                     </c:forEach>
@@ -67,7 +67,7 @@
                     <c:forEach var="article" items="${latestFreeboardArticles}">
                         <tr>
                             <td><a href="read.do?no=${article.number}&category=freeboard">${article.title}</a>
-                                <span style="float: right;">${article.writer.name}&emsp;
+                                <span style="float: right;">${article.writer.id}&emsp;
                                     ${article.formattedRegDate}</span></td>
                         </tr>
                     </c:forEach>
@@ -85,7 +85,7 @@
                     <c:forEach var="article" items="${latestTogetherboardArticles}">
                         <tr>
                             <td><a href="read.do?no=${article.number}&category=togetherboard">${article.title}</a>
-                                <span style="float: right;">${article.writer.name}&emsp;
+                                <span style="float: right;">${article.writer.id}&emsp;
                                     ${article.formattedRegDate}</span></td>
                         </tr>
                     </c:forEach>
