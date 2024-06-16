@@ -8,14 +8,31 @@ body {
 }
 
 .main-content {
-    max-width: 1200px;
-    margin: 20px auto;
+    max-width: 80%;
+    margin: 20px auto 40px auto;
     padding: 20px;
+    border-radius : 20px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: auto;
+    min-height: 100vh;
+    
+}
+
+.horizontal-line {
+    width: 35%;
+    border-bottom: 1px solid #000;
+    margin: 20px 0;
+}
+
+.horizontal-line-container {
+    width: 90%;
+    border-bottom: 1px solid #ddd;
+    margin: 0 auto 20px auto;
 }
 
 .section {
+	width : 100%;
     margin-bottom: 20px;
 }
 
@@ -35,21 +52,31 @@ body {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
+    height : auto;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: transform 0.3s;
     flex: 1 1 calc(33.333% - 20px);
     max-width: calc(33.333% - 20px);
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
 }
 
 .container:hover {
     transform: translateY(-5px);
 }
 
+.container:hover .hover-text{
+	visibility: visible;
+}
+
 .img-box {
-    width: 100%;
+    width: 90%;
     height: 200px;
     overflow: hidden;
+    margin: 10px auto;
+    border-radius: 10px;
 }
 
 .img-box img {
@@ -99,4 +126,39 @@ body {
 
 .pagination a:hover {
     background-color: #ddd;
+    
+}
+
+.location .label{
+	font-weight: bold;
+}
+
+.dates .label{
+	font-weight: bold;
+}
+
+.products .label{
+	font-weight: bold;
+}
+
+.hover-text{
+	width : auto;
+	height : auto;
+	visibility: hidden;
+    background-color: #f3f3f3;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.hover-text .label, .hover-text .value{
+    color: #000;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 1;
 }
