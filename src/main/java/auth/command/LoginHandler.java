@@ -18,7 +18,6 @@ public class LoginHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		req.setAttribute("showLoginModal", false);
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
@@ -54,14 +53,10 @@ public class LoginHandler implements CommandHandler {
 		try {
 			User user = loginService.login(id, password);
 			req.getSession().setAttribute("authUser", user);
-			req.getSession().setAttribute("showLoginModal", false);
 			res.sendRedirect(req.getContextPath() + "/home.do");
-//			res.sendRedirect("/home.do");
-//			res.sendRedirect(req.getContextPath());
 			return null;
 		} catch (LoginFailException e) {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);
-			req.setAttribute("showLoginModal", true);
 			return FORM_VIEW;
 		}
 	}
