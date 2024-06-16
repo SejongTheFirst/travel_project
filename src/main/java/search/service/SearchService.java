@@ -13,7 +13,6 @@ import image.model.Image;
 import jdbc.connection.ConnectionProvider;
 import product.dao.ProductDAO;
 import product.model.Product;
-import product.service.ProductPage;
 import product.service.Display;
 
 public class SearchService {
@@ -23,12 +22,12 @@ public class SearchService {
 	private ImageDAO imageDAO = new ImageDAO();
 	private int size=10;
 	
-	public SearchPage getProductPage(int page, String keyword) {
+	public SearchPage getSearchPage(int page, String keyword) {
 		try (Connection con = ConnectionProvider.getConnection()){
 			
 			List<Product> products = productDAO.selectByKeyword(con, (page-1)*size, size, keyword);
 			List<Article> articles = articleDAO.searchAllByTitle(con, keyword, (page-1)*size, size);
-			List<Display> pwi = new ArrayList<>();
+			List<Display> displays = new ArrayList<>();
 			
 			int totalProduct = productDAO.selectCountWithTitle(con, keyword);
 			int totalArticle = articles.size();
@@ -42,10 +41,11 @@ public class SearchService {
 			
 			for(Product product : products) {
 				List<Image> images = imageDAO.selectByProductId(con, product.getProductId());
-				//pwi.add(new Display(product, images));
+				Image thumbnail = images.isEmpty() ? null : images.get(0);
+				displays.add(new Display(product, thumbnail));
 			}
 			
-			return new SearchPage(total, page, size, pwi, articles); 
+			return new SearchPage(total, page, size, displays, articles); 
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

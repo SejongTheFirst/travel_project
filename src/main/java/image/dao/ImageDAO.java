@@ -47,7 +47,7 @@ public class ImageDAO {
 	
 
 	public int update(Connection con, String original, String store, int num) throws SQLException {
-		String query = "update image set original_name=?, store_name=? where product_num=?";
+		String query = "update image set original_name=?, store_name=? where product_id=?";
 
 		try (PreparedStatement ps = con.prepareStatement(query)) {
 			ps.setString(1, original);
@@ -59,7 +59,7 @@ public class ImageDAO {
 	}
 
 	public int delete(Connection con, int productNum) throws SQLException {
-		String query = "delete from image where product_num=?";
+		String query = "delete from image where product_id=?";
 
 		try (PreparedStatement ps = con.prepareStatement(query)) {
 			ps.setInt(1, productNum);
