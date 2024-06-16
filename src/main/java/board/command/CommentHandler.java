@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import auth.service.User;
 import board.model.Comment;
 import board.model.Reply;
@@ -36,7 +35,6 @@ public class CommentHandler implements CommandHandler {
             return null;
         }
 
-       
         if ("list".equals(action) || action == null) {
             List<Comment> comments = commentService.getCommentsByArticle(articleNo);
             req.setAttribute("comments", comments);
@@ -60,6 +58,7 @@ public class CommentHandler implements CommandHandler {
                 res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid comment number");
                 return null;
             }
+     
             Reply reply = new Reply(
                     commentNo,
                     0,
@@ -81,7 +80,6 @@ public class CommentHandler implements CommandHandler {
                     return null;
                 }
 
-             
                 if ("comment".equals(type)) {
                     commentService.deleteComment(id);
                 } else if ("reply".equals(type)) {
@@ -90,7 +88,7 @@ public class CommentHandler implements CommandHandler {
                     res.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid type");
                     return null;
                 }
-              
+
                 res.sendRedirect("read.do?no=" + articleNo);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -114,4 +112,5 @@ public class CommentHandler implements CommandHandler {
         }
     }
 }
+
 

@@ -36,7 +36,7 @@
                             <td>제목</td>
                             <td><c:out value="${articleData.article.title}" /></td>
                         </tr>
-                        <tr>
+                         <tr>
                             <td colspan="2">
                                 <c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />&nbsp;
                                 <a class="제목" href="list.do?category=${category}&pageNo=${pageNo}">목록</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -50,18 +50,18 @@
                             
                             <td colspan="3"><c:out value="${articleData.content}" /></td>
                         </tr>
-                        
+                       
                     </table>
 
                     <br>
 
                     <div class="center">
-                        <!-- Display Comments -->
+                       
                         <h2><i class="fa-icon fas fa-comments"></i>댓글</h2>
                         <c:forEach var="comment" items="${comments}">
                             <div class="comment-item">
                                 <div class="comment-id">
-                                    <i class="fa fa-user"></i> <!-- Man icon -->
+                                    <i class="fa fa-user"></i>
                                     <strong>${comment.commentId}</strong>
                                 </div>
                                 <span style="float: right;">${comment.formattedRegDate}</span>
@@ -72,18 +72,19 @@
                                     </c:if>
                                 </div>
                                 <p>${comment.content}</p>
-                                <c:if test="${authUser.id == comment.commentId}">
+                                
+                                <c:if test="${not empty authUser}">
                                     <a class="제목" href="#" onclick="toggleReplyForm(${comment.comment_no})"><i class="fa-icon fas fa-reply"></i>답글 달기</a>
                                 </c:if>
 
-                                <!-- Edit Comment Form -->
+                               
                                 <form id="editCommentForm_${comment.comment_no}" style="display:none;" onsubmit="event.preventDefault(); updateComment(${comment.comment_no}, ${articleData.article.number}, '${category}', ${pageNo});">
                                     <textarea id="editCommentContent_${comment.comment_no}" name="content">${comment.content}</textarea>
                                     <button type="submit">수정하기</button>
-                                    <button type="submit" onclick="hideEditCommentForm(${comment.comment_no})">취소</button>
+                                    <button type="button" onclick="hideEditCommentForm(${comment.comment_no})">취소</button>
                                 </form>
 
-                                <!-- Display Replies -->
+                            
                                 <div style="margin-left: 20px;">
                                     <c:forEach var="reply" items="${comment.replies}">
                                         <div class="reply-item">
@@ -104,7 +105,7 @@
                                             <form id="editReplyForm_${reply.reply_no}" style="display:none;" onsubmit="event.preventDefault(); updateReply(${reply.reply_no}, ${articleData.article.number}, '${category}', ${pageNo});">
                                                 <textarea id="editReplyContent_${reply.reply_no}" name="content">${reply.content}</textarea>
                                                 <button type="submit">수정하기</button>
-                                                <button type="submit" onclick="hideEditReplyForm(${reply.reply_no})">취소</button>
+                                                <button type="button" onclick="hideEditReplyForm(${reply.reply_no})">취소</button>
                                             </form>
                                         </div>
                                     </c:forEach>
@@ -116,8 +117,6 @@
                                     <input type="hidden" name="commentNo" value="${comment.comment_no}" />
                                     <input type="hidden" name="articleNo" value="${articleData.article.number}" />
                                     <input type="hidden" name="category" value="${category}" />
-                                    <input type="hidden" name="replyId" value="${authUser.id}" />
-                                    <input type="hidden" name="replyName" value="${authUser.memberName}" />
                                     <textarea name="content" placeholder="답글을 입력하세요"></textarea>
                                     <button type="submit">답글 달기</button>
                                 </form>
