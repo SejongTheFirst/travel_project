@@ -1,4 +1,4 @@
-function previewImage() {
+/*function previewImage() {
 	var preview = document.getElementById('image-preview')
 	var file = document.getElementById('file-upload').files[0];
 	var reader = new FileReader();
@@ -12,4 +12,4 @@ function previewImage() {
 	} else {
 		preview.src = "";
 	}
-}
+}*/
