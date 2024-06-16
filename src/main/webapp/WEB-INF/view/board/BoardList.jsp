@@ -42,7 +42,7 @@
 									<td><a class="제목"
 										href="read.do?no=${article.number}&category=${category}&pageNo=${articlePage.currentPage}">
 											${article.title} </a></td>
-									<td>${article.writer.name}</td>
+									<td>${article.writer.id}</td>
 									<td>${article.readCount}</td>
 									<td>${article.formattedRegDate}</td>
 								</tr>

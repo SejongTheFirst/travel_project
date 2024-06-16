@@ -9,7 +9,14 @@
 <link rel="stylesheet" href="/gza/css/footer.css">
 </head>
 
-  <footer class="footer">
+  
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+	<script type="text/javascript" src="/gza/script/header.js"></script>
+	<script src="/gza/resources/js/preview.js"></script>
+	
+	<footer class="footer">
     <div class="waves">
       <div class="wave" id="wave1"></div>
       <div class="wave" id="wave2"></div>
@@ -40,13 +47,8 @@
     </ul>
     <p>&copy;2024 GZA | All Rights Reserved</p>
   </footer>
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-	<script type="text/javascript" src="/gza/script/header.js"></script>
-	<script src="/gza/resources/js/preview.js"></script>
 	
-<footer> Footer Content </footer>
+
 </body>
 </html>
 
