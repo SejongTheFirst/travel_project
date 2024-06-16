@@ -9,17 +9,17 @@ public class SearchPage {
 	
 	private int total;
 	private int currentPage;
-	private List<Display> content;
-	private List<Article> article;
+	private List<Display> displays;
+	private List<Article> articles;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 
-	public SearchPage(int total, int currentPage, int size, List<Display> content, List<Article> article) {
+	public SearchPage(int total, int currentPage, int size, List<Display> displays, List<Article> articles) {
 		this.total = total;
 		this.currentPage = currentPage;
-		this.content = content;
-		this.article=article;
+		this.displays = displays;
+		this.articles=articles;
 		if (total == 0) {
 			totalPages = 0;
 			startPage = 0;
@@ -60,12 +60,12 @@ public class SearchPage {
 		return totalPages;
 	}
 
-	public List<Display> getContent() {
-		return content;
+	public List<Display> getDisplays() {
+		return displays;
 	}
 	
-	public List<Article> getArticle() {
-		return article;
+	public List<Article> getArticles() {
+		return articles;
 	}
 	
 

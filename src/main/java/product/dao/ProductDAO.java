@@ -132,19 +132,19 @@ public class ProductDAO {
 		}
 	}
 
-	public List<Product> select(Connection con, int startRow, int size) throws SQLException {
+	public List<Product> selectOrderByProductId(Connection con, int startRow, int size) throws SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			ps = con.prepareStatement("select*from product order by product_num desc limit ?,?");
+			ps = con.prepareStatement("select*from product order by product_id desc limit ?,?");
 			ps.setInt(1, startRow);
 			ps.setInt(2, size);
 			rs = ps.executeQuery();
-			List<Product> result = new ArrayList<Product>();
+			List<Product> products = new ArrayList<Product>();
 			while (rs.next()) {
-				result.add(convertToProduct(rs));
+				products.add(convertToProduct(rs));
 			}
-			return result;
+			return products;
 
 		} finally {
 			JdbcUtil.close(rs);
@@ -153,12 +153,13 @@ public class ProductDAO {
 	}
 
 
+	// SearchService
 	public List<Product> selectByKeyword(Connection con, int startRow, int size, String keyword) throws SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			ps = con.prepareStatement(
-					"select*from product where product_title like ? order by product_num desc limit ?,?");
+					"select*from product where product_title like ? order by product_id desc limit ?,?");
 			ps.setString(1, "%" + keyword + "%");
 			ps.setInt(2, startRow);
 			ps.setInt(3, size);

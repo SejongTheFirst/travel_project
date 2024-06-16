@@ -26,15 +26,13 @@
 							<th>제목</th>
 							<th>작성자</th>
 						</tr>
-						<c:forEach var="product" items="${searchPage.content }">
+						<c:forEach var="display" items="${searchPage.displays}">
 							<tr>
-								<td>${product.pro.productNum}</td>
-								<c:forEach var="img" items="${product.images}">
-									<td><img src="/gza/imageStorage/${img.storeName}"
-										alt="${img.originalName}"></td>
-								</c:forEach>
-								<td><a href="product/read.do?no=${product.pro.productNum }">${product.pro.productTitle}</a></td>
-								<td>${product.pro.writer.id}</td>
+								<td>${display.product.productId}</td>
+									<td><img src="/gza/imageStorage/${display.thumbnail.fileName}"
+										alt="${display.thumbnail.fileName}"></td>
+								<td><a href="product/read.do?no=${display.product.productId}">${display.product.productTitle}</a></td>
+								<td>${display.product.seller.id}</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -55,7 +53,7 @@
 							<th>조회수</th>
 							<th>등록일</th>
 						</tr>
-						<c:forEach var="article" items="${searchPage.article }">
+						<c:forEach var="article" items="${searchPage.articles }">
 							<tr>
 								<td>${article.category}</td>
 								<td><a href="read.do?no=${article.number }&category=${article.category}">${article.title }</a></td>
