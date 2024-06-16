@@ -55,7 +55,7 @@
         <div id="loginModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <form action="login.do" method="post" class="form">
+                <form action="/gza/login.do" method="post" class="form">
                     <input class="input" type="text" name="id" placeholder="아이디" value="${param.id}">
                     <div class="error_message <c:if test="${errors.id}">active</c:if>">
                         <c:if test="${errors.id}">아이디를 입력하세요.</c:if>
@@ -78,7 +78,7 @@
         <div id="joinModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <form action="join.do" method="post" id="joinForm">
+                <form action="/gza/join.do" method="post" id="joinForm">
                     <div class="form-group">
                         <div class="form-row" id="divId">
                             <input type="text" name="id" placeholder="아이디" value="${joinReq.id}">

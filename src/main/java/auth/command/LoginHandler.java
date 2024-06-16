@@ -56,6 +56,8 @@ public class LoginHandler implements CommandHandler {
 			req.getSession().setAttribute("authUser", user);
 			req.getSession().setAttribute("showLoginModal", false);
 			res.sendRedirect(req.getContextPath() + "/home.do");
+//			res.sendRedirect("/home.do");
+//			res.sendRedirect(req.getContextPath());
 			return null;
 		} catch (LoginFailException e) {
 			errors.put("idOrPwNotMatch", Boolean.TRUE);
