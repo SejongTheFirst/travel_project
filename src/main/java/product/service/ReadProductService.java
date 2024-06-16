@@ -2,6 +2,7 @@ package product.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import image.dao.ImageDAO;
 import image.model.Image;
@@ -29,7 +30,7 @@ public class ReadProductService {
 				throw new ProductContentNotFoundException();
 			}
 
-			Image img = imgDAO.selectOneByProductNum(con, productNum);
+			List<Image> img = imgDAO.selectByProductId(con, productNum);
 			if (img == null) {
 			}
 

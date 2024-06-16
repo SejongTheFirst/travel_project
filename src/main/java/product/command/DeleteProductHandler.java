@@ -17,7 +17,7 @@ import product.service.PermissionDeninedException;
 import product.service.ProductData;
 import product.service.ProductNotFoundException;
 import product.service.ReadProductService;
-import util.MultiProvider;
+import util.FileUtil;
 
 public class DeleteProductHandler implements CommandHandler {
 
@@ -52,7 +52,7 @@ public class DeleteProductHandler implements CommandHandler {
 			}
 
 			DeleteRequest delReq = new DeleteRequest(authUser.getId(), no, data.getProduct().getProductTitle(),
-					data.getImage().getStoreName(), data.getContent().getProductContent());
+					"str", data.getContent().getProductContent());
 
 			req.setAttribute("delReq", delReq);
 			return FORM_VIEW;
@@ -64,14 +64,14 @@ public class DeleteProductHandler implements CommandHandler {
 	}
 
 	public boolean canDelete(User authUser, ProductData data) {
-		String writerid = data.getProduct().getWriter().getId();
+		String writerid = data.getProduct().getSeller().getId();
 		return authUser.getId().equals(writerid);
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		User authUser = (User) req.getSession().getAttribute("authUser");
 
-		MultipartRequest multi = MultiProvider.getMulti(req);
+		MultipartRequest multi = FileUtil.getMulti(req);
 		String storeFileName = multi.getFilesystemName("file");
 
 		String noVal = multi.getParameter("no");

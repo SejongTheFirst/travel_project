@@ -4,58 +4,45 @@ import java.util.Date;
 
 public class ProductContent {
 
-	private Integer productNum;
-	private String productSubTitle;
+	private Integer productId;
 	private String productContent;
-	private String productType;
-	private int guests;
-	private String location;
+	private String productSubTitle;
+	private int maxGuests;
 	private Date regDate;
-	private Date updateDate;
+	private Date modDate;
 
-	public ProductContent(Integer productNum, String productSubTitle, String productContent, String productType, int guests,
-			String location, Date regDate, Date updateDate) {
-		super();
-		this.productNum = productNum;
-		this.productSubTitle=productSubTitle;
+	public ProductContent(Integer productId, String productContent, String productSubTitle, int maxGuests, Date regDate,
+			Date modDate) {
+		this.productId = productId;
 		this.productContent = productContent;
-		this.productType = productType;
-		this.guests = guests;
-		this.location = location;
+		this.productSubTitle = productSubTitle;
+		this.maxGuests = maxGuests;
 		this.regDate = regDate;
-		this.updateDate = updateDate;
+		this.modDate = modDate;
 	}
 
-	public Integer getProductNum() {
-		return productNum;
+	public Integer getProductId() {
+		return productId;
 	}
 
 	public String getProductContent() {
 		return productContent;
 	}
-	
+
 	public String getProductSubTitle() {
 		return productSubTitle;
 	}
 
-	public String getProductType() {
-		return productType;
-	}
-
-	public int getGuests() {
-		return guests;
-	}
-
-	public String getLocation() {
-		return location;
+	public int getMaxGuests() {
+		return maxGuests;
 	}
 
 	public Date getRegDate() {
 		return regDate;
 	}
 
-	public Date getUpdateDate() {
-		return updateDate;
+	public Date getModDate() {
+		return modDate;
 	}
 
 }

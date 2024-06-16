@@ -14,7 +14,7 @@ import jdbc.connection.ConnectionProvider;
 import product.dao.ProductDAO;
 import product.model.Product;
 import product.service.ProductPage;
-import product.service.ProductWithImage;
+import product.service.Display;
 
 public class SearchService {
 	
@@ -28,7 +28,7 @@ public class SearchService {
 			
 			List<Product> products = productDAO.selectByKeyword(con, (page-1)*size, size, keyword);
 			List<Article> articles = articleDAO.searchAllByTitle(con, keyword, (page-1)*size, size);
-			List<ProductWithImage> pwi = new ArrayList<>();
+			List<Display> pwi = new ArrayList<>();
 			
 			int totalProduct = productDAO.selectCountWithTitle(con, keyword);
 			int totalArticle = articles.size();
@@ -41,8 +41,8 @@ public class SearchService {
 			}
 			
 			for(Product product : products) {
-				List<Image> images = imageDAO.selectByProductNum(con, product.getProductNum());
-				pwi.add(new ProductWithImage(product, images));
+				List<Image> images = imageDAO.selectByProductId(con, product.getProductId());
+				//pwi.add(new Display(product, images));
 			}
 			
 			return new SearchPage(total, page, size, pwi, articles); 

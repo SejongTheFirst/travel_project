@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="register">
-            <a href="/gza/product/write.do" class="register-link" id="register">상품등록</a>
+            <a href="/gza/product/register.do" class="register-link" id="register">상품등록</a>
         </div>
 
         <div class="profile-icon" onclick="toggleMenu()">
