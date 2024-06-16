@@ -26,12 +26,7 @@
         object-fit: cover;
         cursor: pointer;
     }
-    .product-image {
-        max-width: 100%;
-        max-height: 500px;
-        width: auto;
-        height: auto;
-    }
+  
 </style>
 </head>
 <body>
