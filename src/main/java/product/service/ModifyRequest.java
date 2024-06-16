@@ -9,18 +9,16 @@ public class ModifyRequest {
 	private int price;
 	private String productTitle;
 	private String productSubtitle;
-	private String productOriginFileName;
 	private String productStoreFileName;
 	private String productContent;
 
 	public ModifyRequest(String memberid, int productNum, int price, String productTitle, String productSubtitle,
-			String productOriginFileName, String productStoreFileName, String productContent) {
+			String productStoreFileName, String productContent) {
 		this.memberid = memberid;
 		this.productNum = productNum;
 		this.price = price;
 		this.productTitle = productTitle;
 		this.productSubtitle = productSubtitle;
-		this.productOriginFileName = productOriginFileName;
 		this.productStoreFileName = productStoreFileName;
 		this.productContent = productContent;
 	}
@@ -45,9 +43,6 @@ public class ModifyRequest {
 		return productSubtitle;
 	}
 
-	public String getProductOriginFileName() {
-		return productOriginFileName;
-	}
 
 	public String getProductStoreFileName() {
 		return productStoreFileName;

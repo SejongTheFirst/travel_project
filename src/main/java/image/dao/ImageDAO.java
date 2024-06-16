@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import image.model.Image;
-import jdbc.JdbcUtil;
 
+// RegisterProductService
 public class ImageDAO {
 	public Image insert(Connection con, Image img) throws SQLException {
-		String query = "insert into image (original_name, store_name, seller_id, product_num) values (?, ?, ?, ?)";
+		String query = "insert into image (seller_id, product_id, file_name) values (?, ?, ?)";
 		try (PreparedStatement ps = con.prepareStatement(query)) {
-			ps.setString(1, img.getOriginalName());
-			ps.setString(2, img.getStoreName());
-			ps.setString(3, img.getSellerId());
-			ps.setInt(4, img.getProductNum());
+			ps.setString(1, img.getSellerId());
+			ps.setInt(2, img.getProductId());
+			ps.setString(3, img.getFileName());
+
 			int result = ps.executeUpdate();
 
 			if (result > 0) {
@@ -28,25 +28,23 @@ public class ImageDAO {
 		}
 	}
 
-	public Image selectOneByProductNum(Connection con, int id) throws SQLException {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			ps = con.prepareStatement("select * from image where product_num = ?");
-			ps.setInt(1, id);
-			rs = ps.executeQuery();
+	// ListProductService, ReadProductService
+	public List<Image> selectByProductId(Connection con, int productId) throws SQLException {
+		String query = "select * from image where product_id = ?";
 
-			Image img = null;
-			if (rs.next()) {
-				img = new Image(rs.getInt("image_id"), rs.getString("original_name"), rs.getString("store_name"),
-						rs.getString("seller_id"), rs.getInt("product_num"));
+		try (PreparedStatement ps = con.prepareStatement(query)) {
+			ps.setInt(1, productId);
+			ResultSet rs = ps.executeQuery();
+			List<Image> images = new ArrayList<>();
+			while (rs.next()) {
+				images.add(new Image(rs.getInt("image_id"), rs.getString("seller_id"), rs.getInt("product_id"),
+						rs.getString("file_name")));
 			}
-			return img;
-		} finally {
-			JdbcUtil.close(ps);
-			JdbcUtil.close(ps);
+			return images;
 		}
 	}
+
+	
 
 	public int update(Connection con, String original, String store, int num) throws SQLException {
 		String query = "update image set original_name=?, store_name=? where product_num=?";
@@ -79,20 +77,5 @@ public class ImageDAO {
 			return ps.executeUpdate();
 		}
 	}
-	
-	public List<Image> selectByProductNum(Connection con, int num) throws SQLException{
-		String query = "select * from image where product_num = ?";
-		
-		try (PreparedStatement ps = con.prepareStatement(query)){
-			ps.setInt(1, num);
-			ResultSet rs = ps.executeQuery();
-			List<Image> images = new ArrayList<>();
-			while (rs.next()) {
-				images.add(new Image(rs.getInt("image_id"), rs.getString("original_name"), 
-						rs.getString("store_name"), rs.getString("seller_id"), rs.getInt("product_num")));
-			}
-			return images;
-		}
-	}
-	
+
 }

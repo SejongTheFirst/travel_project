@@ -22,7 +22,7 @@ public class DeleteProductService {
 	        con = ConnectionProvider.getConnection();
 	        con.setAutoCommit(false);
 
-	        Product product = productDAO.selectById(con, delReq.getProductNum());
+	        Product product = productDAO.selectByProductId(con, delReq.getProductNum());
 
 	        if (product == null) {
 	            throw new ProductNotFoundException("Product not found: " + delReq.getProductNum());
@@ -31,9 +31,9 @@ public class DeleteProductService {
 	            throw new PermissionDeninedException("Permission denied for user: " + delReq.getMemberid());
 	        }
 
-	        productDAO.delete(con, product.getProductNum());
-	        contentDAO.delete(con, product.getProductNum());
-	        imageDAO.delete(con, product.getProductNum());
+	        productDAO.delete(con, product.getProductId());
+	        contentDAO.delete(con, product.getProductId());
+	        imageDAO.delete(con, product.getProductId());
 	        con.commit();
 	    } catch (SQLException e) {
 	        JdbcUtil.rollback(con);
@@ -47,7 +47,7 @@ public class DeleteProductService {
 	}
 	
 	public boolean canDelete(String deleteID, Product product) {
-		return product.getWriter().getId().equals(deleteID);
+		return product.getSeller().getId().equals(deleteID);
 	}
 
 }

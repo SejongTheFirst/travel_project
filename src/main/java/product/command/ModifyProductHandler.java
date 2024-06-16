@@ -18,7 +18,7 @@ import product.service.PermissionDeninedException;
 import product.service.ProductData;
 import product.service.ProductNotFoundException;
 import product.service.ReadProductService;
-import util.MultiProvider;
+import util.FileUtil;
 
 public class ModifyProductHandler implements CommandHandler {
 
@@ -27,7 +27,7 @@ public class ModifyProductHandler implements CommandHandler {
 	private ReadProductService readService = new ReadProductService();
 	private ModifyProductService modifyProductService = new ModifyProductService();
 	private DeleteImageService deleteImageService = new DeleteImageService();
-	
+
 	private int willBeDeleted = 0;
 
 	@Override
@@ -48,7 +48,7 @@ public class ModifyProductHandler implements CommandHandler {
 			int no = Integer.parseInt(noVal);
 
 			ProductData productData = readService.getProduct(no);
-			willBeDeleted = (productData.getImage().getProductNum());
+			willBeDeleted = (1);
 
 			User authUser = (User) req.getSession().getAttribute("authUser");
 
@@ -59,8 +59,7 @@ public class ModifyProductHandler implements CommandHandler {
 
 			ModifyRequest modReq = new ModifyRequest(authUser.getId(), no, productData.getProduct().getPrice(),
 					productData.getProduct().getProductTitle(), productData.getContent().getProductSubTitle(),
-					productData.getImage().getOriginalName(), productData.getImage().getStoreName(),
-					productData.getContent().getProductContent());
+					"str", productData.getContent().getProductContent());
 
 			req.setAttribute("modReq", modReq);
 			return FORM_VIEW;
@@ -71,14 +70,14 @@ public class ModifyProductHandler implements CommandHandler {
 	}
 
 	private boolean canModify(User authUser, ProductData productData) {
-		String writerId = productData.getProduct().getWriter().getId();
+		String writerId = productData.getProduct().getSeller().getId();
 		return authUser.getId().equals(writerId);
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		User authUser = (User) req.getSession().getAttribute("authUser");
 
-		MultipartRequest multi = MultiProvider.getMulti(req);
+		MultipartRequest multi = FileUtil.getMulti(req);
 		String originalFileName = multi.getOriginalFileName("file");
 		String storeFileName = multi.getFilesystemName("file");
 
@@ -86,7 +85,7 @@ public class ModifyProductHandler implements CommandHandler {
 		int no = Integer.parseInt(noVal);
 
 		ModifyRequest modReq = new ModifyRequest(authUser.getId(), no, Integer.parseInt(multi.getParameter("price")),
-				multi.getParameter("title"), multi.getParameter("subtitle"), originalFileName, storeFileName,
+				multi.getParameter("title"), multi.getParameter("subtitle"), storeFileName,
 				multi.getParameter("content"));
 
 		req.setAttribute("modReq", modReq);
@@ -102,7 +101,7 @@ public class ModifyProductHandler implements CommandHandler {
 		try {
 			modifyProductService.modify(modReq);
 			deleteImageService.delete(willBeDeleted);
-			
+
 			return "/WEB-INF/view/modifySuccess.jsp";
 		} catch (ProductNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);

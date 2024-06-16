@@ -16,11 +16,11 @@ public class ReadProductHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String noVal = req.getParameter("no");
-		int productNum = Integer.parseInt(noVal);
+		int productId = Integer.parseInt(noVal);
 		try {
-			ProductData productData = readService.getProduct(productNum);
+			ProductData productData = readService.getProduct(productId);
 			req.setAttribute("productData", productData);
-			return "/WEB-INF/view/readProduct.jsp";
+			return "/WEB-INF/view/product/readProduct.jsp";
 		} catch (ProductNotFoundException | ProductContentNotFoundException e) {
 			req.getServletContext().log("no product", e);
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);

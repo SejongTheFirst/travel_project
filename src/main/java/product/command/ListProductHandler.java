@@ -18,13 +18,13 @@ public class ListProductHandler implements CommandHandler{
 		if(pageNoVal != null) {
 			pageNo=Integer.parseInt(pageNoVal);
 		}
-		ProductPage roomPage=listService.getRoomProductPage(pageNo);
-		ProductPage experience = listService.getExperienceProductPage(pageNo);
-		ProductPage activity = listService.getActivityProductPage(pageNo);
+		ProductPage roomPage=listService.getRoomPage(pageNo);
+		ProductPage experiencePage = listService.getExperiencePage(pageNo);
+		ProductPage activityPage = listService.getActivityPage(pageNo);
 		req.setAttribute("roomPage", roomPage);
-		req.setAttribute("experiencePage", experience);
-		req.setAttribute("activityPage", activity);
-		return "/WEB-INF/view/listProduct.jsp";
+		req.setAttribute("experiencePage", experiencePage);
+		req.setAttribute("activityPage", activityPage);
+		return "/WEB-INF/view/product/listProduct.jsp";
 	}
 
 }
