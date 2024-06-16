@@ -19,7 +19,6 @@ public class JoinHandler implements CommandHandler {
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		req.setAttribute("showJoinModal", false);
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		} else if (req.getMethod().equalsIgnoreCase("POST")) {
@@ -31,7 +30,6 @@ public class JoinHandler implements CommandHandler {
 	}
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		req.setAttribute("showJoinModal", true);
 		return FORM_VIEW;
 	}
 
@@ -50,14 +48,12 @@ public class JoinHandler implements CommandHandler {
 		joinReq.validate(errors);
 
 		if (!errors.isEmpty()) {
-			req.setAttribute("showJoinModal", true);
 			return FORM_VIEW;
 		}
 
 		try {
 			joinService.join(joinReq);
-			req.getSession().setAttribute("showLoginModal", true);
-			res.sendRedirect(req.getContextPath() + "/home.do");
+			res.sendRedirect(req.getContextPath() + "/login.do");
 			return null;
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", true);
