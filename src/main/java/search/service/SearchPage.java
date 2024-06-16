@@ -3,19 +3,19 @@ package search.service;
 import java.util.List;
 
 import board.model.Article;
-import product.service.ProductWithImage;
+import product.service.Display;
 
 public class SearchPage {
 	
 	private int total;
 	private int currentPage;
-	private List<ProductWithImage> content;
+	private List<Display> content;
 	private List<Article> article;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 
-	public SearchPage(int total, int currentPage, int size, List<ProductWithImage> content, List<Article> article) {
+	public SearchPage(int total, int currentPage, int size, List<Display> content, List<Article> article) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.content = content;
@@ -60,7 +60,7 @@ public class SearchPage {
 		return totalPages;
 	}
 
-	public List<ProductWithImage> getContent() {
+	public List<Display> getContent() {
 		return content;
 	}
 	

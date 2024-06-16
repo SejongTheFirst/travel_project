@@ -20,9 +20,9 @@ public class DeleteImageService {
 			con = ConnectionProvider.getConnection();
 			con.setAutoCommit(false);
 
-			Image image = imageDAO.selectOneByProductNum(con, productNum);
+			//Image image = imageDAO.selectOneByProductNum(con, productNum);
 
-			if (image == null) {
+			if ("str"== null) {
 
 			}
 			imageDAO.delete(con, productNum);

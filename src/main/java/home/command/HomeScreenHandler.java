@@ -20,12 +20,12 @@ public class HomeScreenHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		List<Article> AllList = articleService.getAllList();
-		HomePage roompage = homeScreenService.getRoomPage(startRow);
-		HomePage experience = homeScreenService.getExperience(startRow);
-		HomePage activity = homeScreenService.getAvtivity(startRow);
-		req.setAttribute("roomPage", roompage);
-		req.setAttribute("experiencePage", experience);
-		req.setAttribute("activityPage", activity);
+		HomePage roomPage = homeScreenService.getRoomPage(startRow);
+		HomePage experiencePage = homeScreenService.getExperiencePage(startRow);
+		HomePage activityPage = homeScreenService.getAvtivityPage(startRow);
+		req.setAttribute("roomPage", roomPage);
+		req.setAttribute("experiencePage", experiencePage);
+		req.setAttribute("activityPage", activityPage);
 		req.setAttribute("AllList", AllList);
 		return "/WEB-INF/view/home.jsp";
 	}

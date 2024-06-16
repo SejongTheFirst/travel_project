@@ -11,19 +11,19 @@ import product.dao.ProductDAO;
 import product.model.Product;
 
 public class ModifyProductService {
-	
+
 	private ProductDAO productDAO = new ProductDAO();
 	private ProductContentDAO contentDAO = new ProductContentDAO();
 	private ImageDAO imageDAO = new ImageDAO();
-	
+
 	public void modify(ModifyRequest modReq) {
-		Connection con=null;
+		Connection con = null;
 		try {
-			con=ConnectionProvider.getConnection();
+			con = ConnectionProvider.getConnection();
 			con.setAutoCommit(false);
-			
-			Product pro = productDAO.selectById(con, modReq.getProductNum());
-			
+
+			Product pro = productDAO.selectByProductId(con, modReq.getProductNum());
+
 			if (pro == null) {
 				throw new ProductNotFoundException(null);
 			}
@@ -31,8 +31,8 @@ public class ModifyProductService {
 				throw new PermissionDeninedException(null);
 			}
 			productDAO.update(con, modReq.getProductTitle(), modReq.getPrice(), modReq.getProductNum());
-			contentDAO.update(con, modReq.getProductNum(), modReq.getProductSubtitle(),modReq.getProductContent());
-			imageDAO.update(con, modReq.getProductOriginFileName(), modReq.getProductStoreFileName(), modReq.getProductNum());
+			contentDAO.update(con, modReq.getProductNum(), modReq.getProductSubtitle(), modReq.getProductContent());
+			imageDAO.update(con, "str", modReq.getProductStoreFileName(), modReq.getProductNum());
 			con.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(con);
@@ -43,9 +43,9 @@ public class ModifyProductService {
 			JdbcUtil.close(con);
 		}
 	}
-	
+
 	private boolean canModify(String modifyingMemberId, Product product) {
-		return product.getWriter().getId().equals(modifyingMemberId);
+		return product.getSeller().getId().equals(modifyingMemberId);
 	}
 
 }

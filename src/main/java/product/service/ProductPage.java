@@ -6,15 +6,15 @@ public class ProductPage {
 
 	private int total;
 	private int currentPage;
-	private List<ProductWithImage> content;
+	private List<Display> displays;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
 
-	public ProductPage(int total, int currentPage, int size, List<ProductWithImage> content) {
+	public ProductPage(int total, int currentPage, int size, List<Display> displays) {
 		this.total = total;
 		this.currentPage = currentPage;
-		this.content = content;
+		this.displays = displays;
 		if (total == 0) {
 			totalPages = 0;
 			startPage = 0;
@@ -55,8 +55,8 @@ public class ProductPage {
 		return totalPages;
 	}
 
-	public List<ProductWithImage> getContent() {
-		return content;
+	public List<Display> getDisplays() {
+		return displays;
 	}
 
 	public int getStartPage() {

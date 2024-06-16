@@ -1,5 +1,7 @@
 package product.service;
 
+import java.util.List;
+
 import image.model.Image;
 import product.model.Product;
 import product.model.ProductContent;
@@ -8,13 +10,12 @@ public class ProductData {
 
 	private Product product;
 	private ProductContent content;
-	private Image image;
+	private List<Image> images;
 
-	public ProductData(Product product, ProductContent content, Image image) {
-		super();
+	public ProductData(Product product, ProductContent content, List<Image> images) {
 		this.product = product;
 		this.content = content;
-		this.image = image;
+		this.images = images;
 	}
 
 	public Product getProduct() {
@@ -25,8 +26,7 @@ public class ProductData {
 		return content;
 	}
 
-	public Image getImage() {
-		return image;
+	public List<Image> getImages() {
+		return images;
 	}
-
 }
