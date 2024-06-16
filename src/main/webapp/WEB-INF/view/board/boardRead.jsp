@@ -37,10 +37,6 @@
                             <td><c:out value="${articleData.article.title}" /></td>
                         </tr>
                         <tr>
-                            <td>내용</td>
-                            <td><c:out value="${articleData.content}" /></td>
-                        </tr>
-                        <tr>
                             <td colspan="2">
                                 <c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />&nbsp;
                                 <a class="제목" href="list.do?category=${category}&pageNo=${pageNo}">목록</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -50,6 +46,11 @@
                                 </c:if>
                             </td>
                         </tr>
+                        <tr>
+                            
+                            <td colspan="3"><c:out value="${articleData.content}" /></td>
+                        </tr>
+                        
                     </table>
 
                     <br>
