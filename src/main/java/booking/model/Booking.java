@@ -1,31 +1,31 @@
-package book.model;
+package booking.model;
 
 import java.util.Date;
 
-public class Book {
-	private Integer bookCode;
+public class Booking {
+	private Integer bookingId;
 	private String sellerId;
 	private Customer customer;
-	private String title;
+	private String bookingTitle;
 	private String location;
 	private String imgUrl;
 	private Date startDate;
 	private Date endDate;
 
-	public Book(Integer bookCode, String sellerId, Customer customer, String title, String location, String imgUrl,
-			Date startDate, Date endDate) {
-		this.bookCode = bookCode;
+	public Booking(Integer bookingId, String sellerId, Customer customer, String bookingTitle, String location,
+			String imgUrl, Date startDate, Date endDate) {
+		this.bookingId = bookingId;
 		this.sellerId = sellerId;
 		this.customer = customer;
-		this.title = title;
+		this.bookingTitle = bookingTitle;
 		this.location = location;
 		this.imgUrl = imgUrl;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
 
-	public Integer getBookCode() {
-		return bookCode;
+	public Integer getBookingId() {
+		return bookingId;
 	}
 
 	public String getSellerId() {
@@ -36,8 +36,8 @@ public class Book {
 		return customer;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getBookingTitle() {
+		return bookingTitle;
 	}
 
 	public String getLocation() {
@@ -55,4 +55,5 @@ public class Book {
 	public Date getEndDate() {
 		return endDate;
 	}
+
 }

@@ -2,27 +2,31 @@ package payment.model;
 
 public class Payment {
 
-	private Integer id;
+	private Integer paymentId;
+	private Integer bookingId;
 	private String merchantUid;
 	private String paymentMethod;
 	private String buyerEmail;
 	private String buyerName;
 	private String buyerTel;
-	private Integer bookCode;
 
-	public Payment(Integer id, String merchantUid, String paymentMethod, String buyerEmail, String buyerName,
-			String buyerTel, Integer bookCode) {
-		this.id = id;
+	public Payment(Integer paymentId, Integer bookingId, String merchantUid, String paymentMethod, String buyerEmail,
+			String buyerName, String buyerTel) {
+		this.paymentId = paymentId;
+		this.bookingId = bookingId;
 		this.merchantUid = merchantUid;
 		this.paymentMethod = paymentMethod;
 		this.buyerEmail = buyerEmail;
 		this.buyerName = buyerName;
 		this.buyerTel = buyerTel;
-		this.bookCode = bookCode;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getPaymentId() {
+		return paymentId;
+	}
+
+	public Integer getBookingId() {
+		return bookingId;
 	}
 
 	public String getMerchantUid() {
@@ -43,10 +47,6 @@ public class Payment {
 
 	public String getBuyerTel() {
 		return buyerTel;
-	}
-
-	public Integer getBookCode() {
-		return bookCode;
 	}
 
 }

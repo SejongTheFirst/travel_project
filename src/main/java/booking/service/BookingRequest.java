@@ -1,25 +1,24 @@
-package book.service;
+package booking.service;
 
-public class VerifyRequest {
-
-	private int productNum;
+public class BookingRequest {
+	private int productId;
 	private String title;
 	private int price;
-	private int guest;
+	private int maxGuests;
+	private String location;
 	private String sellerId;
 	private String imageUrl;
 	private String startDate;
 	private String endDate;
 	private int totalPrice;
 	private int days;
-	private String location;
 
-	public VerifyRequest(int productNum, String title, int price, int guest, String location,  String sellerId,
+	public BookingRequest(int productId, String title, int price, int maxGuests, String location, String sellerId,
 			String imageUrl, String startDate, String endDate, int totalPrice, int days) {
-		this.productNum = productNum;
+		this.productId = productId;
 		this.title = title;
 		this.price = price;
-		this.guest = guest;
+		this.maxGuests = maxGuests;
 		this.location = location;
 		this.sellerId = sellerId;
 		this.imageUrl = imageUrl;
@@ -29,8 +28,8 @@ public class VerifyRequest {
 		this.days = days;
 	}
 
-	public int getProductNum() {
-		return productNum;
+	public int getProductId() {
+		return productId;
 	}
 
 	public String getTitle() {
@@ -41,8 +40,8 @@ public class VerifyRequest {
 		return price;
 	}
 
-	public int getGuest() {
-		return guest;
+	public int getMaxGuests() {
+		return maxGuests;
 	}
 
 	public String getLocation() {
@@ -72,5 +71,4 @@ public class VerifyRequest {
 	public int getDays() {
 		return days;
 	}
-
 }
