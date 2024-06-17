@@ -3,6 +3,7 @@ package product.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import board.service.PermissionDeniedException;
 import image.dao.ImageDAO;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
@@ -22,22 +23,22 @@ public class ModifyProductService {
 			con = ConnectionProvider.getConnection();
 			con.setAutoCommit(false);
 
-			Product pro = productDAO.selectByProductId(con, modReq.getProductNum());
+			Product pro = productDAO.selectByProductId(con, modReq.getProductId());
 
 			if (pro == null) {
 				throw new ProductNotFoundException(null);
 			}
-			if (!canModify(modReq.getMemberid(), pro)) {
-				throw new PermissionDeninedException(null);
+			if (!canModify(modReq.getSellerId(), pro)) {
+				throw new RuntimeException();
 			}
-			productDAO.update(con, modReq.getProductTitle(), modReq.getPrice(), modReq.getProductNum());
-			contentDAO.update(con, modReq.getProductNum(), modReq.getProductSubtitle(), modReq.getProductContent());
-			imageDAO.update(con, "str", modReq.getProductStoreFileName(), modReq.getProductNum());
+			productDAO.update(con, modReq.getProductTitle(), modReq.getPrice(), modReq.getProductId());
+			contentDAO.update(con, modReq.getProductId(), modReq.getProductSubtitle(), modReq.getProductContent());
+			imageDAO.update(con, modReq.getSellerId(), modReq.getProductId(), modReq.getFileNames());
 			con.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(con);
 			throw new RuntimeException(e);
-		} catch (PermissionDeninedException e) {
+		} catch (PermissionDeniedException e) {
 			JdbcUtil.rollback(con);
 		} finally {
 			JdbcUtil.close(con);
@@ -47,5 +48,4 @@ public class ModifyProductService {
 	private boolean canModify(String modifyingMemberId, Product product) {
 		return product.getSeller().getId().equals(modifyingMemberId);
 	}
-
 }

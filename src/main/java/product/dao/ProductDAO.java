@@ -193,8 +193,9 @@ public class ProductDAO {
 				rs.getInt("price"), rs.getString("status"));
 	}
 
+	// updateService
 	public int update(Connection con, String title, int price, int no) throws SQLException {
-		String query = "update product set product_title=?, price=? where product_num=?";
+		String query = "update product set product_title=?, price=? where product_id=?";
 		try (PreparedStatement ps = con.prepareStatement(query)) {
 			ps.setString(1, title);
 			ps.setInt(2, price);

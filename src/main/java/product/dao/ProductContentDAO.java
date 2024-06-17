@@ -68,7 +68,7 @@ public class ProductContentDAO {
 	}
 
 	public int update(Connection con, int no, String subtitle, String content) throws SQLException {
-		String query = "update product_content set product_content=?, product_subtitle=? where product_num=?";
+		String query = "update product_content set product_content=?, product_subtitle=? where product_id=?";
 		try (PreparedStatement ps = con.prepareStatement(query)) {
 			ps.setString(1, content);
 			ps.setString(2, subtitle);
@@ -78,8 +78,9 @@ public class ProductContentDAO {
 		}
 	}
 
+	
 	public int delete(Connection con, int no) throws SQLException {
-		String query = "delete from product_content where product_num=?";
+		String query = "delete from product_content where product_id=?";
 
 		try (PreparedStatement ps = con.prepareStatement(query)) {
 			ps.setInt(1, no);

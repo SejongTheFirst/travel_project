@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="includes/header.jsp"%>
+<%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/gza/css/modifyForm.css">
 </head>
 <body>
-	<form action="modify.do?no=${modReq.productNum}" method="post"
+	<form action="modify.do?no=${modReq.productId}" method="post"
 		enctype="multipart/form-data" accept="image/*">
 		
 		
@@ -17,16 +17,18 @@
 			<div class="form-container">
 				<div class="form-item">
 					<p>이미지 파일 선택:</p>
-					<input id="file-upload" type="file" name="file"
-						onchange="previewImage()">
+					<input id="file-upload" type="file" name="file" onchange="previewImage()">
 					<div class="image-preview">
 						<h2>이미지 미리보기</h2>
-						<img id="image-preview" src="" alt="Image Preview">
+						<c:forEach var="fileName" items="${fileNames}">
+							<img src="${pageContext.request.contextPath}/upload/${fileName}" alt="Existing Image" class="existing-image">
+						</c:forEach>
+						<img id="image-preview" src="" alt="New Image Preview">
 					</div>
 				</div>
 				<div class="form-item">
 					<p>번호:</p>
-					<span id="productNum">${modReq.productNum}</span>
+					<span id="productId">${modReq.productId}</span>
 				</div>
 				<div class="form-item">
 					<p>제목:</p>
@@ -52,6 +54,21 @@
 		</div>
 	</form>
 
-	<%@include file="includes/footer.jsp"%>
+	<%@include file="../includes/footer.jsp"%>
+	<script>
+		function previewImage() {
+			const preview = document.getElementById('image-preview');
+			const file = document.getElementById('file-upload').files[0];
+			const reader = new FileReader();
+
+			reader.addEventListener('load', function () {
+				preview.src = reader.result;
+			}, false);
+
+			if (file) {
+				reader.readAsDataURL(file);
+			}
+		}
+	</script>
 </body>
 </html>
