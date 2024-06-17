@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="includes/header.jsp"%>
+<%@include file="../includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +10,13 @@
 </head>
 <body>
 
-	<form action="delete.do?no=${delReq.productNum}" method="post"
+	<form action="delete.do?no=${delReq.productId}" method="post"
 		enctype="multipart/form-data" accept="image/*">
 		<div class="main">
 			<div class="form-container">
 				<div class="form-item">
 					<p>번호:</p>
-					<span id="productNum">${delReq.productNum}</span>
+					<span id="productNum">${delReq.productId}</span>
 				</div>
 				<div class="form-item">
 					<p>제목:</p>
@@ -26,8 +26,9 @@
 				<div class="form-item">
 					<p>이미지 파일:</p>
 					<div class="image-preview">
-						<img src="/gza/imageStorage/${delReq.imageFileName}"
-							alt="${delReq.imageFileName}" class="product-image">
+						<c:forEach var="imageFileName" items="${delReq.images}">
+							<img src="/gza/imageStorage/${imageFileName}" alt="${imageFileName}" class="product-image">
+						</c:forEach>
 					</div>
 				</div>
 				<div class="form-item">
@@ -40,6 +41,6 @@
 			</div>
 		</div>
 	</form>
-	<%@include file="includes/footer.jsp"%>
+	<%@include file="../includes/footer.jsp"%>
 </body>
 </html>

@@ -22,10 +22,10 @@ public class DeleteProductService {
 	        con = ConnectionProvider.getConnection();
 	        con.setAutoCommit(false);
 
-	        Product product = productDAO.selectByProductId(con, delReq.getProductNum());
+	        Product product = productDAO.selectByProductId(con, delReq.getProductId());
 
 	        if (product == null) {
-	            throw new ProductNotFoundException("Product not found: " + delReq.getProductNum());
+	            throw new ProductNotFoundException("Product not found: " + delReq.getProductId());
 	        }
 	        if (!canDelete(delReq.getMemberid(), product)) {
 	            throw new PermissionDeninedException("Permission denied for user: " + delReq.getMemberid());
