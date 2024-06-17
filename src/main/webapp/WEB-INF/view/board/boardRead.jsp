@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../includes/header.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +47,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="3"><c:out value="${articleData.content}" /></td>
+                        <c:set var="userInput" value="${articleData.content }"></c:set>
+                            <td colspan="3"><span id="output"></span></td>
                         </tr>
                     </table>
                     <br>
@@ -124,6 +127,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+function processText() {
+    var userInput = `<c:out value='${fn:escapeXml(userInput)}' />`;
+    var processedText = userInput.replace(/\n/g, '<br>');
+    document.getElementById('output').innerHTML = processedText;
+}
+window.onload = processText;
+
 function confirmDelete(event, articleNumber, category, pageNo) {
     event.preventDefault();
     var isDelete = confirm("정말로 삭제하시겠습니까?");
