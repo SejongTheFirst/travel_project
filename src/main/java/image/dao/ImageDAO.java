@@ -46,9 +46,7 @@ public class ImageDAO {
 
 	// update
 	public void update(Connection con, String sellerId, int productId, List<String> fileNames) throws SQLException {
-		if (delete(con, productId) == 0) {
-			throw new SQLException("Failed to delete existing images for product ID: " + productId);
-		}
+		delete(con, productId);
 
 		String query = "insert into image (seller_id, product_id, file_name) values (?, ?, ?)";
 
