@@ -35,7 +35,7 @@
                                 <c:out value="${display.product.productTitle}" />
                             </a>
                         </div>
-                        <div class="price">${display.product.price}</div>
+                        <div class="price">${display.product.price}원/박</div>
                     </div>
                 </c:forEach>
             </div>
@@ -55,7 +55,7 @@
                                 <c:out value="${display.product.productTitle}" />
                             </a>
                         </div>
-                        <div class="price">${display.product.price}</div>
+                        <div class="price">${display.product.price}원/일</div>
                     </div>
                 </c:forEach>
             </div>
@@ -75,7 +75,7 @@
                                 <c:out value="${display.product.productTitle}" />
                             </a>
                         </div>
-                        <div class="price">${display.product.price}</div>
+                        <div class="price">${display.product.price}원/일</div>
                     </div>
                 </c:forEach>
             </div>

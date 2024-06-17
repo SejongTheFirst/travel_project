@@ -83,6 +83,8 @@
 			</c:if>
 		</div>
 	</main>
+	
+	<footer></footer>
 	<%@include file="includes/footer.jsp"%>
 </body>
 </html>
