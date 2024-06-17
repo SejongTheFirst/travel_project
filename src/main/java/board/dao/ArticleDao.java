@@ -12,330 +12,357 @@ import java.util.Date;
 import java.util.List;
 
 import board.model.Article;
+import board.model.Comment;
 import board.model.Writer;
 import jdbc.JdbcUtil;
 
 public class ArticleDao {
 
-	public Article insert(Connection conn, Article article) throws SQLException {
-		PreparedStatement pstmt = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("insert into community "
-					+ "(id, writer_name, title, regdate, moddate, read_cnt, category) " + "values (?,?,?,?,?,0,?)");
-			pstmt.setString(1, article.getWriter().getId());
-			pstmt.setString(2, article.getWriter().getName());
-			pstmt.setString(3, article.getTitle());
-			pstmt.setTimestamp(4, toTimestamp(article.getRegDate()));
-			pstmt.setTimestamp(5, toTimestamp(article.getModifiedDate()));
-			pstmt.setString(6, article.getCategory());
-			int insertedCount = pstmt.executeUpdate();
+    public Article insert(Connection conn, Article article) throws SQLException {
+        PreparedStatement pstmt = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("insert into community "
+                    + "(id, writer_name, title, regdate, moddate, read_cnt, category) " + "values (?,?,?,?,?,0,?)");
+            pstmt.setString(1, article.getWriter().getId());
+            pstmt.setString(2, article.getWriter().getName());
+            pstmt.setString(3, article.getTitle());
+            pstmt.setTimestamp(4, toTimestamp(article.getRegDate()));
+            pstmt.setTimestamp(5, toTimestamp(article.getModifiedDate()));
+            pstmt.setString(6, article.getCategory());
+            int insertedCount = pstmt.executeUpdate();
 
-			if (insertedCount > 0) {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery("select last_insert_id() from community");
-				if (rs.next()) {
-					Integer newNo = rs.getInt(1);
-					return new Article(newNo, article.getWriter(), article.getTitle(), article.getRegDate(),
-							article.getModifiedDate(), 0, article.getCategory());
-				}
-			}
-			return null;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(stmt);
-			JdbcUtil.close(pstmt);
-		}
-	}
+            if (insertedCount > 0) {
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery("select last_insert_id() from community");
+                if (rs.next()) {
+                    Integer newNo = rs.getInt(1);
+                    return new Article(newNo, article.getWriter(), article.getTitle(), article.getRegDate(),
+                            article.getModifiedDate(), 0, article.getCategory());
+                }
+            }
+            return null;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(stmt);
+            JdbcUtil.close(pstmt);
+        }
+    }
 
-	private Timestamp toTimestamp(Date date) {
-		return new Timestamp(date.getTime());
-	}
+    private Timestamp toTimestamp(Date date) {
+        return new Timestamp(date.getTime());
+    }
 
-	public int selectCount(Connection conn) throws SQLException {
-		Statement stmt = null;
-		ResultSet rs = null;
-		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select count(*) from community");
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-			return 0;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(stmt);
-		}
-	}
+    public int selectCount(Connection conn) throws SQLException {
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("select count(*) from community");
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(stmt);
+        }
+    }
 
-	public List<Article> select(Connection conn, int startRow, int size) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("select * from community " + "order by board_num desc limit ?, ?");
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, size);
-			rs = pstmt.executeQuery();
-			List<Article> result = new ArrayList<>();
-			while (rs.next()) {
-				result.add(convertArticle(rs));
-			}
-			return result;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
+    public List<Article> select(Connection conn, int startRow, int size) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("select * from community " + "order by board_num desc limit ?, ?");
+            pstmt.setInt(1, startRow);
+            pstmt.setInt(2, size);
+            rs = pstmt.executeQuery();
+            List<Article> result = new ArrayList<>();
+            while (rs.next()) {
+                result.add(convertArticle(rs));
+            }
+            return result;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
 
-	private Article convertArticle(ResultSet rs) throws SQLException {
-		return new Article(rs.getInt("board_num"), new Writer(rs.getString("id"), rs.getString("writer_name")),
-				rs.getString("title"), rs.getTimestamp("regdate"), rs.getTimestamp("moddate"), rs.getInt("read_cnt"),
-				rs.getString("category"));
-	}
+    private Article convertArticle(ResultSet rs) throws SQLException {
+        return new Article(rs.getInt("board_num"), new Writer(rs.getString("id"), rs.getString("writer_name")),
+                rs.getString("title"), rs.getTimestamp("regdate"), rs.getTimestamp("moddate"), rs.getInt("read_cnt"),
+                rs.getString("category"));
+    }
 
-	private Date toDate(Timestamp timestamp) {
-		return new Date(timestamp.getTime());
-	}
+    private Date toDate(Timestamp timestamp) {
+        return new Date(timestamp.getTime());
+    }
 
-	public Article selectById(Connection conn, int articleNo) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("SELECT * FROM community WHERE board_num = ?");
-			pstmt.setInt(1, articleNo);
-			rs = pstmt.executeQuery();
-			Article article = null;
-			if (rs.next()) {
-				article = convertArticle(rs);
-			}
-			return article;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
+    public Article selectById(Connection conn, int articleNo) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM community WHERE board_num = ?");
+            pstmt.setInt(1, articleNo);
+            rs = pstmt.executeQuery();
+            Article article = null;
+            if (rs.next()) {
+                article = convertArticle(rs);
+            }
+            return article;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
 
-	public void increaseReadCount(Connection conn, int no) throws SQLException {
-		try (PreparedStatement pstmt = conn
-				.prepareStatement("update community set read_cnt = read_cnt + 1 where board_num = ?")) {
-			pstmt.setInt(1, no);
-			pstmt.executeUpdate();
-		}
-	}
+    public void increaseReadCount(Connection conn, int no) throws SQLException {
+        try (PreparedStatement pstmt = conn
+                .prepareStatement("update community set read_cnt = read_cnt + 1 where board_num = ?")) {
+            pstmt.setInt(1, no);
+            pstmt.executeUpdate();
+        }
+    }
 
-	public int update(Connection conn, int no, String title) throws SQLException {
-		try (PreparedStatement pstmt = conn
-				.prepareStatement("update community set title = ?, moddate = now() " + "where board_num = ?")) {
-			pstmt.setString(1, title);
-			pstmt.setInt(2, no);
+    public int update(Connection conn, int no, String title) throws SQLException {
+        try (PreparedStatement pstmt = conn
+                .prepareStatement("update community set title = ?, moddate = now() " + "where board_num = ?")) {
+            pstmt.setString(1, title);
+            pstmt.setInt(2, no);
 
-			return pstmt.executeUpdate();
-		}
-	}
+            return pstmt.executeUpdate();
+        }
+    }
 
-	public void delete(Connection conn, int articleNumber) throws SQLException {
-		PreparedStatement pstmt = null;
-		try {
-			pstmt = conn.prepareStatement("DELETE FROM community WHERE board_num = ?");
-			pstmt.setInt(1, articleNumber);
-			pstmt.executeUpdate();
-		} finally {
-			JdbcUtil.close(pstmt);
-		}
-	}
+    public void delete(Connection conn, int articleNumber) throws SQLException {
+        PreparedStatement pstmt = null;
+        try {
+           
+            conn.setAutoCommit(false);
 
-	public int selectCountByCategory(Connection conn, String category) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("SELECT COUNT(*) FROM community WHERE category = ?");
-			pstmt.setString(1, category);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-			return 0;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
+           
+            CommentDao commentDao = new CommentDao();
+            List<Comment> comments = commentDao.getCommentsByArticle(conn, articleNumber);
+            for (Comment comment : comments) {
+                commentDao.deleteComment(conn, comment.getComment_no());
+            }
 
-	public List<Article> selectByCategory(Connection conn, String category, int startRow, int size)
-			throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn
-					.prepareStatement("SELECT * FROM community WHERE category = ? ORDER BY board_num DESC LIMIT ?, ?");
-			pstmt.setString(1, category);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, size);
-			rs = pstmt.executeQuery();
-			List<Article> result = new ArrayList<>();
-			while (rs.next()) {
-				result.add(convertArticle(rs));
-			}
-			return result;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
+     
+            String deleteCommunityContentQuery = "DELETE FROM community_content WHERE board_num = ?";
+            pstmt = conn.prepareStatement(deleteCommunityContentQuery);
+            pstmt.setInt(1, articleNumber);
+            pstmt.executeUpdate();
+            JdbcUtil.close(pstmt);
 
-	public static String formatDate(Date date) {
-		SimpleDateFormat sdfDate = new SimpleDateFormat("MM-dd");
-		SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
-		SimpleDateFormat sdfFull = new SimpleDateFormat("yyyyMMdd");
+         
+            String deleteCommunityQuery = "DELETE FROM community WHERE board_num = ?";
+            pstmt = conn.prepareStatement(deleteCommunityQuery);
+            pstmt.setInt(1, articleNumber);
+            pstmt.executeUpdate();
 
-		Date currentDate = new Date();
+          
+            conn.commit();
+        } catch (SQLException e) {
+           
+            conn.rollback();
+            throw e;
+        } finally {
+            JdbcUtil.close(pstmt);
+        }
+    }
 
-		if (sdfFull.format(currentDate).equals(sdfFull.format(date))) {
-			return sdfTime.format(date);
-		} else {
-			return sdfDate.format(date);
-		}
-	}
+    public int selectCountByCategory(Connection conn, String category) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("SELECT COUNT(*) FROM community WHERE category = ?");
+            pstmt.setString(1, category);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
 
-	public int Myboard(Connection conn, String id) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("SELECT COUNT(*) FROM community WHERE id = ?");
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(1);
-			}
-			return 0;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
+    public List<Article> selectByCategory(Connection conn, String category, int startRow, int size)
+            throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn
+                    .prepareStatement("SELECT * FROM community WHERE category = ? ORDER BY board_num DESC LIMIT ?, ?");
+            pstmt.setString(1, category);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, size);
+            rs = pstmt.executeQuery();
+            List<Article> result = new ArrayList<>();
+            while (rs.next()) {
+                result.add(convertArticle(rs));
+            }
+            return result;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
 
-	public List<Article> selectMyboard(Connection conn, String id, int startRow, int size) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("SELECT * FROM community WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?");
-			pstmt.setString(1, id);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, size);
-			rs = pstmt.executeQuery();
-			List<Article> result = new ArrayList<>();
-			while (rs.next()) {
-				result.add(convertArticle(rs));
-			}
-			return result;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
+    public static String formatDate(Date date) {
+        SimpleDateFormat sdfDate = new SimpleDateFormat("MM-dd");
+        SimpleDateFormat sdfTime = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat sdfFull = new SimpleDateFormat("yyyyMMdd");
 
-	public int countArticlesByUser(Connection conn, String userId) throws SQLException {
-		String sql = "SELECT COUNT(*) FROM community WHERE id = ?";
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, userId);
-			try (ResultSet rs = pstmt.executeQuery()) {
-				if (rs.next()) {
-					return rs.getInt(1);
-				}
-				return 0;
-			}
-		}
-	}
+        Date currentDate = new Date();
 
-	public List<Article> findArticlesByUser(Connection conn, String userId, int startRow, int size)
-			throws SQLException {
-		String sql = "SELECT * FROM community WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?";
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, userId);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, size);
-			try (ResultSet rs = pstmt.executeQuery()) {
-				List<Article> result = new ArrayList<>();
-				while (rs.next()) {
-					result.add(convertArticle(rs));
-				}
-				return result;
-			}
-		}
-	}
+        if (sdfFull.format(currentDate).equals(sdfFull.format(date))) {
+            return sdfTime.format(date);
+        } else {
+            return sdfDate.format(date);
+        }
+    }
 
-	public List<Article> searchByTitle(Connection conn, String partialTitle) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("SELECT * FROM community WHERE title LIKE ? ORDER BY board_num DESC");
-			pstmt.setString(1, "%" + partialTitle + "%");
-			rs = pstmt.executeQuery();
-			List<Article> result = new ArrayList<>();
-			while (rs.next()) {
-				result.add(convertArticle(rs));
-			}
-			return result;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
+    public int Myboard(Connection conn, String id) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("SELECT COUNT(*) FROM community WHERE id = ?");
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
 
-	public List<Article> searchByWriterName(Connection conn, String partialWriterName) throws SQLException {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement("SELECT * FROM community WHERE writer_name LIKE ? ORDER BY board_num DESC");
-			pstmt.setString(1, "%" + partialWriterName + "%");
-			rs = pstmt.executeQuery();
-			List<Article> result = new ArrayList<>();
-			while (rs.next()) {
-				result.add(convertArticle(rs));
-			}
-			return result;
-		} finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-	}
+    public List<Article> selectMyboard(Connection conn, String id, int startRow, int size) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM community WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?");
+            pstmt.setString(1, id);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, size);
+            rs = pstmt.executeQuery();
+            List<Article> result = new ArrayList<>();
+            while (rs.next()) {
+                result.add(convertArticle(rs));
+            }
+            return result;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
 
-	// 카테고리별 제목으로 검색
-	public List<Article> searchByTitleAndCategory(Connection conn, String category, String partialTitle)
-			throws SQLException {
-		String sql = "SELECT * FROM community WHERE category = ? AND title LIKE ? ORDER BY board_num DESC";
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, category);
-			pstmt.setString(2, "%" + partialTitle + "%");
-			try (ResultSet rs = pstmt.executeQuery()) {
-				List<Article> result = new ArrayList<>();
-				while (rs.next()) {
-					result.add(convertArticle(rs));
-				}
-				return result;
-			}
-		}
-	}
+    public int countArticlesByUser(Connection conn, String userId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM community WHERE id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return 0;
+            }
+        }
+    }
 
-	// 카테고리별 작성자 이름으로 검색
-	public List<Article> searchByWriterNameAndCategory(Connection conn, String category, String partialWriterName)
-			throws SQLException {
-		String sql = "SELECT * FROM community WHERE category = ? AND writer_name LIKE ? ORDER BY board_num DESC";
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setString(1, category);
-			pstmt.setString(2, "%" + partialWriterName + "%");
-			try (ResultSet rs = pstmt.executeQuery()) {
-				List<Article> result = new ArrayList<>();
-				while (rs.next()) {
-					result.add(convertArticle(rs));
-				}
-				return result;
-			}
-		}
-	}
-	
-	public List<Article> searchAllByTitle(Connection conn, String partTitle, int startRow, int size) throws SQLException {
+    public List<Article> findArticlesByUser(Connection conn, String userId, int startRow, int size)
+            throws SQLException {
+        String sql = "SELECT * FROM community WHERE id = ? ORDER BY board_num DESC LIMIT ?, ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userId);
+            pstmt.setInt(2, startRow);
+            pstmt.setInt(3, size);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                List<Article> result = new ArrayList<>();
+                while (rs.next()) {
+                    result.add(convertArticle(rs));
+                }
+                return result;
+            }
+        }
+    }
+
+    public List<Article> searchByTitle(Connection conn, String partialTitle) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM community WHERE title LIKE ? ORDER BY board_num DESC");
+            pstmt.setString(1, "%" + partialTitle + "%");
+            rs = pstmt.executeQuery();
+            List<Article> result = new ArrayList<>();
+            while (rs.next()) {
+                result.add(convertArticle(rs));
+            }
+            return result;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
+
+    public List<Article> searchByWriterName(Connection conn, String partialWriterName) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement("SELECT * FROM community WHERE writer_name LIKE ? ORDER BY board_num DESC");
+            pstmt.setString(1, "%" + partialWriterName + "%");
+            rs = pstmt.executeQuery();
+            List<Article> result = new ArrayList<>();
+            while (rs.next()) {
+                result.add(convertArticle(rs));
+            }
+            return result;
+        } finally {
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
+        }
+    }
+
+    // 카테고리별 제목으로 검색
+    public List<Article> searchByTitleAndCategory(Connection conn, String category, String partialTitle)
+            throws SQLException {
+        String sql = "SELECT * FROM community WHERE category = ? AND title LIKE ? ORDER BY board_num DESC";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, category);
+            pstmt.setString(2, "%" + partialTitle + "%");
+            try (ResultSet rs = pstmt.executeQuery()) {
+                List<Article> result = new ArrayList<>();
+                while (rs.next()) {
+                    result.add(convertArticle(rs));
+                }
+                return result;
+            }
+        }
+    }
+
+    // 카테고리별 작성자 이름으로 검색
+    public List<Article> searchByWriterNameAndCategory(Connection conn, String category, String partialWriterName)
+            throws SQLException {
+        String sql = "SELECT * FROM community WHERE category = ? AND writer_name LIKE ? ORDER BY board_num DESC";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, category);
+            pstmt.setString(2, "%" + partialWriterName + "%");
+            try (ResultSet rs = pstmt.executeQuery()) {
+                List<Article> result = new ArrayList<>();
+                while (rs.next()) {
+                    result.add(convertArticle(rs));
+                }
+                return result;
+            }
+        }
+    }
+
+    public List<Article> searchAllByTitle(Connection conn, String partTitle, int startRow, int size) throws SQLException {
         String sql = "SELECT * FROM community WHERE title LIKE ? ORDER BY regdate DESC LIMIT ?, ?";
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, "%" + partTitle + "%");
@@ -350,5 +377,4 @@ public class ArticleDao {
             }
         }
     }
-
 }
