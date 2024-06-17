@@ -18,6 +18,7 @@ public class ReadProductService {
 	private ProductContentDAO contentDAO = new ProductContentDAO();
 	private ImageDAO imgDAO = new ImageDAO();
 
+	// DeleteProductHandler, ReadProdyctHandler
 	public ProductData getProduct(int productId) {
 		try (Connection con = ConnectionProvider.getConnection()) {
 			Product product = productDAO.selectByProductId(con, productId);
