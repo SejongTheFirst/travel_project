@@ -13,7 +13,8 @@ body {
 
 main {
     padding: 20px;
-    height: 100%;
+    height: auto;
+    margin-bottom: 40px;
 }
 
 .product-form {
@@ -92,6 +93,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow-y: auto;
 }
 
 .basic-info, .content-info {
@@ -175,4 +177,78 @@ main {
     background-color: #0056b3;
 }
 
+.image-upload-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+}
 
+.image-upload {
+	border: 2px dashed #ccc;
+	padding: 20px;
+	cursor: pointer;
+	text-align: center;
+	position: relative;
+	width: 300px;
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.image-upload-center {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.image-upload-bottom {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+}
+
+.image-upload.has-image {
+	border: none;
+}
+
+.image-upload img {
+	max-width : 100%;
+	max-height: 500px;
+	height: auto;
+	width: auto;
+	
+}
+
+.image-upload .delete-button {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background: red;
+	color: white;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.image-upload-center .image-upload{
+	width: 1230px;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap : 10px;
+}
+.image-upload-bottom .image-upload{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap : 10px;
+}
+
+.image-upload input{
+	width: 150px;
+}
