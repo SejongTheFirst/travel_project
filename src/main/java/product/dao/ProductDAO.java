@@ -152,6 +152,16 @@ public class ProductDAO {
 		}
 	}
 
+	// DeleteProductService
+	public int delete(Connection con, int no) throws SQLException {
+		String query = "delete from product where product_id=?";
+
+		try (PreparedStatement ps = con.prepareStatement(query)) {
+			ps.setInt(1, no);
+
+			return ps.executeUpdate();
+		}
+	}
 
 	// SearchService
 	public List<Product> selectByKeyword(Connection con, int startRow, int size, String keyword) throws SQLException {
@@ -189,16 +199,6 @@ public class ProductDAO {
 			ps.setString(1, title);
 			ps.setInt(2, price);
 			ps.setInt(3, no);
-			return ps.executeUpdate();
-		}
-	}
-
-	public int delete(Connection con, int no) throws SQLException {
-		String query = "delete from product where product_num=?";
-
-		try (PreparedStatement ps = con.prepareStatement(query)) {
-			ps.setInt(1, no);
-
 			return ps.executeUpdate();
 		}
 	}

@@ -1,21 +1,22 @@
 package product.service;
 
+import java.util.List;
 import java.util.Map;
 
 public class DeleteRequest {
 
 	private String memberid;
-	private int productNum;
+	private int productId;
 	private String productTitle;
-	private String imageFileName;
+	private List<String> images;
 	private String productContent;
 
-	public DeleteRequest(String memberid, int productNum, String productTitle, String imageFileName,
+	public DeleteRequest(String memberid, int productId, String productTitle, List<String> images,
 			String productContent) {
 		this.memberid = memberid;
-		this.productNum = productNum;
+		this.productId = productId;
 		this.productTitle = productTitle;
-		this.imageFileName = imageFileName;
+		this.images = images;
 		this.productContent = productContent;
 	}
 
@@ -23,16 +24,16 @@ public class DeleteRequest {
 		return memberid;
 	}
 
-	public int getProductNum() {
-		return productNum;
+	public int getProductId() {
+		return productId;
 	}
 
 	public String getProductTitle() {
 		return productTitle;
 	}
 
-	public String getImageFileName() {
-		return imageFileName;
+	public List<String> getImages() {
+		return images;
 	}
 
 	public String getProductContent() {

@@ -1,7 +1,9 @@
 package product.command;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,7 @@ import util.FileUtil;
 
 public class DeleteProductHandler implements CommandHandler {
 
-	private static final String FORM_VIEW = "/WEB-INF/view/deleteForm.jsp";
+	private static final String FORM_VIEW = "/WEB-INF/view/product/deleteForm.jsp";
 
 	private ReadProductService productService = new ReadProductService();
 	private DeleteProductService deleteProductService = new DeleteProductService();
@@ -40,7 +42,7 @@ public class DeleteProductHandler implements CommandHandler {
 
 	private String processForm(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		try {
-			String noVal = req.getParameter("no");
+			String noVal = req.getParameter("no"); // productId
 			int no = Integer.parseInt(noVal);
 
 			ProductData data = productService.getProduct(no);
@@ -50,9 +52,12 @@ public class DeleteProductHandler implements CommandHandler {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;
 			}
+			
+			List<String> fileNames = new ArrayList<>();
+			data.getImages().forEach(image -> fileNames.add(image.getFileName()));
 
 			DeleteRequest delReq = new DeleteRequest(authUser.getId(), no, data.getProduct().getProductTitle(),
-					"str", data.getContent().getProductContent());
+					fileNames, data.getContent().getProductContent());
 
 			req.setAttribute("delReq", delReq);
 			return FORM_VIEW;
@@ -72,12 +77,12 @@ public class DeleteProductHandler implements CommandHandler {
 		User authUser = (User) req.getSession().getAttribute("authUser");
 
 		MultipartRequest multi = FileUtil.getMulti(req);
-		String storeFileName = multi.getFilesystemName("file");
+		List<String> fileNames = FileUtil.getImgUrls(multi);
 
 		String noVal = multi.getParameter("no");
 		int no = Integer.parseInt(noVal);
 
-		DeleteRequest delReq = new DeleteRequest(authUser.getId(), no, multi.getParameter("title"), storeFileName,
+		DeleteRequest delReq = new DeleteRequest(authUser.getId(), no, multi.getParameter("title"), fileNames,
 				multi.getParameter("content"));
 		req.setAttribute("delReq", delReq);
 
@@ -89,7 +94,7 @@ public class DeleteProductHandler implements CommandHandler {
 		}
 		try {
 			deleteProductService.delete(delReq);
-			return "/WEB-INF/view/deleteSuccess.jsp";
+			return "/WEB-INF/view/product/deleteSuccess.jsp";
 		} catch (ProductNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
