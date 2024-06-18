@@ -133,7 +133,7 @@ a:active {
                                     </a>
                                 </td>
                                 <td>${comment.content}</td>
-                                <td>${comment.commentName}</td>
+                                <td>${comment.commentId}</td>
                                 <td>${comment.formattedRegDate}</td>
                             </tr>
                         </c:forEach>
@@ -183,7 +183,7 @@ a:active {
                                     </a>
                                 </td>
                                 <td>${reply.content}</td>
-                                <td>${reply.replyName}</td>
+                                <td>${reply.replyId}</td>
                                 <td>${reply.formattedRegDate}</td>
                             </tr>
                         </c:forEach>

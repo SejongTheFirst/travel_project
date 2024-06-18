@@ -63,9 +63,7 @@
 	</table>
 
 
-	<div>
-		<a href="/gza/MainBoard.do">[메인게시판으로]</a>
-	</div>
+	
 
 	<form action="search.do" method="get">
 		<select name="searchType">

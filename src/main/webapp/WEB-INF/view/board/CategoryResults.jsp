@@ -13,6 +13,9 @@
 .body {
     width: 90%;
 }
+.footer{
+margin-top: 600px;
+}
 </style>
 </head>
 <body>
@@ -87,15 +90,7 @@
                             </c:if>
                         </table>
 
-                        <!-- 메인게시판으로 이동 -->
-                        <div>
-                            <a href="/gza/MainBoard.do" class="btn-primary">메인게시판으로</a>
-                        </div>
-
-                        <!-- index.jsp로 이동 -->
-                        <div>
-                            <a href="home.do" class="btn-primary">처음으로</a>
-                        </div>
+                       
                         
                     </div>
                 </div>
@@ -104,6 +99,7 @@
     </div>
     </body>
     </div>
+    <div>
     <%@include file="../includes/footer.jsp"%>
-
+</div>
 </html>
