@@ -26,7 +26,7 @@ body {
 /* search.css */
 .main {
     height : auto;
-    min-height : auto;
+    min-height : 80vh;
     width : 80%;
     margin: 20px auto;
 }
